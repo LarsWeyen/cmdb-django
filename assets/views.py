@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from .models import Type
 
-def home(request):
-    return HttpResponse("Hello World")
+def dashboard(request):
+    types = Type.objects.all()
+    context={'types':types}
+    return render(request,'assets/dashboard.html',context)
+
