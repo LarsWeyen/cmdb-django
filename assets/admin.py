@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Asset, Customer, LCD, Location, Type, Camera, DVR, LCB, QRScanner, RFID, Switch, Router
+from .models import Asset, Customer, LCD, Location, Type, Camera, DVR, LCB, QRScanner, RFID, Switch, Router, Distrispot, IPC
 
 admin.site.register(Type)
 admin.site.register(Asset)
@@ -13,3 +13,5 @@ admin.site.register(QRScanner)
 admin.site.register(RFID)
 admin.site.register(Switch)
 admin.site.register(Router)
+admin.site.register(Distrispot)
+admin.site.register(IPC)

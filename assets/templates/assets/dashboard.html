@@ -1,8 +1,73 @@
 
 {% extends 'main.html' %}
+{% load static %}
 {% block content %}
-<div>
-    test
+<div class="dashboard">
+    <div class="dashboard-container">
+        <div class="block-container">
+            <div class="distrispot">
+                <div class="content">
+                    <span class="asset-count">{{counts.DistriSPOT}}</span>
+                    <span class="asset-title">DistriSPOT's</span>
+                </div>
+            </div>
+            <div class="ipc">
+                <div class="content">
+                    <span class="asset-count">{{counts.IPC}}</span>
+                    <span class="asset-title">IPC's</span>
+                </div>
+            </div>
+            <div class="lcd">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">LCD's</span>
+                </div>
+            </div>
+            <div class="switch">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">Switches</span>
+                </div>
+            </div>
+            <div class="router">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">Routers</span>
+                </div>
+            </div>
+            <div class="power-supply">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">Power Supplies</span>
+                </div>
+            </div>
+            <div class="rfid">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">RFID's</span>
+                </div>
+            </div>
+            <div class="dvr">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">DVR's</span>
+                </div>
+            </div>
+            <div class="camera">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">Cameras</span>
+                </div>
+            </div>
+            <div class="qr-scanner">
+                <div class="content">
+                    <span class="asset-count">27</span>
+                    <span class="asset-title">QR Scanners</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock content %}
 

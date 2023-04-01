@@ -1,5 +1,6 @@
 from django.db import models
 from cryptography.fernet import Fernet
+from django.contrib.auth.models import User
 
 class Type(models.Model):
     name = models.CharField(max_length=50)
@@ -155,3 +156,25 @@ class LCB(Resources):
 class IPC(Resources):
     cpu = models.CharField(max_length=50)
     android_version = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return self.name
+
+class Maintenance(models.Model):
+    description = models.TextField()
+    date=models.DateField()
+    technician = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class Distrispot(models.Model):
+    name=models.CharField(max_length=50)
+    parent = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
+    location = models.CharField(max_length=50)
+    maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
