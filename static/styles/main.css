@@ -115,7 +115,9 @@ ul{
     padding: 2rem;
     box-shadow:  0 0 3px #ccc;
     border-radius: 4px;
-
+    position: relative;
+    max-height: 87vh;
+    overflow: auto;
 }
 
 form h3{
@@ -133,13 +135,14 @@ form h3{
     align-items: center;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 gap: 15px;
+
 }
 
 .form-field{
     box-sizing: border-box;
-    width: 70%;
+    width: 65%;
     padding: 8px;
     border: 1px rgb(198, 195, 195) solid;
 }

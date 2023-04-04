@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Type(models.Model):
     name = models.CharField(max_length=50)
-
+    slug = models.SlugField(max_length=50)
+    
     def __str__(self) -> str:
         return self.name
 
@@ -99,6 +100,7 @@ class NetworkDevice(models.Model):
 
 class Camera(Resources, NetworkDevice):
     frame_rate = models.CharField(max_length=25)
+    resolution = models.CharField(max_length=25)
     compression_format = models.CharField(max_length=10)
     motion_detection = models.BooleanField()
     location = models.CharField(max_length=100)
@@ -178,3 +180,10 @@ class Distrispot(models.Model):
     def __str__(self) -> str:
         return self.name
 
+class PowerSupply(Resources):
+    voltage = models.CharField(max_length=25)
+    form_factor = models.CharField(max_length=25)
+    wattage = models.CharField(max_length=25)
+
+    def __str__(self) -> str:
+        return self.name

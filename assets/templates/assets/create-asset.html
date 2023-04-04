@@ -52,33 +52,202 @@
           <div class="form-container">
             <div class="form-group">
               <span>Name</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_name"/>
             </div>
             <div class="form-group">
               <span>Manufacturer</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_manufacturer"/>
             </div>
             <div class="form-group">
               <span>Model</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_model"/>
             </div>
             <div class="form-group">
               <span>Serial Number</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_serial"/>
             </div>
             <div class="form-group">
               <span>Connector</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_connector"/>
             </div>
             <div class="form-group">
               <span>Voltage</span>
-              <input class="form-field" type="text" />
+              <input class="form-field" type="text" name="lcb_voltage"/>
             </div>
           </div>
         </div>
 
-        <div class="asset-details">
-            <div class="form-content" id="LCD-form">
+        <div class="form-content" id="Switch-form">
+            <h3>Switch</h3>
+            <div class="form-container">
+              <div class="form-group">
+                <span>Name</span>
+                <input class="form-field" type="text" name="switch_name"/>
+              </div>
+              <div class="form-group">
+                <span>Manufacturer</span>
+                <input class="form-field" type="text" name="switch_manufacturer"/>
+              </div>
+              <div class="form-group">
+                <span>Model</span>
+                <input class="form-field" type="text" name="switch_model"/>
+              </div>
+              <div class="form-group">
+                <span>Serial Number</span>
+                <input class="form-field" type="text" name="switch_serial"/>
+              </div>
+              <div class="form-group">
+                <span>Number of ports</span>
+                <input class="form-field" type="text" name="switch_num_ports"/>
+              </div>
+              <div class="form-group">
+                <span>Mac address</span>
+                <input class="form-field" type="text" name="switch_mac_address"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-content" id="Power Supply-form">
+            <h3>Power Supply</h3>
+            <div class="form-container">
+              <div class="form-group">
+                <span>Name</span>
+                <input class="form-field" type="text" name="psu_name"/>
+              </div>
+              <div class="form-group">
+                <span>Manufacturer</span>
+                <input class="form-field" type="text" name="psu_manufacturer"/>
+              </div>
+              <div class="form-group">
+                <span>Model</span>
+                <input class="form-field" type="text" name="psu_model"/>
+              </div>
+              <div class="form-group">
+                <span>Serial Number</span>
+                <input class="form-field" type="text" name="psu_serial"/>
+              </div>
+              <div class="form-group">
+                <span>Voltage</span>
+                <input class="form-field" type="text" name="psu_voltage"/>
+              </div>
+              <div class="form-group">
+                <span>Wattage</span>
+                <input class="form-field" type="text" name="psu_wattage"/>
+              </div>
+              <div class="form-group">
+                <span>Form Factor</span>
+                <input class="form-field" type="text" name="psu_form_factor"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-content" id="Router-form">
+            <h3>Router</h3>
+            <div class="form-container">
+              <div class="form-group">
+                <span>Name</span>
+                <input class="form-field" type="text" name="router_name"/>
+              </div>
+              <div class="form-group">
+                <span>Manufacturer</span>
+                <input class="form-field" type="text" name="router_manufacturer"/>
+              </div>
+              <div class="form-group">
+                <span>Model</span>
+                <input class="form-field" type="text" name="router_model"/>
+              </div>
+              <div class="form-group">
+                <span>Serial Number</span>
+                <input class="form-field" type="text" name="router_serial"/>
+              </div>
+              <div class="form-group">
+                <span>Hostname</span>
+                <input class="form-field" type="text" name="router_hostname"/>
+              </div>
+              <div class="form-group">
+                <span>IP Address</span>
+                <input class="form-field" type="text" name="router_ip_address"/>
+              </div>
+              <div class="form-group">
+                <span>Firmware version</span>
+                <input class="form-field" type="text" name="router_firmware"/>
+              </div>
+              <div class="form-group">
+                <span>Username</span>
+                <input class="form-field" type="text" name="router_username"/>
+              </div>
+              <div class="form-group">
+                <span>Password</span>
+                <input class="form-field" type="Password" name="router_password"/>
+              </div>
+              <div class="form-group">
+                <span>Static IP</span>
+                <select class="form-field"  name="router_ip_static">
+                    <option value="False">False</option>
+                    <option value="True">True</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        <div class="form-content" id="Camera-form">
+            <h3>Camera</h3>
+            <div class="form-container">
+              <div class="form-group">
+                <span>Name</span>
+                <input class="form-field" type="text" name="camera_name"/>
+              </div>
+              <div class="form-group">
+                <span>Manufacturer</span>
+                <input class="form-field" type="text" name="camera_manufacturer"/>
+              </div>
+              <div class="form-group">
+                <span>Model</span>
+                <input class="form-field" type="text" name="camera_model"/>
+              </div>
+              <div class="form-group">
+                <span>Firmware version</span>
+                <input class="form-field" type="text" name="camera_firmware"/>
+              </div>
+              <div class="form-group">
+                <span>Serial Number</span>
+                <input class="form-field" type="text" name="camera_serial" />
+              </div>
+              <div class="form-group">
+                <span>IP Address</span>
+                <input class="form-field" type="text" name="camera_ip_address"/>
+              </div>
+              <div class="form-group">
+                <span>Resolution</span>
+                <input class="form-field" type="text" name="camera_resolution"/>
+              </div>
+              <div class="form-group">
+                <span>Frame Rate</span>
+                <input class="form-field" type="text" name="camera_frame_rate"/>
+              </div>
+              <div class="form-group">
+                <span>Username</span>
+                <input class="form-field" type="text" name="camera_username"/>
+              </div>
+              <div class="form-group">
+                <span>Password</span>
+                <input class="form-field" type="Password" name="camera_password"/>
+              </div>
+              <div class="form-group">
+                <span>Compression format</span>
+                <input class="form-field" type="text" name="camera_format"/>
+              </div>
+              <div class="form-group">
+                <span>Motion Detection</span>
+                <select class="form-field"  name="camera_motion">
+                    <option value="False">False</option>
+                    <option value="True">True</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        <div class="form-content" id="LCD-form">
               <h3>LCD</h3>
               <div class="form-container">
                 <div class="form-group">
@@ -108,19 +277,9 @@
               </div>
             </div>
 
-        {% comment %}
-        <div class="form-distrispot">
-          <h3>DistriSpot</h3>
-          <div class="form-container">
-            <div class="form-group">
-              <span>Name</span>
-              <input class="form-field" type="text" placeholder="Name" />
-            </div>
-          </div>
-        </div>
-        {% endcomment %}
-      </div>
-      <div>
+       
+     
+         <div>
         <button type="submit">Save</button>
       </div>
     </form>
