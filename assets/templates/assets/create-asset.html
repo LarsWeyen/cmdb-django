@@ -12,10 +12,11 @@
         </div>
         <div class="form-group">
           <span>Type</span>
-          <select class="form-field" name="type" id="type">
-            <option value="Camera">Camera</option>
-            <option value="DVR">DVR</option>
-            <option value="DistriSPOT">DistriSPOT</option>
+          <select class="form-field" name="type" id="typeselect">
+            <option value="null">-------</option>
+            {% for type in types %}
+              <option value="{{type.name}}">{{type}}</option>
+            {% endfor %}
           </select>
         </div>
         <div class="form-group">
@@ -46,7 +47,7 @@
       </div>
       <hr />
       <div class="asset-details">
-        <div class="form-lcb">
+        <div class="form-content" id="LCB-form">
           <h3>LCB</h3>
           <div class="form-container">
             <div class="form-group">
@@ -75,6 +76,37 @@
             </div>
           </div>
         </div>
+
+        <div class="asset-details">
+            <div class="form-content" id="LCD-form">
+              <h3>LCD</h3>
+              <div class="form-container">
+                <div class="form-group">
+                  <span>Name</span>
+                  <input class="form-field" type="text" name="lcd_name"/>
+                </div>
+                <div class="form-group">
+                  <span>Manufacturer</span>
+                  <input class="form-field" type="text" name="manufacturer"/>
+                </div>
+                <div class="form-group">
+                  <span>Model</span>
+                  <input class="form-field" type="text" name="model"/>
+                </div>
+                <div class="form-group">
+                  <span>Serial Number</span>
+                  <input class="form-field" type="text" name="serial"/>
+                </div>
+                <div class="form-group">
+                  <span>Resolution</span>
+                  <input class="form-field" type="text" name="resolution"/>
+                </div>
+                <div class="form-group">
+                  <span>Refresh Rate</span>
+                  <input class="form-field" type="text" name="refresh_rate"/>
+                </div>
+              </div>
+            </div>
 
         {% comment %}
         <div class="form-distrispot">

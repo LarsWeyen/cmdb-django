@@ -44,7 +44,7 @@ class Asset(models.Model):
 
 class Resources(models.Model):
     name = models.CharField(max_length=150)
-    parent = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
     manufacturer = models.CharField(max_length=150)
     model = models.CharField(max_length=150)
     serial = models.CharField(max_length=150)
