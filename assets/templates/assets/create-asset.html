@@ -1,0 +1,98 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="asset-form">
+  <div class="asset-form-container">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <h3>New Asset</h3>
+      <div class="form-container">
+        <div class="form-group">
+          <span>Name</span>
+          <input class="form-field" type="text" name="name"/>
+        </div>
+        <div class="form-group">
+          <span>Type</span>
+          <select class="form-field" name="type" id="type">
+            <option value="Camera">Camera</option>
+            <option value="DVR">DVR</option>
+            <option value="DistriSPOT">DistriSPOT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <span>Location</span>
+          <select class="form-field" name="location">
+            {% for location in locations %}
+            <option value="{{location.id}}">{{location.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <span>Customer</span>
+          <select class="form-field" name="customer">
+            {% for customer in customers %}
+                <option value="{{customer.id}}">{{customer.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <span>Parent</span>
+          <select class="form-field" name="parent">
+            <option value="null">-------</option>
+            {% for parent in parents %}
+                <option value="{{parent.id}}">{{parent.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <hr />
+      <div class="asset-details">
+        <div class="form-lcb">
+          <h3>LCB</h3>
+          <div class="form-container">
+            <div class="form-group">
+              <span>Name</span>
+              <input class="form-field" type="text" />
+            </div>
+            <div class="form-group">
+              <span>Manufacturer</span>
+              <input class="form-field" type="text" />
+            </div>
+            <div class="form-group">
+              <span>Model</span>
+              <input class="form-field" type="text" />
+            </div>
+            <div class="form-group">
+              <span>Serial Number</span>
+              <input class="form-field" type="text" />
+            </div>
+            <div class="form-group">
+              <span>Connector</span>
+              <input class="form-field" type="text" />
+            </div>
+            <div class="form-group">
+              <span>Voltage</span>
+              <input class="form-field" type="text" />
+            </div>
+          </div>
+        </div>
+
+        {% comment %}
+        <div class="form-distrispot">
+          <h3>DistriSpot</h3>
+          <div class="form-container">
+            <div class="form-group">
+              <span>Name</span>
+              <input class="form-field" type="text" placeholder="Name" />
+            </div>
+          </div>
+        </div>
+        {% endcomment %}
+      </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

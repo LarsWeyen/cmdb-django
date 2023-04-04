@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('',views.dashboard,name='dashboard'),
-    
+    path('create-asset',views.createAsset,name='create-asset')
 ]
 
 

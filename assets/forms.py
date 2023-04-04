@@ -1,8 +1,7 @@
 from django import forms
-from .models import Camera
+from .models import Asset
 
-class CameraForm(forms.ModelForm):
-    password = forms.CharField()
+class AssetForm(forms.ModelForm):
     class Meta:
-        model = Camera
+        model = Asset
         fields = '__all__'
