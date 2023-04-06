@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
 from .forms import AssetForm
-from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply
+from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
 
 def dashboard(request):
     type_names = Type.objects.all()
@@ -97,7 +97,67 @@ def createAsset(request):
                 password = request.POST.get('router_password'),
                 ip_static = request.POST.get('router_ip_static')
             )
+        
+        if asset_type.slug == 'rfid':
+            RFID.objects.create(
+                name = request.POST.get('rfid_name'),
+                asset=asset,
+                manufacturer = request.POST.get('rfid_manufacturer'),
+                model = request.POST.get('rfid_model'),
+                serial = request.POST.get('rfid_serial'),
+                voltage = request.POST.get('rfid_voltage'),
+                frequency = request.POST.get('rfid_frequency'),
+            )
+        
+        if asset_type.slug == 'dvr':
+            DVR.objects.create(
+                name = request.POST.get('dvr_name'),
+                asset=asset,
+                manufacturer = request.POST.get('dvr_manufacturer'),
+                model = request.POST.get('dvr_model'),
+                serial = request.POST.get('dvr_serial'),
+                ip_address = request.POST.get('dvr_ip_address'),
+                firmware = request.POST.get('dvr_firmware'),
+                username = request.POST.get('dvr_username'),
+                password = request.POST.get('dvr_password'),
+                storage_capacity = request.POST.get('dvr_storage'),
+            )
 
+        if asset_type.slug == 'qr_scanner':
+            QRScanner.objects.create(
+                name = request.POST.get('qr_scanner_name'),
+                asset=asset,
+                manufacturer = request.POST.get('qr_scanner_manufacturer'),
+                model = request.POST.get('qr_scanner_model'),
+                serial = request.POST.get('qr_scanner_serial'),
+                resolution = request.POST.get('qr_scanner_resolution'),
+                port_type = request.POST.get('qr_scanner_port_type'),
+            )
+
+        if asset_type.slug == 'ipc':
+            IPC.objects.create(
+                name = request.POST.get('ipc_name'),
+                asset=asset,
+                manufacturer = request.POST.get('ipc_manufacturer'),
+                model = request.POST.get('ipc_model'),
+                serial = request.POST.get('ipc_serial'),
+                cpu = request.POST.get('ipc_cpu'),
+                android_version = request.POST.get('ipc_android_version'),
+            )
+
+        if asset_type.slug == 'lcb':
+            LCB.objects.create(
+                name = request.POST.get('lcb_name'),
+                asset=asset,
+                manufacturer = request.POST.get('lcb_manufacturer'),
+                model = request.POST.get('lcb_model'),
+                serial = request.POST.get('lcb_serial'),
+                connector = request.POST.get('lcb_connector'),
+                voltage = request.POST.get('lcb_voltage'),
+            )
+        
+        redirect('dashboard')
+        
     context = {'form':form,
                'types': type_names,
                'locations':locations,
