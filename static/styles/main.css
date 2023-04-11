@@ -150,3 +150,42 @@ gap: 15px;
 .asset-details{
     margin-top: 1rem;
 }
+
+.table-container{
+    padding: 1.5rem;
+    background-color: #fbfbfb;
+    
+}
+
+.table-content{
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow:  0 0 3px #ccc;
+    border-radius: 4px;
+    position: relative;
+    max-height: 87vh;
+    overflow: auto;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+thead{
+    background-color: #47b7bd;
+    color: white;
+}
+table th{
+    text-align: start;
+    margin-bottom: 5px;
+}
+tr{
+    padding: 20px;
+}
+table th:not(:last-child){
+    border-right: solid black 1px; 
+}
+table th,td:not(:first-child) { padding-left: 12px; }
+
+
+

@@ -23,7 +23,7 @@ class Location(models.Model):
 
 class Customer(models.Model):
     name = models.CharField(max_length=150)
-    Location = models.ForeignKey(Location, on_delete=models.PROTECT)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
 
     def __str__(self) -> str:
         return self.name

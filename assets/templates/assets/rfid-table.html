@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>RFID Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Frequency</th>
+                <th>Voltage</th>
+                <th>Belongs To</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for rfid in rfids %}
+                <tr>
+                    <td><a href="">{{rfid.id}}</a></td>
+                    <td><a href="">{{rfid.name}}</a></td>
+                    <td>{{rfid.frequency}}</td>
+                    <td>{{rfid.voltage}}</td>
+                    <td>{{rfid.asset.parent}}</td>
+                    <td>{{rfid.asset.created|date}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>Customers</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Address</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td><a href="">{{customer.id}}</a></td>
+                    <td><a href="">{{customer.name}}</a></td>
+                    <td>{{customer.location.country}}</td>   
+                    <td>{{customer.location.city}}</td>   
+                    <td>{{customer.location.address}}</td>   
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

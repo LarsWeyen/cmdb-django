@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>IPC Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Processor</th>
+                <th>Android Version</th>
+                <th>Belongs To</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for ipc in ipcs %}
+                <tr>
+                    <td><a href="">{{ipc.id}}</a></td>
+                    <td><a href="">{{ipc.name}}</a></td>
+                    <td>{{ipc.cpu}}</td>
+                    <td>{{ipc.android_version}}</td>
+                    <td>{{ipc.asset.parent}}</td>
+                    <td>{{ipc.asset.created|date}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

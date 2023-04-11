@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>Router Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>Firmware Version</th>
+                <th>Static IP</th>
+                <th>Belongs To</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for router in routers %}
+                <tr>
+                    <td><a href="">{{router.id}}</a></td>
+                    <td><a href="">{{router.name}}</a></td>
+                    <td>{{router.hostname}}</td>
+                    <td>{{router.ip_address}}</td>
+                    <td>{{router.ip_firmware}}</td>
+                    <td>{{router.ip_static}}</td>
+                    <td>{{router.asset.parent}}</td>
+                    <td>{{router.asset.created|date}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

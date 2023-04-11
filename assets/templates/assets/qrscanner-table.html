@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>QR Scanner Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Resolution</th>
+                <th>Port Type</th>
+                <th>Belongs To</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for qr_scanner in qrScanners %}
+                <tr>
+                    <td><a href="">{{qr_scanner.id}}</a></td>
+                    <td><a href="">{{qr_scanner.name}}</a></td>
+                    <td>{{qr_scanner.resolution}}</td>
+                    <td>{{qr_scanner.port_type}}</td>
+                    <td>{{qr_scanner.asset.parent}}</td>
+                    <td>{{qr_scanner.asset.created|date}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

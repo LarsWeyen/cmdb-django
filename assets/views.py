@@ -68,6 +68,7 @@ def createAsset(request):
                 resolution = request.POST.get('camera_resolution'),
                 compression_format = request.POST.get('camera_format'),
                 motion_detection = request.POST.get('camera_motion'),
+                location = request.POST.get('camera_location'),
                 username = request.POST.get('camera_username'),
                 password = request.POST.get('camera_password'),
             )
@@ -156,8 +157,8 @@ def createAsset(request):
                 voltage = request.POST.get('lcb_voltage'),
             )
         
-        redirect('dashboard')
-        
+    redirect('dashboard')
+
     context = {'form':form,
                'types': type_names,
                'locations':locations,
@@ -165,3 +166,69 @@ def createAsset(request):
                'parents':parent_assets
                }
     return render(request,'assets/create-asset.html',context)
+
+def cameraTable(request):
+    cameras = Camera.objects.all()
+    context = {'cameras':cameras}
+
+    return render(request,'assets/camera-table.html',context)
+
+def cameraTable(request):
+    cameras = Camera.objects.all()
+    context = {'cameras':cameras}
+
+    return render(request,'assets/camera-table.html',context)
+
+def dvrTable(request):
+    dvrs= DVR.objects.all()
+    context = {'dvrs':dvrs}
+
+    return render(request,'assets/dvr-table.html',context)
+
+def lcdTable(request):
+    lcds= LCD.objects.all()
+    context = {'lcds':lcds}
+
+    return render(request,'assets/lcd-table.html',context)
+
+def rfidTable(request):
+    rfids= RFID.objects.all()
+    context = {'rfids':rfids}
+
+    return render(request,'assets/rfid-table.html',context)
+
+def switchTable(request):
+    switchs= Switch.objects.all()
+    context = {'switchs':switchs}
+
+    return render(request,'assets/switch-table.html',context)
+
+def customerTable(request):
+    customers= Customer.objects.all()
+    context = {'customers':customers}
+
+    return render(request,'assets/customer-table.html',context)
+
+def qrScannerTable(request):
+    qrScanners= QRScanner.objects.all()
+    context = {'qrScanners':qrScanners}
+
+    return render(request,'assets/qrscanner-table.html',context)
+
+def ipcTable(request):
+    ipcs= IPC.objects.all()
+    context = {'ipcs':ipcs}
+
+    return render(request,'assets/ipc-table.html',context)
+
+def routerTable(request):
+    routers= Router.objects.all()
+    context = {'routers':routers}
+
+    return render(request,'assets/router-table.html',context)
+
+def powerSupplyTable(request):
+    psus= PowerSupply.objects.all()
+    context = {'psus':psus}
+
+    return render(request,'assets/psu-table.html',context)

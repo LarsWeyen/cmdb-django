@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>Camera Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>IP Address</th>
+                <th>Belongs To</th>
+                <th>Motion Detection</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for camera in cameras %}
+                <tr>
+                    <td><a href="">{{camera.id}}</a></td>
+                    <td><a href="">{{camera.name}}</a></td>
+                    <td>{{camera.location}}</td>
+                    <td>{{camera.ip_address}}</td>
+                    <td>{{camera.asset.parent}}</td>
+                    <td>{{camera.motion_detection}}</td>
+                    <td>{{camera.asset.created}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}
