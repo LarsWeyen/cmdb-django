@@ -44,7 +44,6 @@ class Asset(models.Model):
 
 
 class Resources(models.Model):
-    name = models.CharField(max_length=150)
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
     manufacturer = models.CharField(max_length=150)
     model = models.CharField(max_length=150)
@@ -103,7 +102,6 @@ class Camera(Resources, NetworkDevice):
     resolution = models.CharField(max_length=25)
     compression_format = models.CharField(max_length=10)
     motion_detection = models.BooleanField()
-    location = models.CharField(max_length=100)
 
     def __str__(self) -> str:
         return self.name

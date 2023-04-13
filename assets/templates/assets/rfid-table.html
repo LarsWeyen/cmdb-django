@@ -21,7 +21,7 @@
                 {% for rfid in rfids %}
                 <tr>
                     <td><a href="">{{rfid.id}}</a></td>
-                    <td><a href="">{{rfid.name}}</a></td>
+                    <td><a href="">{{rfid.asset.name}}</a></td>
                     <td>{{rfid.frequency}}</td>
                     <td>{{rfid.voltage}}</td>
                     <td>{{rfid.asset.parent}}</td>

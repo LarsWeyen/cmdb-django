@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
-from .forms import AssetForm
+from .forms import AssetForm, CameraForm
 from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
 
 def dashboard(request):
@@ -31,10 +31,8 @@ def createAsset(request):
             customer = Customer.objects.get(id=request.POST.get('customer')),
             parent = None if request.POST.get('parent') == 'null' else Asset.objects.get(id=request.POST.get('parent'))
         )
-        if asset_type.slug == "lcd":
-            print(request.POST.get('manufacturer'))
+        if asset_type.slug == "lcd":        
             LCD.objects.create(
-                name = request.POST.get('lcd_name'),
                 asset=asset,
                 manufacturer = request.POST.get('manufacturer'),
                 model = request.POST.get('model'),
@@ -45,7 +43,6 @@ def createAsset(request):
 
         if asset_type.slug == 'power_supply':
             PowerSupply.objects.create(
-                name = request.POST.get('psu_name'),
                 asset=asset,
                 manufacturer = request.POST.get('psu_manufacturer'),
                 model = request.POST.get('psu_model'),
@@ -57,7 +54,6 @@ def createAsset(request):
         
         if asset_type.slug == 'camera':
             Camera.objects.create(
-                name = request.POST.get('camera_name'),
                 asset=asset,
                 manufacturer = request.POST.get('camera_manufacturer'),
                 model = request.POST.get('camera_model'),
@@ -75,7 +71,6 @@ def createAsset(request):
         
         if asset_type.slug == 'switch':
             Switch.objects.create(
-                name = request.POST.get('switch_name'),
                 asset=asset,
                 manufacturer = request.POST.get('switch_manufacturer'),
                 model = request.POST.get('switch_model'),
@@ -86,7 +81,6 @@ def createAsset(request):
 
         if asset_type.slug == 'router':
             Router.objects.create(
-                name = request.POST.get('router_name'),
                 asset=asset,
                 manufacturer = request.POST.get('router_manufacturer'),
                 model = request.POST.get('router_model'),
@@ -101,7 +95,6 @@ def createAsset(request):
         
         if asset_type.slug == 'rfid':
             RFID.objects.create(
-                name = request.POST.get('rfid_name'),
                 asset=asset,
                 manufacturer = request.POST.get('rfid_manufacturer'),
                 model = request.POST.get('rfid_model'),
@@ -112,7 +105,6 @@ def createAsset(request):
         
         if asset_type.slug == 'dvr':
             DVR.objects.create(
-                name = request.POST.get('dvr_name'),
                 asset=asset,
                 manufacturer = request.POST.get('dvr_manufacturer'),
                 model = request.POST.get('dvr_model'),
@@ -126,7 +118,6 @@ def createAsset(request):
 
         if asset_type.slug == 'qr_scanner':
             QRScanner.objects.create(
-                name = request.POST.get('qr_scanner_name'),
                 asset=asset,
                 manufacturer = request.POST.get('qr_scanner_manufacturer'),
                 model = request.POST.get('qr_scanner_model'),
@@ -137,7 +128,6 @@ def createAsset(request):
 
         if asset_type.slug == 'ipc':
             IPC.objects.create(
-                name = request.POST.get('ipc_name'),
                 asset=asset,
                 manufacturer = request.POST.get('ipc_manufacturer'),
                 model = request.POST.get('ipc_model'),
@@ -148,7 +138,6 @@ def createAsset(request):
 
         if asset_type.slug == 'lcb':
             LCB.objects.create(
-                name = request.POST.get('lcb_name'),
                 asset=asset,
                 manufacturer = request.POST.get('lcb_manufacturer'),
                 model = request.POST.get('lcb_model'),
@@ -232,3 +221,41 @@ def powerSupplyTable(request):
     context = {'psus':psus}
 
     return render(request,'assets/psu-table.html',context)
+
+def lcbTable(request):
+    lcbs= LCB.objects.all()
+    context = {'lcbs':lcbs}
+
+    return render(request,'assets/lcb-table.html',context)
+
+def assetsTable(request):
+    assets= Asset.objects.all()
+    context = {'assets':assets}
+
+    return render(request,'assets/assets-table.html',context)
+
+def locationsTable(request):
+    locations= Location.objects.all()
+    context = {'locations':locations}
+
+    return render(request,'assets/locations-table.html',context)
+
+def updateCamera(request,pk):
+    camera = Camera.objects.get(id=pk)
+    asset = Asset.objects.get(id=camera.asset.id)
+    assetForm = AssetForm(instance=asset)
+    form = CameraForm(instance=camera)
+    if request.method =='POST':
+        assetForm = AssetForm(request.POST,instance=asset)
+        form = CameraForm(request.POST,instance=camera)
+        print(request.POST)
+        if form.is_valid() and assetForm.is_valid():
+             
+             form.save()
+             assetForm.save()
+             return redirect('camera')
+    context={
+        'form':form,
+        'assetForm':assetForm
+    }
+    return render(request,'assets/update-camera.html',context)

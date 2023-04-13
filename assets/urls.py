@@ -14,6 +14,10 @@ urlpatterns = [
     path('ipc',views.ipcTable,name='ipc'),
     path('router',views.routerTable,name='router'),
     path('psu',views.powerSupplyTable,name='psu'),
+    path('lcb',views.lcbTable,name='lcb'),
+    path('assets',views.assetsTable,name='assets'),
+    path('locations',views.locationsTable,name='locations'),
+    path('update-camera/<str:pk>/',views.updateCamera,name='update-camera'),
 ]
 
 

@@ -1,12 +1,63 @@
+{% load static %}
 
-
-<header>
+<navbar>
+    <img class="logo" src="{% static 'images/Telloport.png'%}" alt="Telloport logo">
     <ul>
-        {% for type in types %}
-        <li>
-            <a href="#">{{type.name}}</a>
-        </li>
-        {% endfor %}
+        <label for="asset-toggle"><li class="nav-title"><span>Assets</span></li></label>
+        <input type="checkbox" onchange="navbarCollapse(document.querySelector('.asset-options'))" id="asset-toggle"> 
+        <ul class="asset-options">
+            <li>
+                <a href="{% url 'dashboard'%}">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">DistriSPOT's</a>
+            </li>
+            <li>
+                <a href="{% url 'lcd' %}">LCD's</a>
+            </li>
+            <li>
+                <a href="{% url 'ipc' %}">IPC's</a>
+            </li>
+            <li>
+                <a href="{% url 'lcb' %}">LCB's</a>
+            </li>
+            <li>
+                <a href="{% url 'psu' %}">Power Supplies</a>
+            </li>
+            <li>
+                <a href="{% url 'router' %}">Routers</a>
+            </li>
+            <li>
+                <a href="{% url 'dvr' %}">DVR's</a>
+            </li>
+            <li>
+                <a href="{% url 'camera' %}">Cameras</a>
+            </li>
+            <li>
+                <a href="{% url 'switch' %}">Switches</a>
+            </li>
+            <li>
+                <a href="{% url 'rfid' %}">RFID's</a>
+            </li>
+            <li>
+                <a href="{% url 'qrscanner' %}">QR Scanners</a>
+            </li>
+            <li>
+                <a href="{% url 'assets' %}">Overview</a>
+            </li>
+        </ul>
+        <label for="misc-toggle"><li class="nav-title"><span>MISC</span></li></label>
+        <input type="checkbox" onchange="navbarCollapse(document.querySelector('.misc-options'))" id="misc-toggle"> 
+        <ul class="misc-options">
+            <li>
+                <a href="{% url 'customer'%}">Customers</a>
+            </li>
+            <li>
+                <a href="#">Maintenances</a>
+            </li>
+            <li>
+                <a href="{% url 'locations'%}">Locations</a>
+            </li>
+        </ul>
     </ul>
-    
-</header>
+</navbar>

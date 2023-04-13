@@ -90,7 +90,7 @@
     font-size: 26px; 
 }
 
-header{
+navbar{
     background-color: #12354b;
 }
 
@@ -165,6 +165,7 @@ gap: 15px;
     position: relative;
     max-height: 87vh;
     overflow: auto;
+    min-height: 87vh;
 }
 
 table{
@@ -187,5 +188,56 @@ table th:not(:last-child){
 }
 table th,td:not(:first-child) { padding-left: 12px; }
 
+navbar span::after {
+    float: right;
+    right: 10%;
+    content: "+";
+    
+  }
+  
+  .asset-options, .misc-options {
+    height: 0px;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    padding-left: 3rem;
+    background-color: #1a4c6b;
+    border-left: 2px solid black;
+  }
 
+  #asset-toggle, #misc-toggle {
+    position: absolute; 
+    opacity: 0; 
+    height: 0px;
+}    
+
+.nav-title{
+  padding: 0 1.5rem;
+  color: white;
+}
+
+.edit-form{
+    padding: 1.5rem;
+    background-color: #fbfbfb;
+    height: 93vh;
+    position: relative;
+}
+
+
+.edit-container{
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow:  0 0 3px #ccc;
+    border-radius: 4px;
+    position: relative;
+    max-height: 87vh;
+    overflow: auto;
+    min-height: 87vh;
+}
+
+.edit-form-container{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2rem;
+}
 
