@@ -4,30 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>RFID Assets</h2>
+        <h2>QR Scanner Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Frequency</th>
-                <th>Voltage</th>
+                <th>Resolution</th>
+                <th>Port Type</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for rfid in rfids %}
+                {% for qr_scanner in qrScanners %}
                 <tr>
-                    <td><a href="">{{rfid.id}}</a></td>
-                    <td><a href="">{{rfid.asset.name}}</a></td>
-                    <td>{{rfid.frequency}}</td>
-                    <td>{{rfid.voltage}}</td>
-                    <td>{{rfid.asset.parent}}</td>
-                    <td>{{rfid.asset.created|date}}</td>
+                    <td><a href="">{{qr_scanner.id}}</a></td>
+                    <td><a href="">{{qr_scanner.asset.name}}</a></td>
+                    <td>{{qr_scanner.resolution}}</td>
+                    <td>{{qr_scanner.port_type}}</td>
+                    <td>{{qr_scanner.asset.parent}}</td>
+                    <td>{{qr_scanner.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'qrscanner' qr_scanner.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

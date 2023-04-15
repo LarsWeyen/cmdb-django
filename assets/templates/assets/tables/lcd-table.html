@@ -4,32 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>Overview Assets</h2>
+        <h2>LCD Assets</h2>
         <table>
             <thead>
               <tr>
-                <th>ID</th>
+                <th>CODE</th>
                 <th>Name</th>
-                <th>Type</th>
-                <th>Customer</th>
-                <th>Location</th>
+                <th>Resolution</th>
+                <th>Refresh Rate</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for asset in assets %}
+                {% for lcd in lcds %}
                 <tr>
-                    <td><a href="">{{asset.id}}</a></td>
-                    <td><a href="">{{asset.name}}</a></td>
-                    <td>{{asset.type}}</td>
-                    <td>{{asset.customer}}</td>
-                    <td>{{asset.location}}</td>
-                    <td>{{asset.parent}}</td>
-                    <td>{{asset.asset.created|date}}</td>
+                    <td><a href="">{{lcd.id}}</a></td>
+                    <td><a href="">{{lcd.asset.name}}</a></td>
+                    <td>{{lcd.resolution}}</td>
+                    <td>{{lcd.refresh_rate}}</td>
+                    <td>{{lcd.asset.parent}}</td>
+                    <td>{{lcd.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'lcd' lcd.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

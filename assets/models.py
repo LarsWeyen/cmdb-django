@@ -44,7 +44,6 @@ class Asset(models.Model):
 
 
 class Resources(models.Model):
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
     manufacturer = models.CharField(max_length=150)
     model = models.CharField(max_length=150)
     serial = models.CharField(max_length=150)
@@ -54,6 +53,7 @@ class Resources(models.Model):
 
 
 class LCD(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='lcd')
     resolution = models.CharField(max_length=50)
     refresh_rate = models.CharField(max_length=10)
 
@@ -98,67 +98,74 @@ class NetworkDevice(models.Model):
 
 
 class Camera(Resources, NetworkDevice):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='camera')
     frame_rate = models.CharField(max_length=25)
     resolution = models.CharField(max_length=25)
     compression_format = models.CharField(max_length=10)
     motion_detection = models.BooleanField()
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class DVR(Resources, NetworkDevice):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='dvr')
     storage_capacity = models.CharField(max_length=10)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class Router(Resources, NetworkDevice):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='router')
     hostname = models.CharField(max_length=50)
     ip_static = models.BooleanField()
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class QRScanner(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='qrscanner')
     port_type = models.CharField(max_length=10)
     resolution = models.CharField(max_length=10)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class RFID(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='rfid')
     frequency = models.CharField(max_length=10)
     voltage = models.CharField(max_length=10)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class Switch(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='switch')
     num_ports = models.IntegerField()
     mac_address = models.CharField(max_length=25)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 
 class LCB(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='lcb')
     voltage = models.CharField(max_length=25)
     connector = models.CharField(max_length=25)
 
-    def __str__(self) -> str:
-        return self.name
+    
 
 class IPC(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='ipc')
     cpu = models.CharField(max_length=50)
     android_version = models.CharField(max_length=20)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 class Maintenance(models.Model):
     description = models.TextField()
@@ -166,12 +173,12 @@ class Maintenance(models.Model):
     technician = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.name
+        return self.description
 
 
 class Distrispot(models.Model):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='distrispot')
     name=models.CharField(max_length=50)
-    parent = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True)
     location = models.CharField(max_length=50)
     maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
 
@@ -179,9 +186,10 @@ class Distrispot(models.Model):
         return self.name
 
 class PowerSupply(Resources):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='psu')
     voltage = models.CharField(max_length=25)
     form_factor = models.CharField(max_length=25)
     wattage = models.CharField(max_length=25)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name

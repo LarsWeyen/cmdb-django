@@ -4,28 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>QR Scanner Assets</h2>
+        <h2>Overview Assets</h2>
         <table>
             <thead>
               <tr>
-                <th>CODE</th>
+                <th>ID</th>
                 <th>Name</th>
-                <th>Resolution</th>
-                <th>Port Type</th>
+                <th>Type</th>
+                <th>Customer</th>
+                <th>Location</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for qr_scanner in qrScanners %}
+                {% for asset in assets %}
                 <tr>
-                    <td><a href="">{{qr_scanner.id}}</a></td>
-                    <td><a href="">{{qr_scanner.asset.name}}</a></td>
-                    <td>{{qr_scanner.resolution}}</td>
-                    <td>{{qr_scanner.port_type}}</td>
-                    <td>{{qr_scanner.asset.parent}}</td>
-                    <td>{{qr_scanner.asset.created|date}}</td>
+                    <td><a href="">{{asset.id}}</a></td>
+                    <td><a href="">{{asset.name}}</a></td>
+                    <td>{{asset.type}}</td>
+                    <td>{{asset.customer}}</td>
+                    <td>{{asset.location}}</td>
+                    <td>{{asset.parent}}</td>
+                    <td>{{asset.created|date}}</td>
                     <td>
                         <a href="">Edit</a>
                         <a href="">Delete</a>

@@ -4,30 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>DVR Assets</h2>
+        <h2>RFID Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Firmware</th>
-                <th>IP Address</th>
+                <th>Frequency</th>
+                <th>Voltage</th>
                 <th>Belongs To</th>
-                <th>Storage Capacity</th>
+                <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for dvr in dvrs %}
+                {% for rfid in rfids %}
                 <tr>
-                    <td><a href="">{{dvr.id}}</a></td>
-                    <td><a href="">{{dvr.asset.name}}</a></td>
-                    <td>{{dvr.firmware}}</td>
-                    <td>{{dvr.ip_address}}</td>
-                    <td>{{dvr.asset.parent}}</td>
-                    <td>{{dvr.storage_capacity}}</td>
+                    <td><a href="">{{rfid.id}}</a></td>
+                    <td><a href="">{{rfid.asset.name}}</a></td>
+                    <td>{{rfid.frequency}}</td>
+                    <td>{{rfid.voltage}}</td>
+                    <td>{{rfid.asset.parent}}</td>
+                    <td>{{rfid.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'rfid' rfid.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

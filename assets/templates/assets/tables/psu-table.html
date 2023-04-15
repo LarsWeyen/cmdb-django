@@ -29,7 +29,7 @@
                     <td>{{psu.asset.parent}}</td>
                     <td>{{psu.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update-psu' psu.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

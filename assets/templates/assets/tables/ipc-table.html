@@ -4,30 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>LCB Assets</h2>
+        <h2>IPC Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Connector</th>
-                <th>Voltage</th>
+                <th>Processor</th>
+                <th>Android Version</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for lcb in lcbs %}
+                {% for ipc in ipcs %}
                 <tr>
-                    <td><a href="">{{lcb.id}}</a></td>
-                    <td><a href="">{{lcb.asset.name}}</a></td>
-                    <td>{{lcb.connector}}</td>
-                    <td>{{lcb.voltage}}</td>
-                    <td>{{lcb.asset.parent}}</td>
-                    <td>{{lcb.asset.created|date}}</td>
+                    <td><a href="">{{ipc.id}}</a></td>
+                    <td><a href="">{{ipc.asset.name}}</a></td>
+                    <td>{{ipc.cpu}}</td>
+                    <td>{{ipc.android_version}}</td>
+                    <td>{{ipc.asset.parent}}</td>
+                    <td>{{ipc.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'ipc' ipc.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

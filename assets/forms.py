@@ -1,12 +1,12 @@
 from django import forms
-from .models import Asset, Camera
+from .models import Asset, Camera, DVR, IPC, LCB, LCD, Location, PowerSupply, QRScanner, RFID, Router, Switch
 
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
         fields = '__all__'
         exclude = ['type']
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
@@ -17,10 +17,116 @@ class CameraForm(forms.ModelForm):
         model = Camera
         fields = '__all__'
         exclude=['asset']
-        widgets={
-            field: forms.TextInput(attrs={'class':'form-field'})
-            for field in model._meta.fields
-        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class DvrForm(forms.ModelForm):
+    class Meta:
+        model = DVR
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class IpcForm(forms.ModelForm):
+    class Meta:
+        model = IPC
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class LcbForm(forms.ModelForm):
+    class Meta:
+        model = LCB
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class LcdForm(forms.ModelForm):
+    class Meta:
+        model = LCD
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = '__all__'
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class PsuForm(forms.ModelForm):
+    class Meta:
+        model = PowerSupply
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class QRScannerForm(forms.ModelForm):
+    class Meta:
+        model = QRScanner
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class RfidForm(forms.ModelForm):
+    class Meta:
+        model = RFID
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class RouterForm(forms.ModelForm):
+    class Meta:
+        model = Router
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class SwitchForm(forms.ModelForm):
+    class Meta:
+        model = Switch
+        fields = '__all__'
+        exclude=['asset']
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():

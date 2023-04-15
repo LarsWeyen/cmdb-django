@@ -4,30 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>IPC Assets</h2>
+        <h2>Switch Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Processor</th>
-                <th>Android Version</th>
+                <th>Number of Ports</th>
+                <th>Mac Address</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for ipc in ipcs %}
+                {% for switch in switchs %}
                 <tr>
-                    <td><a href="">{{ipc.id}}</a></td>
-                    <td><a href="">{{ipc.asset.name}}</a></td>
-                    <td>{{ipc.cpu}}</td>
-                    <td>{{ipc.android_version}}</td>
-                    <td>{{ipc.asset.parent}}</td>
-                    <td>{{ipc.asset.created|date}}</td>
+                    <td><a href="">{{switch.id}}</a></td>
+                    <td><a href="">{{switch.asset.name}}</a></td>
+                    <td>{{switch.num_ports}}</td>
+                    <td>{{switch.mac_address}}</td>
+                    <td>{{switch.asset.parent}}</td>
+                    <td>{{switch.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'switch' switch.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

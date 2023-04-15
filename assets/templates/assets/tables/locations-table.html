@@ -27,7 +27,7 @@
                     <td>{{location.address}}</td>   
                     <td>{{location.zipcode}}</td>   
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update-location' location.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

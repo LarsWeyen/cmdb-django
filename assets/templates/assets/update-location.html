@@ -3,15 +3,9 @@
 <div class="edit-form">
   <div class="edit-container">
     <div>
-        <h3>Asset</h3>
+        <h2>Update {{location.name}}</h2>
         <form class="edit-form-container" method="POST">
-            {% csrf_token %}
-            {% for field in assetForm %}
-            <div class="form-group">
-              <span>{{field.label}}</span>
-              {{field}}
-            </div>
-            {% endfor %} 
+            {% csrf_token %}      
             {% for item in form %}
         <div class="form-group">
           <span>{{item.label}}</span>

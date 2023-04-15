@@ -26,12 +26,12 @@
                     <td><a href="">{{router.asset.name}}</a></td>
                     <td>{{router.hostname}}</td>
                     <td>{{router.ip_address}}</td>
-                    <td>{{router.ip_firmware}}</td>
+                    <td>{{router.firmware}}</td>
                     <td>{{router.ip_static}}</td>
                     <td>{{router.asset.parent}}</td>
                     <td>{{router.asset.created|date}}</td>
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{% url 'update' 'router' router.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

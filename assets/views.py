@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
-from .forms import AssetForm, CameraForm
+from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, LocationForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm
 from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
 
 def dashboard(request):
@@ -160,102 +160,243 @@ def cameraTable(request):
     cameras = Camera.objects.all()
     context = {'cameras':cameras}
 
-    return render(request,'assets/camera-table.html',context)
-
-def cameraTable(request):
-    cameras = Camera.objects.all()
-    context = {'cameras':cameras}
-
-    return render(request,'assets/camera-table.html',context)
+    return render(request,'assets/tables/camera-table.html',context)
 
 def dvrTable(request):
     dvrs= DVR.objects.all()
     context = {'dvrs':dvrs}
 
-    return render(request,'assets/dvr-table.html',context)
+    return render(request,'assets/tables/dvr-table.html',context)
 
 def lcdTable(request):
     lcds= LCD.objects.all()
     context = {'lcds':lcds}
 
-    return render(request,'assets/lcd-table.html',context)
+    return render(request,'assets/tables/lcd-table.html',context)
 
 def rfidTable(request):
     rfids= RFID.objects.all()
     context = {'rfids':rfids}
 
-    return render(request,'assets/rfid-table.html',context)
+    return render(request,'assets/tables/rfid-table.html',context)
 
 def switchTable(request):
     switchs= Switch.objects.all()
     context = {'switchs':switchs}
 
-    return render(request,'assets/switch-table.html',context)
+    return render(request,'assets/tables/switch-table.html',context)
 
 def customerTable(request):
     customers= Customer.objects.all()
     context = {'customers':customers}
 
-    return render(request,'assets/customer-table.html',context)
+    return render(request,'assets/tables/customer-table.html',context)
 
 def qrScannerTable(request):
     qrScanners= QRScanner.objects.all()
     context = {'qrScanners':qrScanners}
 
-    return render(request,'assets/qrscanner-table.html',context)
+    return render(request,'assets/tables/qrscanner-table.html',context)
 
 def ipcTable(request):
     ipcs= IPC.objects.all()
     context = {'ipcs':ipcs}
 
-    return render(request,'assets/ipc-table.html',context)
+    return render(request,'assets/tables/ipc-table.html',context)
 
 def routerTable(request):
     routers= Router.objects.all()
     context = {'routers':routers}
 
-    return render(request,'assets/router-table.html',context)
+    return render(request,'assets/tables/router-table.html',context)
 
 def powerSupplyTable(request):
     psus= PowerSupply.objects.all()
     context = {'psus':psus}
 
-    return render(request,'assets/psu-table.html',context)
+    return render(request,'assets/tables/psu-table.html',context)
 
 def lcbTable(request):
     lcbs= LCB.objects.all()
     context = {'lcbs':lcbs}
 
-    return render(request,'assets/lcb-table.html',context)
+    return render(request,'assets/tables/lcb-table.html',context)
 
 def assetsTable(request):
     assets= Asset.objects.all()
     context = {'assets':assets}
 
-    return render(request,'assets/assets-table.html',context)
+    return render(request,'assets/tables/assets-table.html',context)
 
 def locationsTable(request):
     locations= Location.objects.all()
     context = {'locations':locations}
 
-    return render(request,'assets/locations-table.html',context)
+    return render(request,'assets/tables/locations-table.html',context)
 
-def updateCamera(request,pk):
-    camera = Camera.objects.get(id=pk)
-    asset = Asset.objects.get(id=camera.asset.id)
-    assetForm = AssetForm(instance=asset)
-    form = CameraForm(instance=camera)
+def updateLocation(request,pk):
+    location = Location.objects.get(id=pk)
+    location = Location.objects.get(id=location.id)
+    form = LocationForm(instance=location)
     if request.method =='POST':
-        assetForm = AssetForm(request.POST,instance=asset)
-        form = CameraForm(request.POST,instance=camera)
-        print(request.POST)
-        if form.is_valid() and assetForm.is_valid():
-             
+        form = LocationForm(request.POST,instance=location)   
+        if form.is_valid():           
              form.save()
-             assetForm.save()
-             return redirect('camera')
+             return redirect('locations')
+    context={
+        'form':form,       
+        'location':location
+    }
+    return render(request,'assets/updates/update-lcd.html',context)
+
+def update(request,pk,type):
+    if type == 'camera':
+        camera = Camera.objects.get(id=pk)
+        asset = Asset.objects.get(id=camera.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = CameraForm(instance=camera)
+        item = camera
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = CameraForm(request.POST,instance=camera)   
+            if form.is_valid() and assetForm.is_valid():    
+                 form.save()
+                 assetForm.save()
+                 return redirect('camera')
+            
+    if type == 'dvr':
+        dvr = DVR.objects.get(id=pk)
+        asset = Asset.objects.get(id=dvr.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = DvrForm(instance=dvr)
+        item = dvr
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = DvrForm(request.POST,instance=dvr)
+            if form.is_valid() and assetForm.is_valid():
+             
+                form.save()
+                assetForm.save()
+                return redirect('dvr')
+    
+    if type == 'ipc':
+        ipc = IPC.objects.get(id=pk)
+        asset = Asset.objects.get(id=ipc.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = IpcForm(instance=ipc)
+        item = ipc
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = IpcForm(request.POST,instance=ipc)   
+            if form.is_valid() and assetForm.is_valid():
+                
+                form.save()
+                assetForm.save()
+                return redirect('ipc')
+    
+    if type == 'lcb':
+        lcb = LCB.objects.get(id=pk)
+        asset = Asset.objects.get(id=lcb.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = LcbForm(instance=lcb)
+        item = lcb
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = LcbForm(request.POST,instance=lcb)   
+            if form.is_valid() and assetForm.is_valid():
+                
+                form.save()
+                assetForm.save()
+                return redirect('lcb')
+
+    if type == 'lcd':
+        lcd = LCD.objects.get(id=pk)
+        asset = Asset.objects.get(id=lcd.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = LcdForm(instance=lcd)
+        item = lcd
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = LcdForm(request.POST,instance=lcd)   
+            if form.is_valid() and assetForm.is_valid():
+                
+                form.save()
+                assetForm.save()
+                return redirect('lcd')
+            
+    if type == 'psu':
+        psu = PowerSupply.objects.get(id=pk)
+        asset = Asset.objects.get(id=psu.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = PsuForm(instance=psu)
+        item = psu
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = PsuForm(request.POST,instance=psu)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('psu')
+
+    if type == 'qrscanner':
+        qrscanner = QRScanner.objects.get(id=pk)
+        asset = Asset.objects.get(id=qrscanner.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = QRScannerForm(instance=qrscanner)
+        item = qrscanner
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = QRScannerForm(request.POST,instance=qrscanner)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('qrscanner')
+
+    if type == 'rfid':
+        rfid = RFID.objects.get(id=pk)
+        asset = Asset.objects.get(id=rfid.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = RfidForm(instance=rfid)
+        item = rfid
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = RfidForm(request.POST,instance=rfid)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('rfid')
+            
+    if type == 'router':
+        router = Router.objects.get(id=pk)
+        asset = Asset.objects.get(id=router.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = RouterForm(instance=router)
+        item = router
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = RouterForm(request.POST,instance=router)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('router')
+
+    if type == 'switch':
+        switch = Switch.objects.get(id=pk)
+        asset = Asset.objects.get(id=switch.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = SwitchForm(instance=switch)
+        item = switch
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = SwitchForm(request.POST,instance=switch)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('switch')
+
     context={
         'form':form,
-        'assetForm':assetForm
+        'assetForm':assetForm,
+        'item': item
     }
-    return render(request,'assets/update-camera.html',context)
+    return render(request,'assets/updates/update.html',context)
