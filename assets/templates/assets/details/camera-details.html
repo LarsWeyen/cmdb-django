@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{camera.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{camera.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{camera.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Location</p>
+                    <span>{{camera.asset.location}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Belongs to</p>
+                    <span>{{camera.asset.parent}}</span>
+                </div>   
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{camera.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{camera.asset.created}}</span>
+                </div>        
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Manufacturer</p>
+                <span>{{camera.manufacturer}}</span>
+            </div>
+            <div class="details-item">
+                <p>Model</p>
+                <span>{{camera.model}}</span>
+            </div>
+            <div class="details-item">
+                <p>Serial</p>
+                <span>{{camera.serial}}</span>
+            </div>
+            <div class="details-item">
+                <p>IP Address</p>
+                <span>{{camera.ip_address}}</span>
+            </div>
+            <div class="details-item">
+                <p>Firmware</p>
+                <span>{{camera.firmware}}</span>
+            </div>
+            <div class="details-item">
+                <p>Frame Rate</p>
+                <span>{{camera.frame_rate}}</span>
+            </div>
+            <div class="details-item">
+                <p>Resolution</p>
+                <span>{{camera.resolution}}</span>
+            </div>
+            <div class="details-item">
+                <p>Compression Format</p>
+                <span>{{camera.compression_format}}</span>
+            </div>
+            <div class="details-item">
+                <p>Camera Has Motion Detection</p>
+                <span>{{camera.motion_detection}}</span>
+            </div>
+            <div class="details-item">
+                <p>Username</p>
+                <span>{{camera.username}}</span>
+            </div>
+            <div class="details-item">
+                <p>Password</p>
+                <span>{{camera.password}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

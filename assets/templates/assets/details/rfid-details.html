@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{rfid.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{rfid.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{rfid.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Location</p>
+                    <span>{{rfid.asset.location}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Belongs to</p>
+                    <span>{{rfid.asset.parent}}</span>
+                </div>       
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{rfid.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{rfid.asset.created}}</span>
+                </div>           
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Manufacturer</p>
+                <span>{{rfid.manufacturer}}</span>
+            </div>
+            <div class="details-item">
+                <p>Model</p>
+                <span>{{rfid.model}}</span>
+            </div>
+            <div class="details-item">
+                <p>Serial</p>
+                <span>{{rfid.serial}}</span>
+            </div>
+            <div class="details-item">
+                <p>Voltage</p>
+                <span>{{rfid.voltage}} V</span>
+            </div>
+            <div class="details-item">
+                <p>Frequency</p>
+                <span>{{rfid.frequency}} Hz</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

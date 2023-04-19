@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
-from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, LocationForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm
+from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, LocationForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm
 from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
 
 def dashboard(request):
@@ -64,7 +64,6 @@ def createAsset(request):
                 resolution = request.POST.get('camera_resolution'),
                 compression_format = request.POST.get('camera_format'),
                 motion_detection = request.POST.get('camera_motion'),
-                location = request.POST.get('camera_location'),
                 username = request.POST.get('camera_username'),
                 password = request.POST.get('camera_password'),
             )
@@ -236,7 +235,6 @@ def locationsTable(request):
 
 def updateLocation(request,pk):
     location = Location.objects.get(id=pk)
-    location = Location.objects.get(id=location.id)
     form = LocationForm(instance=location)
     if request.method =='POST':
         form = LocationForm(request.POST,instance=location)   
@@ -247,7 +245,21 @@ def updateLocation(request,pk):
         'form':form,       
         'location':location
     }
-    return render(request,'assets/updates/update-lcd.html',context)
+    return render(request,'assets/update-location.html',context)
+
+def updateCustomer(request,pk):
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+    if request.method =='POST':
+        form = CustomerForm(request.POST,instance=customer)   
+        if form.is_valid():           
+             form.save()
+             return redirect('customers')
+    context={
+        'form':form,       
+        'customer':customer
+    }
+    return render(request,'assets/update-customer.html',context)
 
 def update(request,pk,type):
     if type == 'camera':
@@ -262,7 +274,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                  form.save()
                  assetForm.save()
-                 return redirect('camera')
+                 return redirect('cameras')
             
     if type == 'dvr':
         dvr = DVR.objects.get(id=pk)
@@ -277,7 +289,7 @@ def update(request,pk,type):
              
                 form.save()
                 assetForm.save()
-                return redirect('dvr')
+                return redirect('dvrs')
     
     if type == 'ipc':
         ipc = IPC.objects.get(id=pk)
@@ -292,7 +304,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('ipc')
+                return redirect('ipcs')
     
     if type == 'lcb':
         lcb = LCB.objects.get(id=pk)
@@ -307,7 +319,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('lcb')
+                return redirect('lcbs')
 
     if type == 'lcd':
         lcd = LCD.objects.get(id=pk)
@@ -322,7 +334,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('lcd')
+                return redirect('lcds')
             
     if type == 'psu':
         psu = PowerSupply.objects.get(id=pk)
@@ -336,7 +348,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('psu')
+                return redirect('psus')
 
     if type == 'qrscanner':
         qrscanner = QRScanner.objects.get(id=pk)
@@ -350,7 +362,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('qrscanner')
+                return redirect('qrscanners')
 
     if type == 'rfid':
         rfid = RFID.objects.get(id=pk)
@@ -364,7 +376,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('rfid')
+                return redirect('rfids')
             
     if type == 'router':
         router = Router.objects.get(id=pk)
@@ -378,7 +390,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('router')
+                return redirect('routers')
 
     if type == 'switch':
         switch = Switch.objects.get(id=pk)
@@ -392,11 +404,127 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('switch')
+                return redirect('switches')
 
     context={
         'form':form,
         'assetForm':assetForm,
         'item': item
     }
-    return render(request,'assets/updates/update.html',context)
+    return render(request,'assets/update.html',context)
+
+def camera(request,pk):
+    camera = Camera.objects.get(id=pk)
+    asset = Asset.objects.get(id=camera.asset.id)
+    context={
+        'camera':camera,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/camera-details.html',context)
+
+def location(request,pk):
+    location = Location.objects.get(id=pk)
+    context={
+        'location':location
+    }
+
+    return render(request, 'assets/details/location-details.html',context)
+
+def customer(request,pk):
+    customer = Customer.objects.get(id=pk)
+    context={
+        'customer':customer
+    }
+
+    return render(request, 'assets/details/customer-details.html',context)
+
+def dvr(request,pk):
+    dvr = DVR.objects.get(id=pk)
+    asset = Asset.objects.get(id=dvr.asset.id)
+    context={
+        'dvr':dvr,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/dvr-details.html',context)
+
+def ipc(request,pk):
+    ipc = IPC.objects.get(id=pk)
+    asset = Asset.objects.get(id=ipc.asset.id)
+    context={
+        'ipc':ipc,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/ipc-details.html',context)
+
+def lcb(request,pk):
+    lcb = LCB.objects.get(id=pk)
+    asset = Asset.objects.get(id=lcb.asset.id)
+    context={
+        'lcb':lcb,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/lcb-details.html',context)
+
+def lcd(request,pk):
+    lcd = LCD.objects.get(id=pk)
+    asset = Asset.objects.get(id=lcd.asset.id)
+    context={
+        'lcd':lcd,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/lcd-details.html',context)
+
+def psu(request,pk):
+    psu = PowerSupply.objects.get(id=pk)
+    asset = Asset.objects.get(id=psu.asset.id)
+    context={
+        'psu':psu,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/psu-details.html',context)
+
+def qrscanner(request,pk):
+    qrscanner = QRScanner.objects.get(id=pk)
+    asset = Asset.objects.get(id=qrscanner.asset.id)
+    context={
+        'qrscanner':qrscanner,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/qrscanner-details.html',context)
+
+def rfid(request,pk):
+    rfid = RFID.objects.get(id=pk)
+    asset = Asset.objects.get(id=rfid.asset.id)
+    context={
+        'rfid':rfid,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/rfid-details.html',context)
+
+def router(request,pk):
+    router = Router.objects.get(id=pk)
+    asset = Asset.objects.get(id=router.asset.id)
+    context={
+        'router':router,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/router-details.html',context)
+
+def switch(request,pk):
+    switch = Switch.objects.get(id=pk)
+    asset = Asset.objects.get(id=switch.asset.id)
+    context={
+        'switch':switch,
+        'asset':asset
+    }
+
+    return render(request, 'assets/details/switch-details.html',context)

@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{switch.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{switch.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{switch.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Location</p>
+                    <span>{{switch.asset.location}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Belongs to</p>
+                    <span>{{switch.asset.parent}}</span>
+                </div>       
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{switch.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{switch.asset.created}}</span>
+                </div>           
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Manufacturer</p>
+                <span>{{switch.manufacturer}}</span>
+            </div>
+            <div class="details-item">
+                <p>Model</p>
+                <span>{{switch.model}}</span>
+            </div>
+            <div class="details-item">
+                <p>Serial</p>
+                <span>{{switch.serial}}</span>
+            </div>
+            <div class="details-item">
+                <p>Number of Ports</p>
+                <span>{{switch.num_ports}}</span>
+            </div>
+            <div class="details-item">
+                <p>Mac Address</p>
+                <span>{{switch.mac_address}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

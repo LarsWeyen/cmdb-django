@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{qrscanner.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{qrscanner.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{qrscanner.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Location</p>
+                    <span>{{qrscanner.asset.location}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Belongs to</p>
+                    <span>{{qrscanner.asset.parent}}</span>
+                </div>       
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{qrscanner.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{qrscanner.asset.created}}</span>
+                </div>           
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Manufacturer</p>
+                <span>{{qrscanner.manufacturer}}</span>
+            </div>
+            <div class="details-item">
+                <p>Model</p>
+                <span>{{qrscanner.model}}</span>
+            </div>
+            <div class="details-item">
+                <p>Serial</p>
+                <span>{{qrscanner.serial}}</span>
+            </div>
+            <div class="details-item">
+                <p>Port Type</p>
+                <span>{{qrscanner.port_type}}</span>
+            </div>
+            <div class="details-item">
+                <p>Resolution</p>
+                <span>{{qrscanner.resolution}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Customer</h1>
+        <div class="details-asset">   
+                <div class="details-item">
+                    <p>Customer ID</p>
+                    <span>{{customer.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Name</p>
+                   <span>{{customer.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Address</p>
+                    <span>{{customer.location.address}}</span>
+                </div>
+                <div class="details-item">
+                    <p>City</p>
+                    <span>{{customer.location.city}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Country</p>
+                    <span>{{customer.location.country}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Zipcode</p>
+                    <span>{{customer.location.zipcode}}</span>
+                </div>
+        </div>
+    
+    </div>
+</div>
+
+{% endblock %}

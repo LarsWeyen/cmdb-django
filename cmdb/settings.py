@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cryptography',
-    'assets.apps.AssetsConfig'
+    'assets.apps.AssetsConfig',
+    'details.apps.DetailsConfig'
 ]
 
 MIDDLEWARE = [

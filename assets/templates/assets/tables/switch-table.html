@@ -20,8 +20,8 @@
             <tbody>
                 {% for switch in switchs %}
                 <tr>
-                    <td><a href="">{{switch.id}}</a></td>
-                    <td><a href="">{{switch.asset.name}}</a></td>
+                    <td><a href="{% url 'switch' switch.id %}">{{switch.id}}</a></td>
+                    <td><a href="{% url 'switch' switch.id %}">{{switch.asset.name}}</a></td>
                     <td>{{switch.num_ports}}</td>
                     <td>{{switch.mac_address}}</td>
                     <td>{{switch.asset.parent}}</td>

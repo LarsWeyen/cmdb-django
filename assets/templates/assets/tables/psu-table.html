@@ -21,15 +21,15 @@
             <tbody>
                 {% for psu in psus %}
                 <tr>
-                    <td><a href="">{{psu.id}}</a></td>
-                    <td><a href="">{{psu.asset.name}}</a></td>
+                    <td><a href="{% url 'psu' psu.id %}">{{psu.id}}</a></td>
+                    <td><a href="{% url 'psu' psu.id %}">{{psu.asset.name}}</a></td>
                     <td>{{psu.form_factor}}</td>
                     <td>{{psu.voltage}}</td>
                     <td>{{psu.wattage}}</td>
                     <td>{{psu.asset.parent}}</td>
                     <td>{{psu.asset.created|date}}</td>
                     <td>
-                        <a href="{% url 'update-psu' psu.id%}">Edit</a>
+                        <a href="{% url 'update' 'psu' psu.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

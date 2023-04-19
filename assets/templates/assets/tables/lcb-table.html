@@ -20,8 +20,8 @@
             <tbody>
                 {% for lcb in lcbs %}
                 <tr>
-                    <td><a href="">{{lcb.id}}</a></td>
-                    <td><a href="">{{lcb.asset.name}}</a></td>
+                    <td><a href="{% url 'lcb' lcb.id %}">{{lcb.id}}</a></td>
+                    <td><a href="{% url 'lcb' lcb.id %}">{{lcb.asset.name}}</a></td>
                     <td>{{lcb.connector}}</td>
                     <td>{{lcb.voltage}}</td>
                     <td>{{lcb.asset.parent}}</td>

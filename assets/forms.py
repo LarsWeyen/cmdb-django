@@ -1,5 +1,6 @@
 from django import forms
-from .models import Asset, Camera, DVR, IPC, LCB, LCD, Location, PowerSupply, QRScanner, RFID, Router, Switch
+from django.forms import TextInput
+from .models import Asset, Camera, DVR, IPC, LCB, LCD, Location, PowerSupply, QRScanner, RFID, Router, Switch, Customer
 
 class AssetForm(forms.ModelForm):
     class Meta:
@@ -28,7 +29,10 @@ class DvrForm(forms.ModelForm):
         model = DVR
         fields = '__all__'
         exclude=['asset']
-        
+        widgets= {
+            'storage_capacity': TextInput(attrs={'placeholder':'Storage in Gigabytes'})
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
@@ -70,6 +74,16 @@ class LcdForm(forms.ModelForm):
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
+        fields = '__all__'
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
         fields = '__all__'
         
     def __init__(self, *args, **kwargs):

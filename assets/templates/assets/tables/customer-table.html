@@ -19,13 +19,13 @@
             <tbody>
                 {% for customer in customers %}
                 <tr>
-                    <td><a href="">{{customer.id}}</a></td>
-                    <td><a href="">{{customer.name}}</a></td>
+                    <td><a href="{% url 'customer' customer.id%}">{{customer.id}}</a></td>
+                    <td><a href="{% url 'customer' customer.id%}">{{customer.name}}</a></td>
                     <td>{{customer.location.country}}</td>   
                     <td>{{customer.location.city}}</td>   
                     <td>{{customer.location.address}}</td>   
                     <td>
-                        <a href="">Edit</a>
+                        <a href="{%url 'update-customer' customer.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

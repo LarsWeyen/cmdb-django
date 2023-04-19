@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Location</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Location ID</p>
+                    <span>{{location.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Name</p>
+                   <span>{{location.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Address</p>
+                    <span>{{location.address}}</span>
+                </div>
+                <div class="details-item">
+                    <p>City</p>
+                    <span>{{location.city}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Country</p>
+                    <span>{{location.country}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Zipcode</p>
+                    <span>{{location.zipcode}}</span>
+                </div>
+        </div>
+    
+    </div>
+</div>
+
+{% endblock %}

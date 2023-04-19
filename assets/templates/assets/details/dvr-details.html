@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{dvr.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{dvr.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{dvr.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Location</p>
+                    <span>{{dvr.asset.location}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Belongs to</p>
+                    <span>{{dvr.asset.parent}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{dvr.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{dvr.asset.created}}</span>
+                </div>     
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Manufacturer</p>
+                <span>{{dvr.manufacturer}}</span>
+            </div>
+            <div class="details-item">
+                <p>Model</p>
+                <span>{{dvr.model}}</span>
+            </div>
+            <div class="details-item">
+                <p>Serial</p>
+                <span>{{dvr.serial}}</span>
+            </div>
+            <div class="details-item">
+                <p>IP Address</p>
+                <span>{{dvr.ip_address}}</span>
+            </div>
+            <div class="details-item">
+                <p>Firmware</p>
+                <span>{{dvr.firmware}}</span>
+            </div>
+            <div class="details-item">
+                <p>Storage Capacity</p>
+                <span>{{dvr.storage_capacity}} GB</span>
+            </div>
+            <div class="details-item">
+                <p>Username</p>
+                <span>{{dvr.username}}</span>
+            </div>
+            <div class="details-item">
+                <p>Password</p>
+                <span>{{dvr.password}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

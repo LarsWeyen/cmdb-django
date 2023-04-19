@@ -20,8 +20,8 @@
             <tbody>
                 {% for qr_scanner in qrScanners %}
                 <tr>
-                    <td><a href="">{{qr_scanner.id}}</a></td>
-                    <td><a href="">{{qr_scanner.asset.name}}</a></td>
+                    <td><a href="{% url 'qrscanner' qr_scanner.id%}">{{qr_scanner.id}}</a></td>
+                    <td><a href="{% url 'qrscanner' qr_scanner.id%}">{{qr_scanner.asset.name}}</a></td>
                     <td>{{qr_scanner.resolution}}</td>
                     <td>{{qr_scanner.port_type}}</td>
                     <td>{{qr_scanner.asset.parent}}</td>

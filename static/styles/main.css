@@ -151,13 +151,13 @@ gap: 15px;
     margin-top: 1rem;
 }
 
-.table-container{
+.table-container, .details-container{
     padding: 1.5rem;
     background-color: #fbfbfb;
     
 }
 
-.table-content{
+.table-content, .details-content{
     background-color: #fff;
     padding: 2rem;
     box-shadow:  0 0 3px #ccc;
@@ -241,3 +241,27 @@ navbar span::after {
     margin-bottom: 2rem;
 }
 
+.details-asset, .component-details{
+    padding: 15px;
+    border: solid 1px rgb(168, 168, 168,0.4);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    row-gap: 5px;
+    width: 70%;
+    margin-top: 8px;
+}
+.details-asset{
+    margin-bottom: 1.2rem;
+}
+
+.details-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-item span{
+    font-weight: bold;
+    
+}
