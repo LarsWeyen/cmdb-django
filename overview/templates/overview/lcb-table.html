@@ -4,30 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>LCD Assets</h2>
+        <h2>LCB Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Resolution</th>
-                <th>Refresh Rate</th>
+                <th>Connector</th>
+                <th>Voltage</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for lcd in lcds %}
+                {% for lcb in lcbs %}
                 <tr>
-                    <td><a href="{% url 'lcd' lcd.id%}">{{lcd.id}}</a></td>
-                    <td><a href="{% url 'lcd' lcd.id%}">{{lcd.asset.name}}</a></td>
-                    <td>{{lcd.resolution}}</td>
-                    <td>{{lcd.refresh_rate}}</td>
-                    <td>{{lcd.asset.parent}}</td>
-                    <td>{{lcd.asset.created|date}}</td>
+                    <td><a href="{% url 'details:lcb' lcb.id %}">{{lcb.id}}</a></td>
+                    <td><a href="{% url 'details:lcb' lcb.id %}">{{lcb.asset.name}}</a></td>
+                    <td>{{lcb.connector}}</td>
+                    <td>{{lcb.voltage}}</td>
+                    <td>{{lcb.asset.parent}}</td>
+                    <td>{{lcb.asset.created|date}}</td>
                     <td>
-                        <a href="{% url 'update' 'lcd' lcd.id%}">Edit</a>
+                        <a href="{% url 'assets:update' 'lcb' lcb.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

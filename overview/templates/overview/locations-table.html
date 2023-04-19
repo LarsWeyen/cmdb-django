@@ -4,7 +4,7 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>Customers</h2>
+        <h2>Locations</h2>
         <table>
             <thead>
               <tr>
@@ -13,19 +13,21 @@
                 <th>Country</th>
                 <th>City</th>
                 <th>Address</th>
+                <th>Zipcode</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for customer in customers %}
+                {% for location in locations %}
                 <tr>
-                    <td><a href="{% url 'customer' customer.id%}">{{customer.id}}</a></td>
-                    <td><a href="{% url 'customer' customer.id%}">{{customer.name}}</a></td>
-                    <td>{{customer.location.country}}</td>   
-                    <td>{{customer.location.city}}</td>   
-                    <td>{{customer.location.address}}</td>   
+                    <td><a href="{% url 'details:location' location.id%}">{{location.id}}</a></td>
+                    <td><a href="{% url 'details:location' location.id%}">{{location.name}}</a></td>
+                    <td>{{location.country}}</td>   
+                    <td>{{location.city}}</td>   
+                    <td>{{location.address}}</td>   
+                    <td>{{location.zipcode}}</td>   
                     <td>
-                        <a href="{%url 'update-customer' customer.id%}">Edit</a>
+                        <a href="{% url 'assets:update-location' location.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

@@ -21,15 +21,15 @@
             <tbody>
                 {% for camera in cameras %}
                 <tr>
-                    <td><a href="{% url 'camera' camera.id %}">{{camera.id}}</a></td>
-                    <td><a href="{% url 'camera' camera.id %}">{{camera.asset.name}}</a></td>
+                    <td><a href="{% url 'details:camera' camera.id %}">{{camera.id}}</a></td>
+                    <td><a href="{% url 'details:camera' camera.id %}">{{camera.asset.name}}</a></td>
                     <td>{{camera.model}}</td>
                     <td>{{camera.ip_address}}</td>
                     <td>{{camera.asset.parent}}</td>
                     <td>{{camera.motion_detection}}</td>
                     <td>{{camera.asset.created|date}}</td>
                     <td>
-                        <a href="{% url 'update' 'camera' camera.id%}">Edit</a>
+                        <a href="{% url 'assets:update' 'camera' camera.id%}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

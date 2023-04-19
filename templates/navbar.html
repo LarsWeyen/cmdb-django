@@ -7,56 +7,56 @@
         <input type="checkbox" onchange="navbarCollapse(document.querySelector('.asset-options'))" id="asset-toggle"> 
         <ul class="asset-options">
             <li>
-                <a href="{% url 'dashboard'%}">Dashboard</a>
+                <a href="{% url 'assets:dashboard'%}">Dashboard</a>
             </li>
             <li>
                 <a href="#">DistriSPOT's</a>
             </li>
             <li>
-                <a href="{% url 'lcds' %}">LCD's</a>
+                <a href="{% url 'overview:lcds' %}">LCD's</a>
             </li>
             <li>
-                <a href="{% url 'ipcs' %}">IPC's</a>
+                <a href="{% url 'overview:ipcs' %}">IPC's</a>
             </li>
             <li>
-                <a href="{% url 'lcbs' %}">LCB's</a>
+                <a href="{% url 'overview:lcbs' %}">LCB's</a>
             </li>
             <li>
-                <a href="{% url 'psus' %}">Power Supplies</a>
+                <a href="{% url 'overview:psus' %}">Power Supplies</a>
             </li>
             <li>
-                <a href="{% url 'routers' %}">Routers</a>
+                <a href="{% url 'overview:routers' %}">Routers</a>
             </li>
             <li>
-                <a href="{% url 'dvrs' %}">DVR's</a>
+                <a href="{% url 'overview:dvrs' %}">DVR's</a>
             </li>
             <li>
-                <a href="{% url 'cameras' %}">Cameras</a>
+                <a href="{% url 'overview:cameras' %}">Cameras</a>
             </li>
             <li>
-                <a href="{% url 'switches' %}">Switches</a>
+                <a href="{% url 'overview:switches' %}">Switches</a>
             </li>
             <li>
-                <a href="{% url 'rfids' %}">RFID's</a>
+                <a href="{% url 'overview:rfids' %}">RFID's</a>
             </li>
             <li>
-                <a href="{% url 'qrscanners' %}">QR Scanners</a>
+                <a href="{% url 'overview:qrscanners' %}">QR Scanners</a>
             </li>
             <li>
-                <a href="{% url 'assets' %}">Overview</a>
+                <a href="{% url 'overview:assets' %}">Overview</a>
             </li>
         </ul>
         <label for="misc-toggle"><li class="nav-title"><span>MISC</span></li></label>
         <input type="checkbox" onchange="navbarCollapse(document.querySelector('.misc-options'))" id="misc-toggle"> 
         <ul class="misc-options">
             <li>
-                <a href="{% url 'customers'%}">Customers</a>
+                <a href="{% url 'overview:customers'%}">Customers</a>
             </li>
             <li>
                 <a href="#">Maintenances</a>
             </li>
             <li>
-                <a href="{% url 'locations'%}">Locations</a>
+                <a href="{% url 'overview:locations'%}">Locations</a>
             </li>
         </ul>
     </ul>

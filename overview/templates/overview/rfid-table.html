@@ -4,32 +4,30 @@
 
 <div class="table-container">
     <div class="table-content">
-        <h2>Power Supply Assets</h2>
+        <h2>RFID Assets</h2>
         <table>
             <thead>
               <tr>
                 <th>CODE</th>
                 <th>Name</th>
-                <th>Form Factor</th>
+                <th>Frequency</th>
                 <th>Voltage</th>
-                <th>Wattage</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
-                {% for psu in psus %}
+                {% for rfid in rfids %}
                 <tr>
-                    <td><a href="{% url 'psu' psu.id %}">{{psu.id}}</a></td>
-                    <td><a href="{% url 'psu' psu.id %}">{{psu.asset.name}}</a></td>
-                    <td>{{psu.form_factor}}</td>
-                    <td>{{psu.voltage}}</td>
-                    <td>{{psu.wattage}}</td>
-                    <td>{{psu.asset.parent}}</td>
-                    <td>{{psu.asset.created|date}}</td>
+                    <td><a href="{% url 'details:rfid' rfid.id%}">{{rfid.id}}</a></td>
+                    <td><a href="{% url 'details:rfid' rfid.id%}">{{rfid.asset.name}}</a></td>
+                    <td>{{rfid.frequency}}</td>
+                    <td>{{rfid.voltage}}</td>
+                    <td>{{rfid.asset.parent}}</td>
+                    <td>{{rfid.asset.created|date}}</td>
                     <td>
-                        <a href="{% url 'update' 'psu' psu.id%}">Edit</a>
+                        <a href="{% url 'assets:update' 'rfid' rfid.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>

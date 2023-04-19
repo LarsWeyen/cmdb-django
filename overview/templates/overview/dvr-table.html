@@ -20,14 +20,14 @@
             <tbody>
                 {% for dvr in dvrs %}
                 <tr>
-                    <td><a href="{% url 'dvr' dvr.id%}">{{dvr.id}}</a></td>
-                    <td><a href="{% url 'dvr' dvr.id%}">{{dvr.asset.name}}</a></td>
+                    <td><a href="{% url 'details:dvr' dvr.id%}">{{dvr.id}}</a></td>
+                    <td><a href="{% url 'details:dvr' dvr.id%}">{{dvr.asset.name}}</a></td>
                     <td>{{dvr.firmware}}</td>
                     <td>{{dvr.ip_address}}</td>
                     <td>{{dvr.asset.parent}}</td>
                     <td>{{dvr.storage_capacity}}</td>
                     <td>
-                        <a href="{% url 'update' 'dvr' dvr.id %}">Edit</a>
+                        <a href="{% url 'assets:update' 'dvr' dvr.id %}">Edit</a>
                         <a href="">Delete</a>
                     </td>
                   </tr>
