@@ -163,7 +163,7 @@ def updateLocation(request,pk):
         form = LocationForm(request.POST,instance=location)   
         if form.is_valid():           
              form.save()
-             return redirect('locations')
+             return redirect('overview:locations')
     context={
         'form':form,       
         'location':location
@@ -177,7 +177,7 @@ def updateCustomer(request,pk):
         form = CustomerForm(request.POST,instance=customer)   
         if form.is_valid():           
              form.save()
-             return redirect('customers')
+             return redirect('overview:customers')
     context={
         'form':form,       
         'customer':customer
@@ -197,7 +197,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                  form.save()
                  assetForm.save()
-                 return redirect('cameras')
+                 return redirect('overview:cameras')
             
     if type == 'dvr':
         dvr = DVR.objects.get(id=pk)
@@ -212,7 +212,7 @@ def update(request,pk,type):
              
                 form.save()
                 assetForm.save()
-                return redirect('dvrs')
+                return redirect('overview:dvrs')
     
     if type == 'ipc':
         ipc = IPC.objects.get(id=pk)
@@ -227,7 +227,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('ipcs')
+                return redirect('overview:ipcs')
     
     if type == 'lcb':
         lcb = LCB.objects.get(id=pk)
@@ -242,7 +242,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('lcbs')
+                return redirect('overview:lcbs')
 
     if type == 'lcd':
         lcd = LCD.objects.get(id=pk)
@@ -257,7 +257,7 @@ def update(request,pk,type):
                 
                 form.save()
                 assetForm.save()
-                return redirect('lcds')
+                return redirect('overview:lcds')
             
     if type == 'psu':
         psu = PowerSupply.objects.get(id=pk)
@@ -271,7 +271,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('psus')
+                return redirect('overview:psus')
 
     if type == 'qrscanner':
         qrscanner = QRScanner.objects.get(id=pk)
@@ -285,7 +285,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('qrscanners')
+                return redirect('overview:qrscanners')
 
     if type == 'rfid':
         rfid = RFID.objects.get(id=pk)
@@ -299,7 +299,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('rfids')
+                return redirect('overview:rfids')
             
     if type == 'router':
         router = Router.objects.get(id=pk)
@@ -313,7 +313,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('routers')
+                return redirect('overview:routers')
 
     if type == 'switch':
         switch = Switch.objects.get(id=pk)
@@ -327,7 +327,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('switches')
+                return redirect('overview:switches')
 
     context={
         'form':form,
