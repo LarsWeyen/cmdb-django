@@ -22,9 +22,10 @@ class Location(models.Model):
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=100)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
-
+    email = models.CharField(max_length=256)
+    phone = models.CharField(max_length=50)
     def __str__(self) -> str:
         return self.name
 

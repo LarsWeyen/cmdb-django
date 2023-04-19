@@ -10,9 +10,10 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Country</th>
-                <th>City</th>
+                <th>E-mail</th>
+                <th>Phone Number</th>
                 <th>Address</th>
+                <th>Country</th>
                 <th></th>
               </tr>
             <thead>
@@ -20,10 +21,11 @@
                 {% for customer in customers %}
                 <tr>
                     <td><a href="{% url 'details:customer' customer.id%}">{{customer.id}}</a></td>
-                    <td><a href="{% url 'details:customer' customer.id%}">{{customer.name}}</a></td>
-                    <td>{{customer.location.country}}</td>   
-                    <td>{{customer.location.city}}</td>   
+                    <td><a href="{% url 'details:customer' customer.id%}">{{customer.name}}</a></td>            
+                    <td>{{customer.email}}</td>   
+                    <td>{{customer.phone}}</td>   
                     <td>{{customer.location.address}}</td>   
+                    <td>{{customer.location.country}}</td>  
                     <td>
                         <a href="{%url 'assets:update-customer' customer.id%}">Edit</a>
                         <a href="">Delete</a>

@@ -8,7 +8,7 @@ def customer(request,pk):
         'customer':customer
     }
 
-    return render(request, 'customer-details.html',context)
+    return render(request, 'details/customer-details.html',context)
 
 
 def camera(request,pk):
