@@ -67,14 +67,64 @@
 }
 
 .distrispot {
-    background-color: #696d97;
-    border-radius: 6px;
+    background-color: #F3D0D0;
+    color: #C53232;
 }
 
 .ipc{
-    background-color: red;
+    background-color: #D1F1A8;
+    color: #70B11C;
 }
 
+.lcd{
+    background-color: #C8DAE4;
+    color: #4A7B96;
+}
+.rfid{
+    background-color: #9BC06B;
+    color: #32431C;
+}
+
+.dvr{
+    background-color: #5DA8D6;
+    color: #153B52;
+}
+
+.location{
+    background-color: #3d7aa0;
+    color: #1f4055;
+}
+
+.power-supply{
+    background-color: #DC6F6F;
+    color: #671919;
+}
+
+.switch{
+    background-color: #F7D79A;
+    color: #B77D0E;
+}
+
+.router{
+    background-color: #D7E8E4;
+    color: #599A8B;
+}
+.lcb{
+    background-color: #944b4b;
+    color: #5a2222;
+}
+.camera{
+    background-color: #FFB62F;
+    color: #865b0b;
+}
+.customer{
+    background-color: #799b4c;
+    color: #32431C;
+}
+.qr-scanner{
+    background-color: #A0CEC2;
+    color: #376B5D;
+}
 .content{
     display: flex;
     flex-direction: column;
@@ -195,13 +245,31 @@ navbar span::after {
     
   }
   
-  .asset-options, .misc-options {
+  .asset-options, .misc-options{
     height: 0px;
     transition: height 0.3s ease;
     overflow: hidden;
     padding-left: 3rem;
     background-color: #1a4c6b;
     border-left: 2px solid black;
+  }
+  .button-menu {
+    display: none;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1000;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
   }
 
   #asset-toggle, #misc-toggle {

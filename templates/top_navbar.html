@@ -1,14 +1,20 @@
 {% load static %}
 <div class="top_bar">
   <a href="{% url 'assets:dashboard'%}"><h1>test</h1></a>
-  
+ 
+  <div class="input-group w-25">
+    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+    <button type="button" class="btn btn-outline-primary">search</button>
+  </div>
 
-  <div class="add-button">
-    <a href="{% url 'assets:create-asset'%}">
-      <div class="button-content">
-        New Asset
-        <img class="icon" src="{% static 'images/plus.svg'%}" alt="" />
-      </div>
-    </a>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" onClick="dropdownCollapse()" aria-haspopup="true" aria-expanded="false">
+      Add New Item
+    </button>
+    <div class="button-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="{% url 'assets:create-asset'%}">Create new Asset</a>
+      <a class="dropdown-item" href="{% url 'assets:create-customer'%}">Add Customer</a>
+      <a class="dropdown-item" href="{% url 'assets:create-location' %}">Add Location</a>
+    </div>
   </div>
 </div>

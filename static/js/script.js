@@ -22,3 +22,21 @@ function navbarCollapse(element) {
         element.style.height = '0px';
     }
 }
+
+document.addEventListener('click',(e)=>{
+    const dropdown = document.querySelector('.button-menu') 
+    
+    if (e.target.closest("#dropdownMenuButton")) return
+    
+    dropdown.style.display = 'none'
+})
+
+function dropdownCollapse() {
+    const dropdown = document.querySelector('.button-menu')
+    if(dropdown.style.display == 'block'){
+        dropdown.style.display = 'none'
+    }
+    else{
+        dropdown.style.display = 'block'
+    }  
+}
