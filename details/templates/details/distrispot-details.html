@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="details-container">
+    <div class="details-content">
+        <h1>Asset</h1>
+        <div class="details-asset"> 
+            
+                <div class="details-item">
+                    <p>Asset ID</p>
+                    <span>{{distrispot.asset.id}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Asset Name</p>
+                   <span>{{distrispot.asset.name}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Customer</p>
+                    <span>{{distrispot.asset.customer}}</span>
+                </div>
+                <div class="details-item">
+                    <p>City</p>
+                    <span>{{distrispot.asset.location.city}}</span>
+                </div>      
+                <div class="details-item">
+                    <p>Address</p>
+                    <span>{{distrispot.asset.location.address}}</span>
+                </div>   
+                <div class="details-item">
+                    <p>Country</p>
+                    <span>{{distrispot.asset.location.country}}</span>
+                </div>   
+                <div class="details-item">
+                    <p>Last Updated</p>
+                    <span>{{distrispot.asset.updated}}</span>
+                </div> 
+                <div class="details-item">
+                    <p>Created On</p>
+                    <span>{{distrispot.asset.created}}</span>
+                </div>        
+        </div>
+        <h2>Component</h2>
+        <div class="component-details">
+            <div class="details-item">
+                <p>Number of slots</p>
+                <span>{{distrispot.slots_num}}</span>
+            </div>
+            <div class="details-item">
+                <p>Type</p>
+                <span>{{distrispot.type}}</span>
+            </div>
+            <div class="details-item">
+                <p>Last Maintenance</p>
+                <span>{{distrispot.maintenance.date}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

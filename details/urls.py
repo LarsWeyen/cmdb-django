@@ -14,4 +14,5 @@ urlpatterns = [
     path('rfid/<str:pk>/',views.rfid,name='rfid'),
     path('router/<str:pk>/',views.router,name='router'),
     path('switch/<str:pk>/',views.switch,name='switch'),
+    path('distrispot/<str:pk>/',views.distrispot,name='distrispot'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from assets.models import Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
+from assets.models import Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot
 
 def customer(request,pk):
     customer = Customer.objects.get(id=pk)
@@ -120,3 +120,13 @@ def switch(request,pk):
     }
 
     return render(request, 'details/switch-details.html',context)
+
+def distrispot(request,pk):
+    distrispot = Distrispot.objects.get(id=pk)
+    asset = Asset.objects.get(id=distrispot.asset.id)
+    context={
+        'distrispot':distrispot,
+        'asset':asset
+    }
+
+    return render(request, 'details/distrispot-details.html',context)

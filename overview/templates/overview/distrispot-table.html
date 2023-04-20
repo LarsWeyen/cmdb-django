@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="table-container">
+    <div class="table-content">
+        <h2>IPC Assets</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Total Slots</th>
+                <th>Customer</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for distrispot in distrispots %}
+                <tr>
+                    <td><a href="{% url 'details:distrispot' distrispot.id%}">{{distrispot.id}}</a></td>
+                    <td><a href="{% url 'details:distrispot' distrispot.id%}">{{distrispot.asset.name}}</a></td>
+                    <td>{{distrispot.type}}</td>
+                    <td>{{distrispot.slots_num}}</td>
+                    <td>{{distrispot.asset.customer.name}}</td>
+                    <td>{{distrispot.asset.created|date}}</td>
+                    <td>
+                        <a href="{% url 'assets:update' 'distrispot' distrispot.id%}">Edit</a>
+                        <a href="{% url 'assets:delete' 'asset' distrispot.asset.id %}">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

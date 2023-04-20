@@ -156,7 +156,7 @@ def createAsset(request):
                 type = DistrispotType.objects.get(id=request.POST.get('distrispot_type')),
             )
         
-        redirect('assets:dashboard')
+        return redirect('assets:dashboard')
 
     context = {'form':form,
                'types': type_names,
@@ -376,20 +376,20 @@ def delete(request,type,pk):
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
             Asset.objects.filter(id=pk).delete()
-            redirect('assets:dashboard')
+            return redirect('assets:dashboard')
         
     
     elif type == 'location':
         item = Location.objects.get(id=pk)
         if request.method == 'POST':
             Location.objects.filter(id=pk).delete()
-            redirect('overview:locations')
+            return redirect('overview:locations')
     
     elif type == 'customer':
         item = Customer.objects.get(id=pk)
         if request.method == 'POST':
             Customer.objects.filter(id=pk).delete()
-            redirect('overview:customers')
+            return redirect('overview:customers')
    
     context={
         'item':item
