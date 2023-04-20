@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'cryptography',
     'assets.apps.AssetsConfig',
     'details.apps.DetailsConfig',
-    'overview.apps.OverviewConfig'
+    'overview.apps.OverviewConfig',
+    'bootstrap5',
+    'django_bootstrap_icons'
 ]
 
 MIDDLEWARE = [
