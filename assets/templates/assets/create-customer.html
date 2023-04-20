@@ -1,0 +1,21 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="edit-form">
+  <div class="edit-container">
+    <div>
+        <h2>Add New Customer</h2>
+        <form class="edit-form-container" method="POST">
+            {% csrf_token %}      
+            {% for item in form %}
+        <div class="form-group">
+          <span>{{item.label}}</span>
+          {{item}}
+        </div>
+        {% endfor %}
+        <button type="submit">Save</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

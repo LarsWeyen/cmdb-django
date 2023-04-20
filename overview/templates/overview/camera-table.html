@@ -30,7 +30,7 @@
                     <td>{{camera.asset.created|date}}</td>
                     <td>
                         <a href="{% url 'assets:update' 'camera' camera.id%}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{% url 'assets:delete' 'asset' camera.asset.id%}">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}

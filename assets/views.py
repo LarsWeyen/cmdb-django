@@ -2,16 +2,19 @@ from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
 from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, LocationForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm
-from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC
+from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,DistrispotType
+from numerize import numerize
 
 def dashboard(request):
     type_names = Type.objects.all()
-    counts = {type_name.slug: Asset.objects.filter(type=type_name).count() for type_name in type_names}
-    
-
+    counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
+    customer_count = numerize.numerize(Customer.objects.all().count()) 
+    location_count = numerize.numerize(Location.objects.all().count()) 
     context = {
         'types': type_names,
         'counts': counts,
+        'customer_count':customer_count,
+        'location_count':location_count
     }
     return render(request,'assets/dashboard.html',context)
 
@@ -21,6 +24,7 @@ def createAsset(request):
     locations = Location.objects.all()
     customers = Customer.objects.all()
     parent_assets = Asset.objects.all()
+    distrispot_types = DistrispotType.objects.all()
 
     if request.method == 'POST':
         asset_type = Type.objects.get(name=request.POST.get('type'))
@@ -145,16 +149,47 @@ def createAsset(request):
                 voltage = request.POST.get('lcb_voltage'),
             )
         
-    redirect('dashboard')
+        if asset_type.slug == 'distrispot':
+            Distrispot.objects.create(
+                asset=asset,
+                slots_num = request.POST.get('distrispot_slots_num'),
+                type = DistrispotType.objects.get(id=request.POST.get('distrispot_type')),
+            )
+        
+        redirect('assets:dashboard')
 
     context = {'form':form,
                'types': type_names,
                'locations':locations,
                'customers': customers,
-               'parents':parent_assets
+               'parents':parent_assets,
+               'distrispot_types':distrispot_types
                }
     return render(request,'assets/create-asset.html',context)
 
+def createCustomer(request):
+    form = CustomerForm()
+
+    if request.method =='POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+             form.save()
+             return redirect('assets:dashboard')
+    
+    context = {'form':form}
+    return render(request,'assets/create-customer.html',context)
+
+def createLocation(request):
+    form = LocationForm()
+
+    if request.method =='POST':
+        form = LocationForm(request.POST)
+        if form.is_valid():
+             form.save()
+             return redirect('assets:dashboard')
+    
+    context = {'form':form}
+    return render(request,'assets/create-location.html',context)
 
 def updateLocation(request,pk):
     location = Location.objects.get(id=pk)
@@ -335,3 +370,28 @@ def update(request,pk,type):
         'item': item
     }
     return render(request,'assets/update.html',context)
+
+def delete(request,type,pk):
+    if type == 'asset':
+        item = Asset.objects.get(id=pk)
+        if request.method == 'POST':
+            Asset.objects.filter(id=pk).delete()
+            redirect('assets:dashboard')
+        
+    
+    elif type == 'location':
+        item = Location.objects.get(id=pk)
+        if request.method == 'POST':
+            Location.objects.filter(id=pk).delete()
+            redirect('overview:locations')
+    
+    elif type == 'customer':
+        item = Customer.objects.get(id=pk)
+        if request.method == 'POST':
+            Customer.objects.filter(id=pk).delete()
+            redirect('overview:customers')
+   
+    context={
+        'item':item
+    }
+    return render(request,'assets/delete.html',context)

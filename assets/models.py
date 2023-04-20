@@ -176,15 +176,21 @@ class Maintenance(models.Model):
     def __str__(self) -> str:
         return self.description
 
+class DistrispotType(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50)
+    
+    def __str__(self) -> str:
+        return self.name
 
 class Distrispot(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='distrispot')
-    name=models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
+    slots_num = models.IntegerField()
+    type = models.ForeignKey(DistrispotType, on_delete=models.PROTECT)
     maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.asset.name
 
 class PowerSupply(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='psu')

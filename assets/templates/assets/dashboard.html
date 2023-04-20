@@ -2,73 +2,127 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
+{% load bootstrap_icons %}
 <div class="dashboard">
     <div class="dashboard-container">
         <div class="block-container">
-            <div class="distrispot">
-                <div class="content">
+            <div class="distrispot rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'grid-1x2' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.distrispot}}</span>
                     <span class="asset-title">DistriSPOT's</span>
                 </div>
             </div>
-            <div class="ipc">
-                <div class="content">
+            <div class="ipc rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'cpu' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.ipc}}</span>
                     <span class="asset-title">IPC's</span>
                 </div>
             </div>
-            <div class="lcd">
-                <div class="content">
+            <div class="lcd rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'display' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.lcd}}</span>
                     <span class="asset-title">LCD's</span>
                 </div>
             </div>
-            <div class="switch">
-                <div class="content">
+            <div class="switch rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'diagram-3' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.switch}}</span>
                     <span class="asset-title">Switches</span>
                 </div>
             </div>
-            <div class="router">
-                <div class="content">
+            <div class="router rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'router' size='2em' %}
+                    </div>
+                    
                     <span class="asset-count">{{counts.router}}</span>
                     <span class="asset-title">Routers</span>
                 </div>
             </div>
-            <div class="power-supply">
-                <div class="content">
+            <div class="power-supply rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'plug' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.power_supply}}</span>
                     <span class="asset-title">Power Supplies</span>
                 </div>
             </div>
-            <div class="rfid">
-                <div class="content">
+            <div class="rfid rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'person-badge' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.rfid}}</span>
                     <span class="asset-title">RFID's</span>
                 </div>
             </div>
-            <div class="dvr">
-                <div class="content">
+            <div class="dvr rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'hdd' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.dvr}}</span>
                     <span class="asset-title">DVR's</span>
                 </div>
             </div>
-            <div class="camera">
-                <div class="content">
+            <div class="camera rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'camera-video' size='2em' %}
+                    </div>
+
                     <span class="asset-count">{{counts.camera}}</span>
                     <span class="asset-title">Cameras</span>
                 </div>
             </div>
-            <div class="qr-scanner">
-                <div class="content">
+            <div class="qr-scanner rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'qr-code-scan' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.qr_scanner}}</span>
                     <span class="asset-title">QR Scanners</span>
                 </div>
             </div>
-            <div class="lcb">
-                <div class="content">
+            <div class="lcb rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'grip-horizontal' size='2em' %}
+                    </div>
                     <span class="asset-count">{{counts.lcb}}</span>
                     <span class="asset-title">LCB's</span>
+                </div>
+            </div>
+            <div class="customer rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'person' size='2em' %}
+                    </div>
+                    <span class="asset-count">{{customer_count}}</span>
+                    <span class="asset-title">Customers</span>
+                </div>
+            </div>
+            <div class="location rounded">
+                <div class="content position-relative m-2">
+                    <div class="ms-auto position-absolute top-0 end-0">
+                        {% bs_icon 'geo-alt' size='2em' %}
+                    </div>
+                    <span class="asset-count">{{location_count}}</span>
+                    <span class="asset-title">Locations</span>
                 </div>
             </div>
         </div>

@@ -27,8 +27,8 @@
                     <td>{{customer.location.address}}</td>   
                     <td>{{customer.location.country}}</td>  
                     <td>
-                        <a href="{%url 'assets:update-customer' customer.id%}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{% url 'assets:update-customer' customer.id%}">Edit</a>
+                        <a href="{% url 'assets:delete' 'customer' customer.id %}">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}

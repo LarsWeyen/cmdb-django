@@ -28,7 +28,7 @@
                     <td>{{ipc.asset.created|date}}</td>
                     <td>
                         <a href="{% url 'assets:update' 'ipc' ipc.id%}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{% url 'assets:delete' 'asset' ipc.asset.id %}">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}

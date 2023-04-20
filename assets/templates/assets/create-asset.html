@@ -374,7 +374,25 @@
               </div>
             </div>
 
-       
+            
+            <div class="form-content" id="DistriSPOT-form">
+              <h3>DistriSPOT</h3>
+              <div class="form-container">
+                <div class="form-group">
+                  <span>Number of Slots</span>
+                  <input class="form-field" type="text" name="distrispot_slots_num"/>
+                </div>
+                <div class="form-group">
+                  <span>Type</span>
+                  <select class="form-field" name="distrispot_type" id="typeselect">
+                    <option value="null">-------</option>
+                    {% for type in distrispot_types %}
+                      <option value="{{type.id}}">{{type}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
      
          <div>
         <button type="submit">Save</button>

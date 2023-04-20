@@ -1,0 +1,11 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<div class=" d-flex  justify-content-center p-5">
+    <form action="" class="border p-5" method="POST">
+        {% csrf_token%}
+        <p>Are you sure you want to delete "{{item}}"</p>
+        <a href="{{request.META.HTTP_REFERER}}">Go back</a>
+        <input class="btn btn-primary" type="submit" value="Confirm">
+    </form>
+</div>
+
+{% endblock %}

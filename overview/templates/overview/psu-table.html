@@ -30,7 +30,7 @@
                     <td>{{psu.asset.created|date}}</td>
                     <td>
                         <a href="{% url 'assets:update' 'psu' psu.id%}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{% url 'assets:delete' 'asset' psu.asset.id %}">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}

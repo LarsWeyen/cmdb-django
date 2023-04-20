@@ -28,7 +28,7 @@
                     <td>{{location.zipcode}}</td>   
                     <td>
                         <a href="{% url 'assets:update-location' location.id%}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{% url 'assets:delete' 'location' location.id %}">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}
