@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+{% load bootstrap_icons %}
 <div class="table-container">
     <div class="table-content">
         <h2>Power Supply Assets</h2>
@@ -28,9 +28,9 @@
                     <td>{{psu.wattage}}</td>
                     <td>{{psu.asset.parent}}</td>
                     <td>{{psu.asset.created|date}}</td>
-                    <td>
-                        <a href="{% url 'assets:update' 'psu' psu.id%}">Edit</a>
-                        <a href="{% url 'assets:delete' 'asset' psu.asset.id %}">Delete</a>
+                    <td class="d-flex justify-content-around p-0">
+                        <a class="text-secondary" href="{% url 'assets:update' 'psu' psu.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        <a class="text-danger" href="{% url 'assets:delete' 'asset' psu.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
                     </td>
                   </tr>
                 {% endfor %}

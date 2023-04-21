@@ -27,8 +27,8 @@
                     <td>{{switch.asset.parent}}</td>
                     <td>{{switch.asset.created|date}}</td>
                     <td class="d-flex justify-content-around p-0">
-                        <a class="text-secondary" href="{% url 'assets:update' 'switch' switch.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
-                        <a class="text-danger" href="{% url 'assets:delete' 'asset' switch.asset.id %}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                        <a class="text-secondary" class="text-secondary" href="{% url 'assets:update' 'switch' switch.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        <a class="text-danger" class="text-danger" href="{% url 'assets:delete' 'asset' switch.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
                     </td>
                   </tr>
                 {% endfor %}

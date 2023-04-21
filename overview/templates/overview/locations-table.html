@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+{% load bootstrap_icons %}
 <div class="table-container">
     <div class="table-content">
         <h2>Locations</h2>
@@ -26,9 +26,9 @@
                     <td>{{location.city}}</td>   
                     <td>{{location.address}}</td>   
                     <td>{{location.zipcode}}</td>   
-                    <td>
-                        <a href="{% url 'assets:update-location' location.id%}">Edit</a>
-                        <a href="{% url 'assets:delete' 'location' location.id %}">Delete</a>
+                    <td class="d-flex justify-content-around p-0">
+                        <a class="text-secondary" href="{% url 'assets:update-location' location.id%}">Edit</a>
+                        <a class="text-danger" href="{% url 'assets:delete' 'location' location.id %}">{% bs_icon 'trash3' size='1.5em' %}</a>
                     </td>
                   </tr>
                 {% endfor %}
