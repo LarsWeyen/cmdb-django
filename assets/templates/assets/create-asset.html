@@ -2,7 +2,7 @@
 
 <div class="asset-form">
   <div class="asset-form-container">
-    <form method="POST" action="">
+    <form method="POST" novalidate>
       {% csrf_token %}
       <h3>New Asset</h3>
       <div class="form-container">
@@ -50,124 +50,60 @@
         <div class="form-content" id="Switch-form">
             <h3>Switch</h3>
             <div class="form-container">
+              {% for switch in switchForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="switch_manufacturer"/>
+                <span>{{switch.label}}</span>
+                {{switch}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="switch_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="switch_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Number of ports</span>
-                <input class="form-field" type="text" name="switch_num_ports"/>
-              </div>
-              <div class="form-group">
-                <span>Mac address</span>
-                <input class="form-field" type="text" name="switch_mac_address"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="Power Supply-form">
             <h3>Power Supply</h3>
             <div class="form-container">
+              {% for psu in psuForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="psu_manufacturer"/>
+                <span>{{psu.label}}</span>
+                {{psu}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="psu_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="psu_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Voltage</span>
-                <input class="form-field" type="text" name="psu_voltage"/>
-              </div>
-              <div class="form-group">
-                <span>Wattage</span>
-                <input class="form-field" type="text" name="psu_wattage"/>
-              </div>
-              <div class="form-group">
-                <span>Form Factor</span>
-                <input class="form-field" type="text" name="psu_form_factor"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="RFID-form">
             <h3>RFID Details</h3>
             <div class="form-container">           
+              {% for rfid in rfidForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="rfid_manufacturer"/>
+                <span>{{rfid.label}}</span>
+                {{rfid}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="rfid_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="rfid_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Voltage</span>
-                <input class="form-field" type="text" name="rfid_voltage"/>
-              </div>
-              <div class="form-group">
-                <span>Frequency</span>
-                <input class="form-field" type="text" name="rfid_frequency"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="IPC-form">
             <h3>IPC Details</h3>
             <div class="form-container">            
+              {% for ipc in ipcForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="ipc_manufacturer"/>
+                <span>{{ipc.label}}</span>
+                {{ipc}}
               </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="form-content" id="LCD-form">
+            <h3>LCD Details</h3>
+            <div class="form-container">
+              {% for lcd in lcdForm %}
               <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="ipc_model"/>
+                <span>{{lcd.label}}</span>
+                {{lcd}}
               </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="ipc_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Processor</span>
-                <input class="form-field" type="text" name="ipc_cpu"/>
-              </div>
-              <div class="form-group">
-                <span>Android Version</span>
-                <input class="form-field" type="text" name="ipc_android_version"/>
-              </div>
-              <div class="form-group">
-                <span>Memory</span>
-                <input class="form-field" type="text" name="ipc_memory"/>
-              </div>
-              <div class="form-group">
-                <span>Storage</span>
-                <input class="form-field" type="text" name="ipc_storage"/>
-              </div>
-              <div class="form-group">
-                <span>Power Input</span>
-                <input class="form-field" type="text" name="ipc_power_input"/>
-              </div>
-              <div class="form-group">
-                <span>Input Voltage</span>
-                <input class="form-field" type="text" name="ipc_input_voltage"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
@@ -175,261 +111,86 @@
             <h3>LCB Details</h3>
             <div class="form-container">
               
+              {% for lcb in lcbForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="lcb_manufacturer"/>
+                <span>{{lcb.label}}</span>
+                {{lcb}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="lcb_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="lcb_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Connector</span>
-                <input class="form-field" type="text" name="lcb_connector"/>
-              </div>
-              <div class="form-group">
-                <span>Voltage</span>
-                <input class="form-field" type="text" name="lcb_voltage"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="QR Scanner-form">
             <h3>QR Scanner Details</h3>
             <div class="form-container">
+              {% for qrscanner in qrscannerForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="qr_scanner_manufacturer"/>
+                <span>{{qrscanner.label}}</span>
+                {{qrscanner}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="qr_scanner_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="qr_scanner_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Resolution</span>
-                <input class="form-field" type="text" name="qr_scanner_resolution"/>
-              </div>
-              <div class="form-group">
-                <span>Port Type</span>
-                <input class="form-field" type="text" name="qr_scanner_port_type"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="DVR-form">
             <h3>DVR Details</h3>
             <div class="form-container">
+              {% for dvr in dvrForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="dvr_manufacturer"/>
+                <span>{{dvr.label}}</span>
+                {{dvr}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="dvr_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="dvr_serial"/>
-              </div>
-              <div class="form-group">
-                <span>IP Address</span>
-                <input class="form-field" type="text" name="dvr_ip_address"/>
-              </div>
-              <div class="form-group">
-                <span>Firmware version</span>
-                <input class="form-field" type="text" name="dvr_firmware"/>
-              </div>
-              <div class="form-group">
-                <span>Username</span>
-                <input class="form-field" type="text" name="dvr_username"/>
-              </div>
-              <div class="form-group">
-                <span>Password</span>
-                <input class="form-field" type="Password" name="dvr_password"/>
-              </div>
-              <div class="form-group">
-                <span>Storage Capacity</span>
-                <input class="form-field" type="text" name="dvr_storage"/>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
           <div class="form-content" id="Router-form">
             <h3>Router</h3>
             <div class="form-container">
+              {% for router in routerForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="router_manufacturer"/>
+                <span>{{router.label}}</span>
+                {{router}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="router_model"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="router_serial"/>
-              </div>
-              <div class="form-group">
-                <span>Hostname</span>
-                <input class="form-field" type="text" name="router_hostname"/>
-              </div>
-              <div class="form-group">
-                <span>IP Address</span>
-                <input class="form-field" type="text" name="router_ip_address"/>
-              </div>
-              <div class="form-group">
-                <span>Firmware version</span>
-                <input class="form-field" type="text" name="router_firmware"/>
-              </div>
-              <div class="form-group">
-                <span>Username</span>
-                <input class="form-field" type="text" name="router_username"/>
-              </div>
-              <div class="form-group">
-                <span>Password</span>
-                <input class="form-field" type="Password" name="router_password"/>
-              </div>
-              <div class="form-group">
-                <span>Static IP</span>
-                <select class="form-field"  name="router_ip_static">
-                    <option value="False">False</option>
-                    <option value="True">True</option>
-                </select>
-              </div>
+              {% endfor %}
             </div>
           </div>
 
         <div class="form-content" id="Camera-form">
             <h3>Camera</h3>
             <div class="form-container">
+              {% for camera in cameraForm %}
               <div class="form-group">
-                <span>Manufacturer</span>
-                <input class="form-field" type="text" name="camera_manufacturer"/>
+                <span>{{camera.label}}</span>
+                {{camera}}
               </div>
-              <div class="form-group">
-                <span>Model</span>
-                <input class="form-field" type="text" name="camera_model"/>
+              {% endfor %}
               </div>
-              <div class="form-group">
-                <span>Firmware version</span>
-                <input class="form-field" type="text" name="camera_firmware"/>
-              </div>
-              <div class="form-group">
-                <span>Serial Number</span>
-                <input class="form-field" type="text" name="camera_serial" />
-              </div>
-              <div class="form-group">
-                <span>IP Address</span>
-                <input class="form-field" type="text" name="camera_ip_address"/>
-              </div>
-              <div class="form-group">
-                <span>Resolution</span>
-                <input class="form-field" type="text" name="camera_resolution"/>
-              </div>
-              <div class="form-group">
-                <span>Frame Rate</span>
-                <input class="form-field" type="text" name="camera_frame_rate"/>
-              </div>
-              <div class="form-group">
-                <span>Username</span>
-                <input class="form-field" type="text" name="camera_username"/>
-              </div>
-              <div class="form-group">
-                <span>Location</span>
-                <input class="form-field" type="text" name="camera_location"/>
-              </div>
-              <div class="form-group">
-                <span>Password</span>
-                <input class="form-field" type="Password" name="camera_password"/>
-              </div>
-              <div class="form-group">
-                <span>Compression format</span>
-                <input class="form-field" type="text" name="camera_format"/>
-              </div>
-              <div class="form-group">
-                <span>Motion Detection</span>
-                <select class="form-field"  name="camera_motion">
-                    <option value="False">False</option>
-                    <option value="True">True</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-        <div class="form-content" id="LCD-form">
-              <h3>LCD</h3>
-              <div class="form-container">
-                <div class="form-group">
-                  <span>Manufacturer</span>
-                  <input class="form-field" type="text" name="manufacturer"/>
-                </div>
-                <div class="form-group">
-                  <span>Model</span>
-                  <input class="form-field" type="text" name="model"/>
-                </div>
-                <div class="form-group">
-                  <span>Serial Number</span>
-                  <input class="form-field" type="text" name="serial"/>
-                </div>
-                <div class="form-group">
-                  <span>Resolution</span>
-                  <input class="form-field" type="text" name="resolution"/>
-                </div>
-                <div class="form-group">
-                  <span>Refresh Rate</span>
-                  <input class="form-field" type="text" name="refresh_rate"/>
-                </div>
-              </div>
+              {% if cameraForm.errors %}
+                  <div class="alert alert-danger">
+                      {{ cameraForm.errors }}
+                  </div>
+              {% endif %}
             </div>
 
             
             <div class="form-content" id="DistriSPOT-form">
               <h3>DistriSPOT</h3>
               <div class="form-container">
-                <div class="form-group">
-                  <span>Number of Slots</span>
-                  <input class="form-field" type="text" name="distrispot_slots_num"/>
-                </div>
-                <div class="form-group">
-                  <span>Type</span>
-                  <select class="form-field" name="distrispot_type" id="typeselect">
-                    <option value="null">-------</option>
-                    {% for type in distrispot_types %}
-                      <option value="{{type.id}}">{{type}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="form-group">
-                  <span>Address</span>
-                  <input class="form-field" type="text" name="distrispot_address"/>
-                </div>
-                <div class="form-group">
-                  <span>City</span>
-                  <input class="form-field" type="text" name="distrispot_city"/>
-                </div>
-                <div class="form-group">
-                  <span>Country</span>
-                  <input class="form-field" type="text" name="distrispot_country"/>
-                </div>
-                <div class="form-group">
-                  <span>Zipcode</span>
-                  <input class="form-field" type="text" name="distrispot_zip_code"/>
-                </div>
+                {% for distrispot in distrispotForm %}
+              <div class="form-group">
+                <span>{{distrispot.label}}</span>
+                {{distrispot}}
+              </div>
+              {% endfor %}
               </div>
               
             </div>
      
          <div>
-        <button class="btn btn-secondary" type="submit">Save</button>
+       
       </div>
+      <input class="btn btn-secondary" value="Save" type="submit"></input>
     </form>
   </div>
 </div>

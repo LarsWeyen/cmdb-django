@@ -19,6 +19,17 @@ def dashboard(request):
     return render(request,'assets/dashboard.html',context)
 
 def createAsset(request):
+    cameraForm = CameraForm(prefix="cameraForm")
+    lcdForm = LcdForm(prefix="lcdForm")
+    psuForm= PsuForm(prefix="psuForm")
+    switchForm= SwitchForm(prefix="switchForm")
+    routerForm= RouterForm(prefix="routerForm")
+    rfidForm= RfidForm(prefix="rfidForm")
+    dvrForm= DvrForm(prefix="dvrForm")
+    qrscannerForm= QRScannerForm(prefix="qrscannerForm")
+    ipcForm= IpcForm(prefix="ipcForm")
+    lcbForm= LcbForm(prefix="lcbForm")
+    distrispotForm= DistrispotForm(prefix="distrispotForm")
     form = AssetForm()
     type_names = Type.objects.all()
     # locations = Location.objects.all()
@@ -36,138 +47,111 @@ def createAsset(request):
             parent = None if request.POST.get('parent') == 'null' else Asset.objects.get(id=request.POST.get('parent'))
         )
         if asset_type.slug == "lcd":        
-            LCD.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('manufacturer'),
-                model = request.POST.get('model'),
-                serial = request.POST.get('serial'),
-                resolution = request.POST.get('resolution'),
-                refresh_rate = request.POST.get('refresh_rate'),
-            )
+            lcdForm = LcdForm(request.POST,prefix="lcdForm")
+            if lcdForm.is_valid():
+                lcd = lcdForm.save(commit=False)
+                lcd.asset = asset
+                lcd.save()
+                return redirect('assets:dashboard')
 
-        if asset_type.slug == 'power_supply':
-            PowerSupply.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('psu_manufacturer'),
-                model = request.POST.get('psu_model'),
-                serial = request.POST.get('psu_serial'),
-                voltage = request.POST.get('psu_voltage'),
-                wattage = request.POST.get('psu_wattage'),
-                form_factor = request.POST.get('psu_form_factor'),
-            )
+        elif asset_type.slug == 'power_supply':
+            psuForm = PsuForm(request.POST,prefix="psuForm")
+            if psuForm.is_valid():
+                psu = psuForm.save(commit=False)
+                psu.asset = asset
+                psu.save()
+                return redirect('assets:dashboard')
         
-        if asset_type.slug == 'camera':
-            Camera.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('camera_manufacturer'),
-                model = request.POST.get('camera_model'),
-                serial = request.POST.get('camera_serial'),
-                ip_address = request.POST.get('camera_ip_address'),
-                firmware = request.POST.get('camera_firmware'),
-                frame_rate = request.POST.get('camera_frame_rate'),
-                resolution = request.POST.get('camera_resolution'),
-                compression_format = request.POST.get('camera_format'),
-                motion_detection = request.POST.get('camera_motion'),
-                username = request.POST.get('camera_username'),
-                password = request.POST.get('camera_password'),
-            )
+        elif asset_type.slug == 'camera':
+            cameraForm = CameraForm(request.POST,prefix="cameraForm")
+            if cameraForm.is_valid():
+                camera = cameraForm.save(commit=False)
+                camera.asset = asset
+                camera.save()
+                return redirect('assets:dashboard')
         
-        if asset_type.slug == 'switch':
-            Switch.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('switch_manufacturer'),
-                model = request.POST.get('switch_model'),
-                serial = request.POST.get('switch_serial'),
-                num_ports = request.POST.get('switch_num_ports'),
-                mac_address = request.POST.get('switch_mac_address'),
-            )
+        elif asset_type.slug == 'switch':
+            switchForm = SwitchForm(request.POST,prefix="switchForm")
+            if switchForm.is_valid():
+                switch = switchForm.save(commit=False)
+                switch.asset = asset
+                switch.save()
+                return redirect('assets:dashboard')
 
-        if asset_type.slug == 'router':
-            Router.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('router_manufacturer'),
-                model = request.POST.get('router_model'),
-                serial = request.POST.get('router_serial'),
-                hostname = request.POST.get('router_hostname'),
-                ip_address = request.POST.get('router_ip_address'),
-                firmware = request.POST.get('router_firmware'),
-                username = request.POST.get('router_username'),
-                password = request.POST.get('router_password'),
-                ip_static = request.POST.get('router_ip_static')
-            )
+        elif asset_type.slug == 'router':
+            routerForm = RouterForm(request.POST,prefix="routerForm")
+            if routerForm.is_valid():
+                router = routerForm.save(commit=False)
+                router.asset = asset
+                router.save()
+                return redirect('assets:dashboard')
         
-        if asset_type.slug == 'rfid':
-            RFID.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('rfid_manufacturer'),
-                model = request.POST.get('rfid_model'),
-                serial = request.POST.get('rfid_serial'),
-                voltage = request.POST.get('rfid_voltage'),
-                frequency = request.POST.get('rfid_frequency'),
-            )
+        elif asset_type.slug == 'rfid':
+            rfidForm = RfidForm(request.POST,prefix="rfidForm")
+            if rfidForm.is_valid():
+                rfid = rfidForm.save(commit=False)
+                rfid.asset = asset
+                rfid.save()
+                return redirect('assets:dashboard')
         
-        if asset_type.slug == 'dvr':
-            DVR.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('dvr_manufacturer'),
-                model = request.POST.get('dvr_model'),
-                serial = request.POST.get('dvr_serial'),
-                ip_address = request.POST.get('dvr_ip_address'),
-                firmware = request.POST.get('dvr_firmware'),
-                username = request.POST.get('dvr_username'),
-                password = request.POST.get('dvr_password'),
-                storage_capacity = request.POST.get('dvr_storage'),
-            )
+        elif asset_type.slug == 'dvr':
+            dvrForm = DvrForm(request.POST,prefix="dvrForm")
+            if dvrForm.is_valid():
+                dvr = dvrForm.save(commit=False)
+                dvr.asset = asset
+                dvr.save()
+                return redirect('assets:dashboard')
 
-        if asset_type.slug == 'qr_scanner':
-            QRScanner.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('qr_scanner_manufacturer'),
-                model = request.POST.get('qr_scanner_model'),
-                serial = request.POST.get('qr_scanner_serial'),
-                resolution = request.POST.get('qr_scanner_resolution'),
-                port_type = request.POST.get('qr_scanner_port_type'),
-            )
+        elif asset_type.slug == 'qr_scanner':
+            qrscannerForm = QRScannerForm(request.POST,prefix="qrscannerForm")
+            if qrscannerForm.is_valid():
+                qrscanner = qrscannerForm.save(commit=False)
+                qrscanner.asset = asset
+                qrscanner.save()
+                return redirect('assets:dashboard')
 
-        if asset_type.slug == 'ipc':
-            IPC.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('ipc_manufacturer'),
-                model = request.POST.get('ipc_model'),
-                serial = request.POST.get('ipc_serial'),
-                cpu = request.POST.get('ipc_cpu'),
-                android_version = request.POST.get('ipc_android_version'),
-            )
+        elif asset_type.slug == 'ipc':
+            ipcForm = IpcForm(request.POST,prefix="ipcForm")
+            if ipcForm.is_valid():
+                ipc = ipcForm.save(commit=False)
+                ipc.asset = asset
+                ipc.save()
+                return redirect('assets:dashboard')
 
-        if asset_type.slug == 'lcb':
-            LCB.objects.create(
-                asset=asset,
-                manufacturer = request.POST.get('lcb_manufacturer'),
-                model = request.POST.get('lcb_model'),
-                serial = request.POST.get('lcb_serial'),
-                connector = request.POST.get('lcb_connector'),
-                voltage = request.POST.get('lcb_voltage'),
-            )
+        elif asset_type.slug == 'lcb':
+            lcbForm = LcbForm(request.POST,prefix="lcbForm")
+            if lcbForm.is_valid():
+                lcb = lcbForm.save(commit=False)
+                lcb.asset = asset
+                lcb.save()
+                return redirect('assets:dashboard')
         
-        if asset_type.slug == 'distrispot':
-            Distrispot.objects.create(
-                asset=asset,
-                slots_num = request.POST.get('distrispot_slots_num'),
-                type = DistrispotType.objects.get(id=request.POST.get('distrispot_type')),
-                address = request.POST.get('distrispot_address'),
-                zip_code = request.POST.get('distrispot_zip_code'),
-                city = request.POST.get('distrispot_city'),
-                country = request.POST.get('distrispot_country'),
-            )
+        elif asset_type.slug == 'distrispot':
+            distrispotForm = DistrispotForm(request.POST,prefix="distrispotForm")
+            if distrispotForm.is_valid():
+                distrispot = distrispotForm.save(commit=False)
+                distrispot.asset = asset
+                distrispot.save()
+                return redirect('assets:dashboard')
         
-        return redirect('assets:dashboard')
+        
 
     context = {'form':form,
                'types': type_names,
             #    'locations':locations,
                'customers': customers,
                'parents':parent_assets,
-               'distrispot_types':distrispot_types
+               'distrispot_types':distrispot_types,
+               'cameraForm':cameraForm,
+               'lcdForm':lcdForm,
+               'psuForm': psuForm,
+               'switchForm':switchForm,
+               'rfidForm':rfidForm,
+               'dvrForm':dvrForm,
+               'qrscannerForm':qrscannerForm,
+               'ipcForm':ipcForm,
+               'lcbForm': lcbForm,
+               'distrispotForm':distrispotForm
                }
     return render(request,'assets/create-asset.html',context)
 
@@ -389,11 +373,12 @@ def update(request,pk,type):
     return render(request,'assets/update.html',context)
 
 def delete(request,type,pk):
+    next = request.POST.get('next', '/')
     if type == 'asset':
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
             Asset.objects.filter(id=pk).delete()
-            return redirect('assets:dashboard')
+            return redirect(next)
         
     
     # elif type == 'location':

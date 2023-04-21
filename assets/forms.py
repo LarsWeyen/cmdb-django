@@ -29,9 +29,7 @@ class DvrForm(forms.ModelForm):
         model = DVR
         fields = '__all__'
         exclude=['asset']
-        widgets= {
-            'storage_capacity': TextInput(attrs={'placeholder':'Storage in Gigabytes'})
-        }
+        
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
