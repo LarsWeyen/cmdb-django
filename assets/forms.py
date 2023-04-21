@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import TextInput
-from .models import Asset, Camera, DVR, IPC, LCB, LCD, Location, PowerSupply, QRScanner, RFID, Router, Switch, Customer
+from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot
 
 class AssetForm(forms.ModelForm):
     class Meta:
@@ -71,15 +71,15 @@ class LcdForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-field'
 
-class LocationForm(forms.ModelForm):
-    class Meta:
-        model = Location
-        fields = '__all__'
+# class LocationForm(forms.ModelForm):
+#     class Meta:
+#         model = Location
+#         fields = '__all__'
         
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         for field in self.fields.values():
+#             field.widget.attrs['class'] = 'form-field'
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -138,6 +138,17 @@ class RouterForm(forms.ModelForm):
 class SwitchForm(forms.ModelForm):
     class Meta:
         model = Switch
+        fields = '__all__'
+        exclude=['asset']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-field'
+
+class DistrispotForm(forms.ModelForm):
+    class Meta:
+        model = Distrispot
         fields = '__all__'
         exclude=['asset']
         

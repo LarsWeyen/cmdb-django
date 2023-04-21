@@ -19,14 +19,14 @@
             {% endfor %}
           </select>
         </div>
-        <div class="form-group">
+        {% comment %} <div class="form-group">
           <span>Location</span>
           <select class="form-field" name="location">
             {% for location in locations %}
             <option value="{{location.id}}">{{location.name}}</option>
             {% endfor %}
           </select>
-        </div>
+        </div> {% endcomment %}
         <div class="form-group">
           <span>Customer</span>
           <select class="form-field" name="customer">
@@ -151,6 +151,22 @@
               <div class="form-group">
                 <span>Android Version</span>
                 <input class="form-field" type="text" name="ipc_android_version"/>
+              </div>
+              <div class="form-group">
+                <span>Memory</span>
+                <input class="form-field" type="text" name="ipc_memory"/>
+              </div>
+              <div class="form-group">
+                <span>Storage</span>
+                <input class="form-field" type="text" name="ipc_storage"/>
+              </div>
+              <div class="form-group">
+                <span>Power Input</span>
+                <input class="form-field" type="text" name="ipc_power_input"/>
+              </div>
+              <div class="form-group">
+                <span>Input Voltage</span>
+                <input class="form-field" type="text" name="ipc_input_voltage"/>
               </div>
             </div>
           </div>
@@ -391,11 +407,28 @@
                     {% endfor %}
                   </select>
                 </div>
+                <div class="form-group">
+                  <span>Address</span>
+                  <input class="form-field" type="text" name="distrispot_address"/>
+                </div>
+                <div class="form-group">
+                  <span>City</span>
+                  <input class="form-field" type="text" name="distrispot_city"/>
+                </div>
+                <div class="form-group">
+                  <span>Country</span>
+                  <input class="form-field" type="text" name="distrispot_country"/>
+                </div>
+                <div class="form-group">
+                  <span>Zipcode</span>
+                  <input class="form-field" type="text" name="distrispot_zip_code"/>
+                </div>
               </div>
+              
             </div>
      
          <div>
-        <button type="submit">Save</button>
+        <button class="btn btn-secondary" type="submit">Save</button>
       </div>
     </form>
   </div>

@@ -10,8 +10,22 @@ class Type(models.Model):
         return self.name
 
 
-class Location(models.Model):
-    name = models.CharField(max_length=150)
+# class Location(models.Model):
+#     name = models.CharField(max_length=150)
+#     address = models.CharField(max_length=150)
+#     country = models.CharField(max_length=150)
+#     city = models.CharField(max_length=150)
+#     zipcode = models.CharField(max_length=10)
+
+#     def __str__(self) -> str:
+#         return self.name
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    # location = models.ForeignKey(Location, on_delete=models.PROTECT)
+    email = models.CharField(max_length=256)
+    phone = models.CharField(max_length=50)
     address = models.CharField(max_length=150)
     country = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
@@ -21,19 +35,9 @@ class Location(models.Model):
         return self.name
 
 
-class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.ForeignKey(Location, on_delete=models.PROTECT)
-    email = models.CharField(max_length=256)
-    phone = models.CharField(max_length=50)
-    def __str__(self) -> str:
-        return self.name
-
-
 class Asset(models.Model):
     name = models.CharField(max_length=150)
     type = models.ForeignKey(Type, on_delete=models.PROTECT)
-    location = models.ForeignKey(Location, on_delete=models.PROTECT)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     parent = models.ForeignKey(
         'self', on_delete=models.SET_NULL, blank=True, null=True)
@@ -164,6 +168,11 @@ class IPC(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='ipc')
     cpu = models.CharField(max_length=50)
     android_version = models.CharField(max_length=20)
+    storage = models.CharField(max_length=50)
+    display_adapter = models.CharField(max_length=20)
+    memory = models.CharField(max_length=50)
+    input_voltage = models.CharField(max_length=20)
+    power_input = models.CharField(max_length=20)
 
     def __str__(self) -> str:
         return self.asset.name
@@ -188,6 +197,10 @@ class Distrispot(models.Model):
     slots_num = models.IntegerField()
     type = models.ForeignKey(DistrispotType, on_delete=models.PROTECT)
     maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
+    address = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    zip_code = models.CharField(max_length=10)
+    country = models.CharField(max_length=150,default='Belgium')
 
     def __str__(self) -> str:
         return self.asset.name

@@ -143,14 +143,22 @@
 navbar{
     background-color: #12354b;
 }
-
-a{
-    color: #71c6dd;
-    text-decoration: none;
+navbar .h1{
+    margin-bottom: 0;
 }
 
 ul{
     list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #71c6dd
+}
+
+.nav-link{
+    padding: 0.1rem 1rem;
+    color: #71c6dd
 }
 
 .asset-form{
@@ -237,16 +245,8 @@ table th:not(:last-child){
     border-right: solid black 1px; 
 }
 table th,td:not(:first-child) { padding-left: 12px; }
-
-navbar span::after {
-    float: right;
-    right: 10%;
-    content: "+";
-    
-  }
   
   .asset-options, .misc-options{
-    height: 0px;
     transition: height 0.3s ease;
     overflow: hidden;
     padding-left: 3rem;

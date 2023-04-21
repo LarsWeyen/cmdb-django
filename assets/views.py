@@ -1,27 +1,27 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
 from django.http import HttpResponse
-from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, LocationForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm
-from .models import Type, Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,DistrispotType
+from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm
+from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,DistrispotType
 from numerize import numerize
 
 def dashboard(request):
     type_names = Type.objects.all()
     counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
     customer_count = numerize.numerize(Customer.objects.all().count()) 
-    location_count = numerize.numerize(Location.objects.all().count()) 
+    # location_count = numerize.numerize(Location.objects.all().count()) 
     context = {
         'types': type_names,
         'counts': counts,
         'customer_count':customer_count,
-        'location_count':location_count
+        # 'location_count':location_count
     }
     return render(request,'assets/dashboard.html',context)
 
 def createAsset(request):
     form = AssetForm()
     type_names = Type.objects.all()
-    locations = Location.objects.all()
+    # locations = Location.objects.all()
     customers = Customer.objects.all()
     parent_assets = Asset.objects.all()
     distrispot_types = DistrispotType.objects.all()
@@ -31,7 +31,7 @@ def createAsset(request):
         asset = Asset.objects.create(
             type=asset_type,
             name=request.POST.get('name'),
-            location = Location.objects.get(id=request.POST.get('location')),
+            # location = Location.objects.get(id=request.POST.get('location')),
             customer = Customer.objects.get(id=request.POST.get('customer')),
             parent = None if request.POST.get('parent') == 'null' else Asset.objects.get(id=request.POST.get('parent'))
         )
@@ -154,13 +154,17 @@ def createAsset(request):
                 asset=asset,
                 slots_num = request.POST.get('distrispot_slots_num'),
                 type = DistrispotType.objects.get(id=request.POST.get('distrispot_type')),
+                address = request.POST.get('distrispot_address'),
+                zip_code = request.POST.get('distrispot_zip_code'),
+                city = request.POST.get('distrispot_city'),
+                country = request.POST.get('distrispot_country'),
             )
         
         return redirect('assets:dashboard')
 
     context = {'form':form,
                'types': type_names,
-               'locations':locations,
+            #    'locations':locations,
                'customers': customers,
                'parents':parent_assets,
                'distrispot_types':distrispot_types
@@ -179,31 +183,31 @@ def createCustomer(request):
     context = {'form':form}
     return render(request,'assets/create-customer.html',context)
 
-def createLocation(request):
-    form = LocationForm()
+# def createLocation(request):
+#     form = LocationForm()
 
-    if request.method =='POST':
-        form = LocationForm(request.POST)
-        if form.is_valid():
-             form.save()
-             return redirect('assets:dashboard')
+#     if request.method =='POST':
+#         form = LocationForm(request.POST)
+#         if form.is_valid():
+#              form.save()
+#              return redirect('assets:dashboard')
     
-    context = {'form':form}
-    return render(request,'assets/create-location.html',context)
+#     context = {'form':form}
+#     return render(request,'assets/create-location.html',context)
 
-def updateLocation(request,pk):
-    location = Location.objects.get(id=pk)
-    form = LocationForm(instance=location)
-    if request.method =='POST':
-        form = LocationForm(request.POST,instance=location)   
-        if form.is_valid():           
-             form.save()
-             return redirect('overview:locations')
-    context={
-        'form':form,       
-        'location':location
-    }
-    return render(request,'assets/update-location.html',context)
+# def updateLocation(request,pk):
+#     location = Location.objects.get(id=pk)
+#     form = LocationForm(instance=location)
+#     if request.method =='POST':
+#         form = LocationForm(request.POST,instance=location)   
+#         if form.is_valid():           
+#              form.save()
+#              return redirect('overview:locations')
+#     context={
+#         'form':form,       
+#         'location':location
+#     }
+#     return render(request,'assets/update-location.html',context)
 
 def updateCustomer(request,pk):
     customer = Customer.objects.get(id=pk)
@@ -363,7 +367,20 @@ def update(request,pk,type):
                 form.save()
                 assetForm.save()
                 return redirect('overview:switches')
-
+            
+    elif type == 'distrispot':
+        distrispot = Distrispot.objects.get(id=pk)
+        asset = Asset.objects.get(id=distrispot.asset.id)
+        assetForm = AssetForm(instance=asset)
+        form = DistrispotForm(instance=distrispot)
+        item = distrispot
+        if request.method =='POST':
+            assetForm = AssetForm(request.POST,instance=asset)
+            form = DistrispotForm(request.POST,instance=distrispot)   
+            if form.is_valid() and assetForm.is_valid():    
+                form.save()
+                assetForm.save()
+                return redirect('overview:distrispot')
     context={
         'form':form,
         'assetForm':assetForm,
@@ -379,11 +396,11 @@ def delete(request,type,pk):
             return redirect('assets:dashboard')
         
     
-    elif type == 'location':
-        item = Location.objects.get(id=pk)
-        if request.method == 'POST':
-            Location.objects.filter(id=pk).delete()
-            return redirect('overview:locations')
+    # elif type == 'location':
+    #     item = Location.objects.get(id=pk)
+    #     if request.method == 'POST':
+    #         Location.objects.filter(id=pk).delete()
+    #         return redirect('overview:locations')
     
     elif type == 'customer':
         item = Customer.objects.get(id=pk)

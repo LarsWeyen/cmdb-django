@@ -1,63 +1,65 @@
 {% load static %}
-
+{% load bootstrap_icons %}
 <navbar>
-    <img class="logo" src="{% static 'images/Telloport.png'%}" alt="Telloport logo">
-    <ul>
-        <label for="asset-toggle"><li class="nav-title"><span>Assets</span></li></label>
-        <input type="checkbox" onchange="navbarCollapse(document.querySelector('.asset-options'))" id="asset-toggle"> 
-        <ul class="asset-options">
-            <li>
-                <a href="{% url 'assets:dashboard'%}">Dashboard</a>
+    <div class="d-flex justify-content-center align-items-center m-4 pb-3  border-bottom">
+        <img class="" src="{% static 'images/Telloport-logo.png'%}" alt="Telloport logo">
+        <span class="h1 text-light">Telloport</span>
+    </div>
+    
+    <ul class="nav flex-column">
+        <li class="nav-title"><span>Assets</span></li>
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'assets:dashboard'%}">Dashboard</a>
             </li>
-            <li>
-                <a href="{% url 'overview:distrispots' %}">DistriSPOT's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:distrispots' %}">{% bs_icon 'grid-1x2' size="1.2em" %}DistriSPOT's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:lcds' %}">LCD's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:lcds' %}">{% bs_icon 'display' size='1.2em' %}LCD's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:ipcs' %}">IPC's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:ipcs' %}"> {% bs_icon 'cpu' size='1.2em' %}IPC's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:lcbs' %}">LCB's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:lcbs' %}"> {% bs_icon 'grip-horizontal' size='1.2em' %}LCB's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:psus' %}">Power Supplies</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:psus' %}">{% bs_icon 'plug' size='1.2em' %}Power Supplies</a>
             </li>
-            <li>
-                <a href="{% url 'overview:routers' %}">Routers</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:routers' %}">{% bs_icon 'router' size='1.2em' %}Routers</a>
             </li>
-            <li>
-                <a href="{% url 'overview:dvrs' %}">DVR's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:dvrs' %}">{% bs_icon 'hdd' size='1.2em' %}DVR's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:cameras' %}">Cameras</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:cameras' %}">{% bs_icon 'camera-video' size='1.2em' %}Cameras</a>
             </li>
-            <li>
-                <a href="{% url 'overview:switches' %}">Switches</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:switches' %}">{% bs_icon 'diagram-3' size='1.2em' %}Switches</a>
             </li>
-            <li>
-                <a href="{% url 'overview:rfids' %}">RFID's</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:rfids' %}"> {% bs_icon 'person-badge' size='1.2em' %}RFID's</a>
             </li>
-            <li>
-                <a href="{% url 'overview:qrscanners' %}">QR Scanners</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:qrscanners' %}">{% bs_icon 'qr-code-scan' size='1.2em' %}QR Scanners</a>
             </li>
-            <li>
-                <a href="{% url 'overview:assets' %}">Overview</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:assets' %}">Overview</a>
             </li>
         </ul>
-        <label for="misc-toggle"><li class="nav-title"><span>MISC</span></li></label>
-        <input type="checkbox" onchange="navbarCollapse(document.querySelector('.misc-options'))" id="misc-toggle"> 
-        <ul class="misc-options">
-            <li>
-                <a href="{% url 'overview:customers'%}">Customers</a>
+        <li class="nav-title"><span>Misc</span></li>
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:customers'%}">{% bs_icon 'person' size='1.2em' %}Customers</a>
             </li>
-            <li>
-                <a href="#">Maintenances</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Maintenances</a>
             </li>
-            <li>
-                <a href="{% url 'overview:locations'%}">Locations</a>
-            </li>
+            {% comment %} <li class="nav-item">
+                <a class="nav-link" href="{% url 'overview:locations'%}">{% bs_icon 'geo-alt' size='1.2em' %}Locations</a>
+            </li> {% endcomment %}
         </ul>
     </ul>
 </navbar>

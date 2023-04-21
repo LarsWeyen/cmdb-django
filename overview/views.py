@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from assets.models import Asset, Location, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot
+from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot
 
 def cameraTable(request):
     cameras = Camera.objects.all()
@@ -73,11 +73,11 @@ def assetsTable(request):
 
     return render(request,'overview/assets-table.html',context)
 
-def locationsTable(request):
-    locations= Location.objects.all()
-    context = {'locations':locations}
+# def locationsTable(request):
+#     locations= Location.objects.all()
+#     context = {'locations':locations}
 
-    return render(request,'overview/locations-table.html',context)
+#     return render(request,'overview/locations-table.html',context)
 
 def distrispotsTable(request):
     distrispots= Distrispot.objects.all()

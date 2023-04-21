@@ -1,20 +1,24 @@
 {% load static %}
-<div class="top_bar">
-  <a href="{% url 'assets:dashboard'%}"><h1>test</h1></a>
- 
-  <div class="input-group w-25">
-    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="button" class="btn btn-outline-primary">search</button>
-  </div>
-
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" onClick="dropdownCollapse()" aria-haspopup="true" aria-expanded="false">
-      Add New Item
-    </button>
-    <div class="button-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="{% url 'assets:create-asset'%}">Create new Asset</a>
-      <a class="dropdown-item" href="{% url 'assets:create-customer'%}">Add Customer</a>
-      <a class="dropdown-item" href="{% url 'assets:create-location' %}">Add Location</a>
+<div class="navbar navbar-expand navbar-light bg-white topbar static-top shadow justify-content-end px-5">
+  <div class="d-flex justify-content-between  w-75 align-items-center">
+    <div class="input-group w-50 ml-5">
+      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button type="button" class="btn btn-outline-primary">search</button>
+    </div>
+  
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" onClick="dropdownCollapse()" aria-haspopup="true" aria-expanded="false">
+        Add New Item
+      </button>
+      <div class="button-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'assets:create-asset'%}">Create new Asset</a>
+        <a class="dropdown-item" href="{% url 'assets:create-customer'%}">Add Customer</a>
+        {% comment %} <a class="dropdown-item" href="{% url 'assets:create-location' %}">Add Location</a> {% endcomment %}
+      </div>
+    </div>
+  
+    <div>
+      <a class="text-muted" href="#">{{request.user}}</a>
     </div>
   </div>
 </div>

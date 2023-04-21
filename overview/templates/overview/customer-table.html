@@ -24,8 +24,8 @@
                     <td><a href="{% url 'details:customer' customer.id%}">{{customer.name}}</a></td>            
                     <td>{{customer.email}}</td>   
                     <td>{{customer.phone}}</td>   
-                    <td>{{customer.location.address}}</td>   
-                    <td>{{customer.location.country}}</td>  
+                    <td>{{customer.address}}</td>   
+                    <td>{{customer.country}}</td>  
                     <td>
                         <a href="{% url 'assets:update-customer' customer.id%}">Edit</a>
                         <a href="{% url 'assets:delete' 'customer' customer.id %}">Delete</a>
