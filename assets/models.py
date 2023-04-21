@@ -64,7 +64,7 @@ class LCD(Resources):
 
 
 class NetworkDevice(models.Model):
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.CharField(max_length=150)
     firmware = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50,null=True,blank=True)
