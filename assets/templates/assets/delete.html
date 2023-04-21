@@ -5,6 +5,7 @@
         <p>Are you sure you want to delete "{{item}}"</p>
         <a href="{{request.META.HTTP_REFERER}}">Go back</a>
         <input class="btn btn-primary" type="submit" value="Confirm">
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
     </form>
 </div>
 
