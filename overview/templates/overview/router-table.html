@@ -5,10 +5,10 @@
 <div class="table-container">
     <div class="table-content">
         <h2>Router Assets</h2>
-        <table>
+        <table class="table">
             <thead>
               <tr>
-                <th>CODE</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Hostname</th>
                 <th>IP Address</th>
@@ -17,23 +17,24 @@
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
+                <th></th>
               </tr>
             <thead>
             <tbody>
                 {% for router in routers %}
                 <tr>
-                    <td><a href="{% url 'details:router' router.id%}">{{router.id}}</a></td>
-                    <td><a href="{% url 'details:router' router.id %}">{{router.asset.name}}</a></td>
+                    <th scope="row"><a href="{% url 'details:router' router.id%}">{{router.sid}}</a></th>
+                    <td>{{router.asset.name}}</td>
                     <td>{{router.hostname}}</td>
                     <td>{{router.ip_address}}</td>
                     <td>{{router.firmware}}</td>
                     <td>{{router.ip_static}}</td>
                     <td>{{router.asset.parent}}</td>
                     <td>{{router.asset.created|date}}</td>
-                    <td class="d-flex justify-content-around p-0">
+                    <td>
                         <a class="text-secondary" href="{% url 'assets:update' 'router' router.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
-                        <a class="text-danger" href="{% url 'assets:delete' 'asset' router.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
                     </td>
+                    <td><a class="text-danger" href="{% url 'assets:delete' 'asset' router.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
                   </tr>
                 {% endfor %}
             </tbody>

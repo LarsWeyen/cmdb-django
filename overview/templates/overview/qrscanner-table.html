@@ -5,31 +5,32 @@
 <div class="table-container">
     <div class="table-content">
         <h2>QR Scanner Assets</h2>
-        <table>
+        <table class="table">
             <thead>
               <tr>
-                <th>CODE</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Resolution</th>
                 <th>Port Type</th>
                 <th>Belongs To</th>
                 <th>Created</th>
                 <th></th>
+                <th></th>
               </tr>
             <thead>
             <tbody>
                 {% for qr_scanner in qrScanners %}
                 <tr>
-                    <td><a href="{% url 'details:qrscanner' qr_scanner.id%}">{{qr_scanner.id}}</a></td>
-                    <td><a href="{% url 'details:qrscanner' qr_scanner.id%}">{{qr_scanner.asset.name}}</a></td>
+                    <th><a href="{% url 'details:qrscanner' qr_scanner.id%}">{{qr_scanner.sid}}</a></th>
+                    <td>{{qr_scanner.asset.name}} </td>
                     <td>{{qr_scanner.resolution}}</td>
                     <td>{{qr_scanner.port_type}}</td>
                     <td>{{qr_scanner.asset.parent}}</td>
                     <td>{{qr_scanner.asset.created|date}}</td>
-                    <td class="d-flex justify-content-around p-0">
-                        <a class="text-secondary" href="{% url 'assets:update' 'qrscanner' qr_scanner.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
-                        <a class="text-danger" href="{% url 'assets:delete' 'asset' qr_scanner.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                    <td>
+                        <a class="text-secondary" href="{% url 'assets:update' 'qrscanner' qr_scanner.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a> 
                     </td>
+                    <td><a class="text-danger" href="{% url 'assets:delete' 'asset' qr_scanner.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
                   </tr>
                 {% endfor %}
             </tbody>

@@ -5,7 +5,7 @@
 <div class="table-container">
     <div class="table-content">
         <h2>Customers</h2>
-        <table>
+        <table class="table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -15,21 +15,23 @@
                 <th>Address</th>
                 <th>Country</th>
                 <th></th>
+                <th></th>
               </tr>
             <thead>
             <tbody>
                 {% for customer in customers %}
                 <tr>
-                    <td><a href="{% url 'details:customer' customer.id%}">{{customer.id}}</a></td>
-                    <td><a href="{% url 'details:customer' customer.id%}">{{customer.name}}</a></td>            
+                    <th><a href="{% url 'details:customer' customer.id%}">{{customer.sid}}</a></th>
+                    <td>{{customer.name}}</td>            
                     <td>{{customer.email}}</td>   
                     <td>{{customer.phone}}</td>   
                     <td>{{customer.address}}</td>   
                     <td>{{customer.country}}</td>  
-                    <td class="d-flex justify-content-around p-0">
+                    <td>
                         <a class="text-secondary" href="{% url 'assets:update-customer' customer.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
-                        <a class="text-danger" href="{% url 'assets:delete' 'customer' customer.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                        
                     </td>
+                    <td><a class="text-danger" href="{% url 'assets:delete' 'customer' customer.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
                   </tr>
                 {% endfor %}
             </tbody>

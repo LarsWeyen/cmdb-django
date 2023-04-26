@@ -5,32 +5,34 @@
 <div class="table-container">
     <div class="table-content">
         <h2>Overview Assets</h2>
-        <table>
+        <table class="table">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Customer</th>
-                <th>Location</th>
                 <th>Belongs To</th>
                 <th>Created</th>
+                <th></th>
                 <th></th>
               </tr>
             <thead>
             <tbody>
                 {% for asset in assets %}
                 <tr>
-                    <td><a href="">{{asset.id}}</a></td>
-                    <td><a href="">{{asset.name}}</a></td>
-                    <td>{{asset.type}}</td>
+                    <th><a href="">{{asset.sid}}</a></th>
+                    <td>{{asset.name}}</td>
+                    <td><div class="type rounded text-center"><span class="small">{{asset.type}}</span></div></td>
                     <td>{{asset.customer}}</td>
-                    <td>{{asset.location}}</td>
                     <td>{{asset.parent}}</td>
                     <td>{{asset.created|date}}</td>
-                    <td class="d-flex justify-content-around p-0">
+                    <td>
                         <a class="text-secondary" href="">{% bs_icon 'pencil-square' size='1.5em' %}</a>
-                        <a class="text-danger" href="{% url 'assets:delete' 'asset' asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                        
+                    </td>
+                    <td>
+                      <a class="text-danger" href="{% url 'assets:delete' 'asset' asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
                     </td>
                   </tr>
                 {% endfor %}
