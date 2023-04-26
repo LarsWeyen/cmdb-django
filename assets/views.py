@@ -1,9 +1,12 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+import requests
+from django.urls import reverse
 from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm
-from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,DistrispotType
+from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot
 from numerize import numerize
+from .utilities import OAuth2Adapter
 
 def dashboard(request):
     type_names = Type.objects.all()
@@ -35,7 +38,7 @@ def createAsset(request):
     # locations = Location.objects.all()
     customers = Customer.objects.all()
     parent_assets = Asset.objects.all()
-    distrispot_types = DistrispotType.objects.all()
+
 
     if request.method == 'POST':
         asset_type = Type.objects.get(name=request.POST.get('type'))
@@ -141,7 +144,7 @@ def createAsset(request):
             #    'locations':locations,
                'customers': customers,
                'parents':parent_assets,
-               'distrispot_types':distrispot_types,
+            
                'cameraForm':cameraForm,
                'lcdForm':lcdForm,
                'psuForm': psuForm,
@@ -364,7 +367,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
-                return redirect('overview:distrispot')
+                return redirect('overview:distrispots')
     context={
         'form':form,
         'assetForm':assetForm,
@@ -397,3 +400,33 @@ def delete(request,type,pk):
         'item':item
     }
     return render(request,'assets/delete.html',context)
+
+def sync_distrispots(request):
+    oauth_adapter = OAuth2Adapter("Telloport")
+    access_token = oauth_adapter.get_token()
+    headers = {
+        'Authorization': f"Bearer {access_token}",
+    }
+    response = requests.get(f'{oauth_adapter.url}/api/spots/', headers=headers)
+    response.raise_for_status()
+    spots = response.json()
+    for spot in spots:
+       id  = ''.join(x for x in spot["id"] if x.isdigit())
+       asset, asset_created =Asset.objects.get_or_create(
+           name = spot['name'],
+           type= Type.objects.get(slug='distrispot'),
+           customer = Customer.objects.get(id=1)
+       )
+
+       distrispot, created = Distrispot.objects.get_or_create(
+           id = id,
+           slots_num = spot['slots_num'],
+           asset=asset,
+           type = spot['type'],
+           address = spot['address_line_1'],
+           city = spot['city'],
+           zip_code= spot['zip_code']
+        )
+       
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

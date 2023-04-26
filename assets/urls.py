@@ -12,6 +12,7 @@ urlpatterns = [
     path('update/<str:type>/<str:pk>/',views.update,name='update'),
     path('update-customer/<str:pk>/',views.updateCustomer,name='update-customer'),
     path('delete/<str:type>/<str:pk>/',views.delete,name="delete"),
+    path('distrispots/sync',views.sync_distrispots,name="sync-distrispots"),
 ]
 
 

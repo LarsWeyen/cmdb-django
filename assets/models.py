@@ -34,6 +34,8 @@ class Customer(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def sid(self):
+        return "CUS-"+str(f'{self.id:04}')
 
 class Asset(models.Model):
     name = models.CharField(max_length=150)
@@ -46,6 +48,9 @@ class Asset(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def sid(self):
+        return "AST-"+str(f'{self.id:04}')
 
 
 class Resources(models.Model):
@@ -62,6 +67,8 @@ class LCD(Resources):
     resolution = models.CharField(max_length=50)
     refresh_rate = models.CharField(max_length=10)
 
+    def sid(self):
+        return "LCD-"+str(f'{self.id:04}')
 
 class NetworkDevice(models.Model):
     ip_address = models.CharField(max_length=150)
@@ -111,6 +118,9 @@ class Camera(Resources, NetworkDevice):
 
     def __str__(self) -> str:
         return self.asset.name
+    
+    def sid(self):
+        return "CAM-"+str(f'{self.id:04}')
 
 
 class DVR(Resources, NetworkDevice):
@@ -119,6 +129,9 @@ class DVR(Resources, NetworkDevice):
 
     def __str__(self) -> str:
         return self.asset.name
+    
+    def sid(self):
+        return "DVR-"+str(f'{self.id:04}')
 
 
 class Router(Resources, NetworkDevice):
@@ -128,8 +141,10 @@ class Router(Resources, NetworkDevice):
 
     def __str__(self) -> str:
         return self.asset.name
-
-
+    
+    def sid(self):
+        return "RTR-"+str(f'{self.id:04}')
+    
 class QRScanner(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='qrscanner')
     port_type = models.CharField(max_length=10)
@@ -137,7 +152,9 @@ class QRScanner(Resources):
 
     def __str__(self) -> str:
         return self.asset.name
-
+    
+    def sid(self):
+        return "QRS-"+str(f'{self.id:04}')
 
 class RFID(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='rfid')
@@ -146,7 +163,9 @@ class RFID(Resources):
 
     def __str__(self) -> str:
         return self.asset.name
-
+    
+    def sid(self):
+        return "RFID-"+str(f'{self.id:04}')
 
 class Switch(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='switch')
@@ -156,12 +175,16 @@ class Switch(Resources):
     def __str__(self) -> str:
         return self.asset.name
 
+    def sid(self):
+        return "SWT-"+str(f'{self.id:04}')
 
 class LCB(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='lcb')
     voltage = models.CharField(max_length=25)
     connector = models.CharField(max_length=25)
 
+    def sid(self):
+        return "LCB-"+str(f'{self.id:04}')
     
 
 class IPC(Resources):
@@ -177,6 +200,9 @@ class IPC(Resources):
     def __str__(self) -> str:
         return self.asset.name
 
+    def sid(self):
+        return "IPC-"+str(f'{self.id:04}')
+    
 class Maintenance(models.Model):
     description = models.TextField()
     date=models.DateField()
@@ -184,18 +210,23 @@ class Maintenance(models.Model):
 
     def __str__(self) -> str:
         return self.description
-
-class DistrispotType(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50)
     
-    def __str__(self) -> str:
-        return self.name
+    def sid(self):
+        return "MTN-"+str(f'{self.id:04}')
+
+# class DistrispotType(models.Model):
+#     name = models.CharField(max_length=50)
+#     slug = models.SlugField(max_length=50)
+    
+#     def __str__(self) -> str:
+#         return self.name
 
 class Distrispot(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='distrispot')
+    status_choices = (('ONLINE','Online'),('OFFLINE','Offline'))
+    status=models.CharField(choices=status_choices,default="ONLINE",max_length=20)
     slots_num = models.IntegerField()
-    type = models.ForeignKey(DistrispotType, on_delete=models.PROTECT)
+    type = models.CharField(max_length=150)
     maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
@@ -204,6 +235,8 @@ class Distrispot(models.Model):
 
     def __str__(self) -> str:
         return self.asset.name
+    def sid(self):
+        return 'SPT'+str(f'{self.id:06}')
 
 class PowerSupply(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='psu')
@@ -213,3 +246,6 @@ class PowerSupply(Resources):
 
     def __str__(self) -> str:
         return self.asset.name
+    
+    def sid(self):
+        return "PSU-"+str(f'{self.id:04}')
