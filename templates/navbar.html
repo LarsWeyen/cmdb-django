@@ -10,7 +10,7 @@
         <li class="nav-title"><span>Assets</span></li>
         <ul>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'assets:dashboard'%}">Dashboard</a>
+                <a class="nav-link" href="{% url 'assets:dashboard'%}">{% bs_icon 'clipboard-data' size='1.2em' %}Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'overview:distrispots' %}">{% bs_icon 'grid-1x2' size="1.2em" %}DistriSPOT's</a>
@@ -46,7 +46,7 @@
                 <a class="nav-link" href="{% url 'overview:qrscanners' %}">{% bs_icon 'qr-code-scan' size='1.2em' %}QR Scanners</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'overview:assets' %}">Overview</a>
+                <a class="nav-link" href="{% url 'overview:assets' %}">{% bs_icon 'list-ul' size='1.2em' %}Overview</a>
             </li>
         </ul>
         <li class="nav-title"><span>Misc</span></li>
