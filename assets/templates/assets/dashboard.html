@@ -6,7 +6,7 @@
 <div class="dashboard">
     <div class="dashboard-container">
         <div class="block-container">
-            <div class="distrispot rounded">
+            <div onclick="location.href='{% url 'overview:distrispots'%}';" class="distrispot dashboard-block rounded">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'grid-1x2' size='2em' %}
@@ -15,7 +15,7 @@
                     <span class="asset-title">DistriSPOT's</span>
                 </div>
             </div>
-            <div class="ipc rounded">
+            <div onclick="location.href='{% url 'overview:ipcs'%}';" class="ipc dashboard-block rounded">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'cpu' size='2em' %}
@@ -24,7 +24,7 @@
                     <span class="asset-title">IPC's</span>
                 </div>
             </div>
-            <div class="lcd rounded">
+            <div onclick="location.href='{% url 'overview:lcds'%}';" class="lcd rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'display' size='2em' %}
@@ -33,7 +33,7 @@
                     <span class="asset-title">LCD's</span>
                 </div>
             </div>
-            <div class="switch rounded">
+            <div onclick="location.href='{% url 'overview:switches'%}';" class="switch rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'diagram-3' size='2em' %}
@@ -42,7 +42,7 @@
                     <span class="asset-title">Switches</span>
                 </div>
             </div>
-            <div class="router rounded">
+            <div onclick="location.href='{% url 'overview:routers'%}';" class="router rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'router' size='2em' %}
@@ -52,7 +52,7 @@
                     <span class="asset-title">Routers</span>
                 </div>
             </div>
-            <div class="power-supply rounded">
+            <div onclick="location.href='{% url 'overview:psus'%}';" class="power-supply rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'plug' size='2em' %}
@@ -61,7 +61,7 @@
                     <span class="asset-title">Power Supplies</span>
                 </div>
             </div>
-            <div class="rfid rounded">
+            <div onclick="location.href='{% url 'overview:rfids'%}';" class="rfid rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'person-badge' size='2em' %}
@@ -70,7 +70,7 @@
                     <span class="asset-title">RFID's</span>
                 </div>
             </div>
-            <div class="dvr rounded">
+            <div onclick="location.href='{% url 'overview:dvrs'%}';" class="dvr rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'hdd' size='2em' %}
@@ -79,7 +79,7 @@
                     <span class="asset-title">DVR's</span>
                 </div>
             </div>
-            <div class="camera rounded">
+            <div onclick="location.href='{% url 'overview:cameras'%}';" class="camera rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'camera-video' size='2em' %}
@@ -89,7 +89,7 @@
                     <span class="asset-title">Cameras</span>
                 </div>
             </div>
-            <div class="qr-scanner rounded">
+            <div onclick="location.href='{% url 'overview:qrscanners'%}';" class="qr-scanner rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'qr-code-scan' size='2em' %}
@@ -98,7 +98,7 @@
                     <span class="asset-title">QR Scanners</span>
                 </div>
             </div>
-            <div class="lcb rounded">
+            <div onclick="location.href='{% url 'overview:lcbs'%}';" class="lcb rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'grip-horizontal' size='2em' %}
@@ -107,7 +107,7 @@
                     <span class="asset-title">LCB's</span>
                 </div>
             </div>
-            <div class="customer rounded">
+            <div onclick="location.href='{% url 'overview:customers'%}';" class="customer rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
                         {% bs_icon 'person' size='2em' %}

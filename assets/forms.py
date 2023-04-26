@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput
+from django.forms import TextInput,CheckboxInput
 from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot
 
 class AssetForm(forms.ModelForm):
@@ -11,18 +11,20 @@ class AssetForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class CameraForm(forms.ModelForm):
     class Meta:
         model = Camera
         fields = '__all__'
         exclude=['asset']
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['motion_detection'].widget.attrs.update({'class': 'form-check-input'})
 
 class DvrForm(forms.ModelForm):
     class Meta:
@@ -34,7 +36,7 @@ class DvrForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class IpcForm(forms.ModelForm):
     class Meta:
@@ -45,7 +47,7 @@ class IpcForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class LcbForm(forms.ModelForm):
     class Meta:
@@ -56,7 +58,7 @@ class LcbForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class LcdForm(forms.ModelForm):
     class Meta:
@@ -67,7 +69,7 @@ class LcdForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 # class LocationForm(forms.ModelForm):
 #     class Meta:
@@ -87,7 +89,7 @@ class CustomerForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class PsuForm(forms.ModelForm):
     class Meta:
@@ -98,7 +100,7 @@ class PsuForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class QRScannerForm(forms.ModelForm):
     class Meta:
@@ -109,7 +111,7 @@ class QRScannerForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class RfidForm(forms.ModelForm):
     class Meta:
@@ -120,7 +122,7 @@ class RfidForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class RouterForm(forms.ModelForm):
     class Meta:
@@ -131,7 +133,8 @@ class RouterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['ip_static'].widget.attrs.update({'class': 'form-check-input'})
 
 class SwitchForm(forms.ModelForm):
     class Meta:
@@ -142,7 +145,7 @@ class SwitchForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'
 
 class DistrispotForm(forms.ModelForm):
     class Meta:
@@ -153,4 +156,4 @@ class DistrispotForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-field'
+            field.widget.attrs['class'] = 'form-control'

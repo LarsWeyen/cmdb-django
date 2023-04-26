@@ -4,15 +4,15 @@
   <div class="asset-form-container">
     <form method="POST" novalidate>
       {% csrf_token %}
-      <h3>New Asset</h3>
+      <h3 class="mb-3">New Asset</h3>
       <div class="form-container">
         <div class="form-group">
           <span>Name</span>
-          <input class="form-field" type="text" name="name"/>
+          <input class="form-control" type="text" name="name"/>
         </div>
         <div class="form-group">
           <span>Type</span>
-          <select class="form-field" name="type" id="typeselect">
+          <select class="form-control" name="type" id="typeselect">
             <option value="null">-------</option>
             {% for type in types %}
               <option value="{{type.name}}">{{type}}</option>
@@ -29,7 +29,7 @@
         </div> {% endcomment %}
         <div class="form-group">
           <span>Customer</span>
-          <select class="form-field" name="customer">
+          <select class="form-control" name="customer">
             {% for customer in customers %}
                 <option value="{{customer.id}}">{{customer.name}}</option>
             {% endfor %}
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
           <span>Parent</span>
-          <select class="form-field" name="parent">
+          <select class="form-control" name="parent">
             <option value="null">-------</option>
             {% for parent in parents %}
                 <option value="{{parent.id}}">{{parent.name}}</option>
@@ -48,7 +48,7 @@
       <hr />
       
         <div class="form-content" id="Switch-form">
-            <h3>Switch</h3>
+            <h3 class="mb-3">Switch</h3>
             <div class="form-container">
               {% for switch in switchForm %}
               <div class="form-group">
@@ -60,7 +60,7 @@
           </div>
 
           <div class="form-content" id="Power Supply-form">
-            <h3>Power Supply</h3>
+            <h3 class="mb-3">Power Supply</h3>
             <div class="form-container">
               {% for psu in psuForm %}
               <div class="form-group">
@@ -72,7 +72,7 @@
           </div>
 
           <div class="form-content" id="RFID-form">
-            <h3>RFID Details</h3>
+            <h3 class="mb-3">RFID Details</h3>
             <div class="form-container">           
               {% for rfid in rfidForm %}
               <div class="form-group">
@@ -84,7 +84,7 @@
           </div>
 
           <div class="form-content" id="IPC-form">
-            <h3>IPC Details</h3>
+            <h3 class="mb-3">IPC Details</h3>
             <div class="form-container">            
               {% for ipc in ipcForm %}
               <div class="form-group">
@@ -96,7 +96,7 @@
           </div>
 
           <div class="form-content" id="LCD-form">
-            <h3>LCD Details</h3>
+            <h3 class="mb-3">LCD Details</h3>
             <div class="form-container">
               {% for lcd in lcdForm %}
               <div class="form-group">
@@ -108,7 +108,7 @@
           </div>
 
           <div class="form-content" id="LCB-form">
-            <h3>LCB Details</h3>
+            <h3 class="mb-3">LCB Details</h3>
             <div class="form-container">
               
               {% for lcb in lcbForm %}
@@ -121,7 +121,7 @@
           </div>
 
           <div class="form-content" id="QR Scanner-form">
-            <h3>QR Scanner Details</h3>
+            <h3 class="mb-3">QR Scanner Details</h3>
             <div class="form-container">
               {% for qrscanner in qrscannerForm %}
               <div class="form-group">
@@ -133,7 +133,7 @@
           </div>
 
           <div class="form-content" id="DVR-form">
-            <h3>DVR Details</h3>
+            <h3 class="mb-3">DVR Details</h3>
             <div class="form-container">
               {% for dvr in dvrForm %}
               <div class="form-group">
@@ -145,7 +145,7 @@
           </div>
 
           <div class="form-content" id="Router-form">
-            <h3>Router</h3>
+            <h3 class="mb-3">Router</h3>
             <div class="form-container">
               {% for router in routerForm %}
               <div class="form-group">
@@ -157,7 +157,7 @@
           </div>
 
         <div class="form-content" id="Camera-form">
-            <h3>Camera</h3>
+            <h3 class="mb-3">Camera</h3>
             <div class="form-container">
               {% for camera in cameraForm %}
               <div class="form-group">
@@ -175,7 +175,7 @@
 
             
             <div class="form-content" id="DistriSPOT-form">
-              <h3>DistriSPOT</h3>
+              <h3 class="mb-3">DistriSPOT</h3>
               <div class="form-container">
                 {% for distrispot in distrispotForm %}
               <div class="form-group">
