@@ -161,6 +161,10 @@ a{
     color: #71c6dd
 }
 
+.form-control{
+    width: 65% !important; 
+}
+
 .asset-form{
     padding: 1.5rem;
     background-color: #fbfbfb;
@@ -225,7 +229,7 @@ gap: 15px;
     overflow: auto;
     min-height: 87vh;
 }
-
+/* 
 table{
     width: 100%;
     border-collapse: collapse;
@@ -244,8 +248,22 @@ tr{
 table th:not(:last-child){
     border-right: solid black 1px; 
 }
-table th,td:not(:first-child) { padding-left: 12px; }
+table th,td:not(:first-child) { padding-left: 12px; } */
   
+.online{
+    background-color: #D1F1A8;
+    color: #70B11C;
+}
+
+.offline{
+    background-color: #F3D0D0;
+    color: #C53232;
+}
+
+.type{
+    background-color: #e5e8ec;
+    color: #97a7b6;
+}
   .asset-options, .misc-options{
     transition: height 0.3s ease;
     overflow: hidden;
