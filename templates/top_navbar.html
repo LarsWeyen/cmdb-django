@@ -1,6 +1,22 @@
 {% load static %}
-<div class="navbar navbar-expand navbar-light bg-white topbar static-top shadow justify-content-end px-5">
-  <div class="d-flex justify-content-between  w-75 align-items-center">
+{% load django_bootstrap_breadcrumbs %}
+<div class="navbar navbar-expand navbar-light bg-white topbar static-top shadow justify-content-between px-5">
+  <div class="d-flex align-items-center">
+    {% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+
+    {% breadcrumb "Dashboard" "/" %}
+    {% for breadcrumb in breadcrumbs %}
+    {% breadcrumb breadcrumb.name breadcrumb.route %}
+    {% endfor %}
+  {% endblock %}
+  
+  {% block content %}
+      {% render_breadcrumbs %}
+  {% endblock %}
+  </div>
+
+  <div class="d-flex justify-content-between  w-50 align-items-center">
     <div class="input-group w-50 ml-5">
       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
       <button type="button" class="btn btn-outline-primary">search</button>

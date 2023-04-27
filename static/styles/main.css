@@ -367,3 +367,7 @@ table th,td:not(:first-child) { padding-left: 12px; } */
     grid-template-columns: 1fr 370px;
     gap: 1rem;
 }
+
+.breadcrumb{
+    margin: auto !important;
+}

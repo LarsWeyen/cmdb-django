@@ -3,73 +3,133 @@ from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, Pow
 
 def cameraTable(request):
     cameras = Camera.objects.all()
-    context = {'cameras':cameras}
+    breadcrumbs = [{
+        'name': 'Cameras',
+        'route': "overview:cameras"
+    },
+    ]
+    context = {'cameras':cameras,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/camera-table.html',context)
 
 def dvrTable(request):
     dvrs= DVR.objects.all()
-    context = {'dvrs':dvrs}
+    breadcrumbs = [{
+        'name': 'DVRs',
+        'route': "overview:dvrs"
+    },
+    ]
+    context = {'dvrs':dvrs,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/dvr-table.html',context)
 
 def lcdTable(request):
     lcds= LCD.objects.all()
-    context = {'lcds':lcds}
+    breadcrumbs = [{
+        'name': 'LCDs',
+        'route': "overview:lcds"
+    },
+    ]
+    context = {'lcds':lcds,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/lcd-table.html',context)
 
 def rfidTable(request):
     rfids= RFID.objects.all()
-    context = {'rfids':rfids}
+    breadcrumbs = [{
+        'name': 'Routers',
+        'route': "overview:routers"
+    },
+    ]
+    context = {'rfids':rfids,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/rfid-table.html',context)
 
 def switchTable(request):
     switchs= Switch.objects.all()
-    context = {'switchs':switchs}
+    breadcrumbs = [{
+        'name': 'Switches',
+        'route': "overview:switches"
+    },
+    ]
+    context = {'switchs':switchs,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/switch-table.html',context)
 
 def customerTable(request):
     customers= Customer.objects.all()
-    context = {'customers':customers}
+    breadcrumbs = [{
+        'name': 'Customers',
+        'route': "overview:customers"
+    },
+    ]
+    context = {'customers':customers,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/customer-table.html',context)
 
 def qrScannerTable(request):
     qrScanners= QRScanner.objects.all()
-    context = {'qrScanners':qrScanners}
+    breadcrumbs = [{
+        'name': 'QR Scanners',
+        'route': "overview:qrscanners"
+    },
+    ]
+    context = {'qrScanners':qrScanners,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/qrscanner-table.html',context)
 
 def ipcTable(request):
     ipcs= IPC.objects.all()
-    context = {'ipcs':ipcs}
+    breadcrumbs = [{
+        'name': 'IPCs',
+        'route': "overview:ipcs"
+    },
+    ]
+    context = {'ipcs':ipcs,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/ipc-table.html',context)
 
 def routerTable(request):
     routers= Router.objects.all()
-    context = {'routers':routers}
+    breadcrumbs = [{
+        'name': 'Routers',
+        'route': "overview:routers"
+    },
+    ]
+    context = {'routers':routers,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/router-table.html',context)
 
 def powerSupplyTable(request):
     psus= PowerSupply.objects.all()
-    context = {'psus':psus}
+    breadcrumbs = [{
+        'name': 'Power Supplies',
+        'route': "overview:psus"
+    },
+    ]
+    context = {'psus':psus,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/psu-table.html',context)
 
 def lcbTable(request):
     lcbs= LCB.objects.all()
-    context = {'lcbs':lcbs}
+    breadcrumbs = [{
+        'name': 'LCBs',
+        'route': "overview:lcbs"
+    },
+    ]
+    context = {'lcbs':lcbs,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/lcb-table.html',context)
 
 def assetsTable(request):
     assets= Asset.objects.all()
-    context = {'assets':assets}
+    breadcrumbs = [{
+        'name': 'Assets',
+        'route': "overview:assets"
+    },
+    ]
+    context = {'assets':assets,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/assets-table.html',context)
 
@@ -81,6 +141,11 @@ def assetsTable(request):
 
 def distrispotsTable(request):
     distrispots= Distrispot.objects.all()
-    context = {'distrispots':distrispots}
+    breadcrumbs = [{
+        'name': 'Distrispots',
+        'route': "overview:distrispots"
+    },
+    ]
+    context = {'distrispots':distrispots,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/distrispot-table.html',context)
