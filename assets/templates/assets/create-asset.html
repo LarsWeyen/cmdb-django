@@ -40,7 +40,7 @@
           <select class="form-control" name="parent">
             <option value="null">-------</option>
             {% for parent in parents %}
-                <option value="{{parent.id}}">{{parent.name}}</option>
+                <option value="{{parent.id}}">{{parent.name}} ({{parent.type}})</option>
             {% endfor %}
           </select>
         </div>
@@ -190,7 +190,7 @@
          <div>
        
       </div>
-      <input class="btn btn-secondary" value="Save" type="submit"></input>
+      <input class="btn btn-secondary" disabled value="Save" id="create-asset-button" type="submit"></input>
     </form>
   </div>
 </div>

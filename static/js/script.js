@@ -3,7 +3,7 @@ document.querySelectorAll('.form-content').forEach(function(element) {
 });
 
 document.getElementById('typeselect').addEventListener('change', function() {
-    console.log(this.value+"-form")
+    document.getElementById("create-asset-button").disabled = false;
     // Get the value of the selected option
     let selectedOption = this.value;
     // Hide all content elements
