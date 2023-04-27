@@ -124,12 +124,26 @@ def lcbTable(request):
 
 def assetsTable(request):
     assets= Asset.objects.all()
+    asset_list=[]
+    for asset in assets:
+        asset_list.append({
+            "id":asset.id,
+            "sid":asset.sid,
+            "name":asset.name,
+            "customer":asset.customer,
+            "type":asset.type,
+            "parent":asset.parent,
+            "created":asset.created,
+            "child_id": getattr(asset, f"{asset.type.slug}").first().id,
+            "route": f"details:{asset.type.slug}",
+            })
+    
     breadcrumbs = [{
         'name': 'Assets',
         'route': "overview:assets"
     },
     ]
-    context = {'assets':assets,'breadcrumbs':breadcrumbs}
+    context = {'assets':assets,'breadcrumbs':breadcrumbs,"asset_list":asset_list}
 
     return render(request,'overview/assets-table.html',context)
 

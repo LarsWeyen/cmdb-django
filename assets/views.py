@@ -39,6 +39,11 @@ def createAsset(request):
     customers = Customer.objects.all()
     parent_assets = Asset.objects.all()
 
+    breadcrumbs = [{
+        'name': 'New Asset',
+        'route': "overview:assets"
+    },
+    ]
 
     if request.method == 'POST':
         asset_type = Type.objects.get(name=request.POST.get('type'))
@@ -154,20 +159,25 @@ def createAsset(request):
                'qrscannerForm':qrscannerForm,
                'ipcForm':ipcForm,
                'lcbForm': lcbForm,
-               'distrispotForm':distrispotForm
+               'distrispotForm':distrispotForm,
+               'breadcrumbs':breadcrumbs
                }
     return render(request,'assets/create-asset.html',context)
 
 def createCustomer(request):
     form = CustomerForm()
-
+    breadcrumbs = [{
+        'name': 'New Customer',
+        'route': "overview:customers"
+    },
+    ]
     if request.method =='POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
              form.save()
              return redirect('assets:dashboard')
     
-    context = {'form':form}
+    context = {'form':form,'breadcrumbs':breadcrumbs}
     return render(request,'assets/create-customer.html',context)
 
 # def createLocation(request):
@@ -199,6 +209,15 @@ def createCustomer(request):
 def updateCustomer(request,pk):
     customer = Customer.objects.get(id=pk)
     form = CustomerForm(instance=customer)
+    breadcrumbs = [{
+        'name': 'Customers',
+        'route': "overview:customers"
+    },
+    {
+        'name': customer.name,
+        'route': 'details:customer'
+    }
+    ]
     if request.method =='POST':
         form = CustomerForm(request.POST,instance=customer)   
         if form.is_valid():           
@@ -206,7 +225,8 @@ def updateCustomer(request,pk):
              return redirect('overview:customers')
     context={
         'form':form,       
-        'customer':customer
+        'customer':customer,
+        'breadcrumbs':breadcrumbs
     }
     return render(request,'assets/update-customer.html',context)
 
@@ -215,6 +235,9 @@ def update(request,pk,type):
         camera = Camera.objects.get(id=pk)
         asset = Asset.objects.get(id=camera.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'Cameras'
+        breadcrumb_route = 'overview:cameras'
+        asset_name = asset.name
         form = CameraForm(instance=camera)
         item = camera
         if request.method =='POST':
@@ -229,6 +252,9 @@ def update(request,pk,type):
         dvr = DVR.objects.get(id=pk)
         asset = Asset.objects.get(id=dvr.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'DVRs'
+        breadcrumb_route = 'overview:dvrs'
+        asset_name = asset.name
         form = DvrForm(instance=dvr)
         item = dvr
         if request.method =='POST':
@@ -244,6 +270,9 @@ def update(request,pk,type):
         ipc = IPC.objects.get(id=pk)
         asset = Asset.objects.get(id=ipc.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'IPCS'
+        breadcrumb_route = 'overview:ipcs'
+        asset_name = asset.name
         form = IpcForm(instance=ipc)
         item = ipc
         if request.method =='POST':
@@ -259,6 +288,9 @@ def update(request,pk,type):
         lcb = LCB.objects.get(id=pk)
         asset = Asset.objects.get(id=lcb.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'LCBs'
+        breadcrumb_route = 'overview:lcbs'
+        asset_name = asset.name
         form = LcbForm(instance=lcb)
         item = lcb
         if request.method =='POST':
@@ -274,6 +306,9 @@ def update(request,pk,type):
         lcd = LCD.objects.get(id=pk)
         asset = Asset.objects.get(id=lcd.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'LCDs'
+        breadcrumb_route = 'overview:lcds'
+        asset_name = asset.name
         form = LcdForm(instance=lcd)
         item = lcd
         if request.method =='POST':
@@ -289,6 +324,9 @@ def update(request,pk,type):
         psu = PowerSupply.objects.get(id=pk)
         asset = Asset.objects.get(id=psu.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'Power Supplies'
+        breadcrumb_route = 'overview:psus'
+        asset_name = asset.name
         form = PsuForm(instance=psu)
         item = psu
         if request.method =='POST':
@@ -303,6 +341,9 @@ def update(request,pk,type):
         qrscanner = QRScanner.objects.get(id=pk)
         asset = Asset.objects.get(id=qrscanner.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'QR Scanners'
+        breadcrumb_route = 'overview:qrscanners'
+        asset_name = asset.name
         form = QRScannerForm(instance=qrscanner)
         item = qrscanner
         if request.method =='POST':
@@ -317,6 +358,9 @@ def update(request,pk,type):
         rfid = RFID.objects.get(id=pk)
         asset = Asset.objects.get(id=rfid.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'RFIDs'
+        breadcrumb_route = 'overview:rfids'
+        asset_name = asset.name
         form = RfidForm(instance=rfid)
         item = rfid
         if request.method =='POST':
@@ -331,6 +375,9 @@ def update(request,pk,type):
         router = Router.objects.get(id=pk)
         asset = Asset.objects.get(id=router.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'Routers'
+        breadcrumb_route = 'overview:router'
+        asset_name = asset.name
         form = RouterForm(instance=router)
         item = router
         if request.method =='POST':
@@ -345,6 +392,9 @@ def update(request,pk,type):
         switch = Switch.objects.get(id=pk)
         asset = Asset.objects.get(id=switch.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'Switches'
+        breadcrumb_route = 'overview:switches'
+        asset_name = asset.name
         form = SwitchForm(instance=switch)
         item = switch
         if request.method =='POST':
@@ -359,6 +409,9 @@ def update(request,pk,type):
         distrispot = Distrispot.objects.get(id=pk)
         asset = Asset.objects.get(id=distrispot.asset.id)
         assetForm = AssetForm(instance=asset)
+        breadcrumb_plural = 'Distrispots'
+        breadcrumb_route = 'overview:distrispots'
+        asset_name = asset.name
         form = DistrispotForm(instance=distrispot)
         item = distrispot
         if request.method =='POST':
@@ -368,10 +421,20 @@ def update(request,pk,type):
                 form.save()
                 assetForm.save()
                 return redirect('overview:distrispots')
+    breadcrumbs = [{
+        'name': breadcrumb_plural,
+        'route': breadcrumb_route
+    },
+    {
+        'name': asset_name,
+        'route': '_'
+    }
+    ]
     context={
         'form':form,
         'assetForm':assetForm,
-        'item': item
+        'item': item,
+        'breadcrumbs':breadcrumbs
     }
     return render(request,'assets/update.html',context)
 

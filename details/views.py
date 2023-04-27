@@ -10,7 +10,7 @@ def customer(request,pk):
     },
     {
         'name': customer.name,
-        'route': 'details:lcb'
+        'route': 'details:customer'
     }
     ]
     context={

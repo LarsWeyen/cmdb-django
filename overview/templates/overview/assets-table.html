@@ -19,16 +19,16 @@
               </tr>
             <thead>
             <tbody>
-                {% for asset in assets %}
+                {% for asset in asset_list %}
                 <tr>
-                    <th><a href="">{{asset.sid}}</a></th>
+                    <th><a href="{% url asset.route asset.child_id %}">{{asset.sid}}</a></th>
                     <td>{{asset.name}}</td>
                     <td><div class="type rounded text-center"><span class="small px-1">{{asset.type}}</span></div></td>
                     <td>{{asset.customer}}</td>
                     <td>{{asset.parent}}</td>
                     <td>{{asset.created|date}}</td>
                     <td>
-                        <a class="text-secondary" href="">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        <a class="text-secondary" href="{% url 'assets:update' asset.type.slug asset.child_id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
                         
                     </td>
                     <td>
