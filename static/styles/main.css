@@ -345,8 +345,8 @@ table th,td:not(:first-child) { padding-left: 12px; } */
     grid-template-columns: 1fr 1fr;
     column-gap: 3rem;
     row-gap: 5px;
-    width: 70%;
-    margin-top: 8px;
+    /* width: 70%; */
+    /* margin-top: 8px; */
 }
 .details-asset{
     margin-bottom: 1.2rem;
@@ -360,4 +360,10 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 .details-item span{
     font-weight: bold;
     
+}
+
+.distrispot-grid{
+    display: grid;
+    grid-template-columns: 1fr 370px;
+    gap: 1rem;
 }

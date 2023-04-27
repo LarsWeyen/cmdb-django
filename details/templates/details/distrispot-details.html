@@ -3,66 +3,78 @@
 {% block content %}
 
 <div class="details-container">
-    <div class="details-content">
-        <h1>Asset</h1>
-        <div class="details-asset"> 
-            
+    <div class="details-content distrispot-grid">
+        <div>
+            {% comment %} <h1>Asset</h1> {% endcomment %}
+            <span class="h3">Asset</span>
+            <div class="details-asset"> 
+                    
+                    <div class="details-item">
+                        <p>Asset ID</p>
+                        <span>{{distrispot.asset.sid}}</span>
+                    </div>
+                    <div class="details-item">
+                        <p>Asset Name</p>
+                    <span>{{distrispot.asset.name}}</span> 
+                    </div>
+                    <div class="details-item">
+                        <p>Customer</p>
+                        <span>{{distrispot.asset.customer}}</span>
+                    </div>
+                    <div class="details-item">
+                        <p>City</p>
+                        <span>{{distrispot.city}}</span>
+                    </div>      
+                    <div class="details-item">
+                        <p>Address</p>
+                        <span>{{distrispot.address}}</span>
+                    </div>   
+                    <div class="details-item">
+                        <p>Zipcode</p>
+                        <span>{{distrispot.zip_code}}</span>
+                    </div>   
+                    <div class="details-item">
+                        <p>Country</p>
+                        <span>{{distrispot.country}}</span>
+                    </div>   
+                    <div class="details-item">
+                        <p>Last Updated</p>
+                        <span>{{distrispot.asset.updated}}</span>
+                    </div> 
+                    <div class="details-item">
+                        <p>Created On</p>
+                        <span>{{distrispot.asset.created}}</span>
+                    </div>        
+            </div>
+            <span class="h3">Details</span>
+            <div class="component-details">
                 <div class="details-item">
-                    <p>Asset ID</p>
-                    <span>{{distrispot.asset.sid}}</span>
+                    <p>DistriSPOT ID</p>
+                    <span>{{distrispot.sid}}</span>
                 </div>
                 <div class="details-item">
-                    <p>Asset Name</p>
-                   <span>{{distrispot.asset.name}}</span> 
+                    <p>Number of slots</p>
+                    <span>{{distrispot.slots_num}}</span>
                 </div>
                 <div class="details-item">
-                    <p>Customer</p>
-                    <span>{{distrispot.asset.customer}}</span>
+                    <p>Type</p>
+                    <span>{{distrispot.type}}</span>
                 </div>
                 <div class="details-item">
-                    <p>City</p>
-                    <span>{{distrispot.city}}</span>
-                </div>      
-                <div class="details-item">
-                    <p>Address</p>
-                    <span>{{distrispot.address}}</span>
-                </div>   
-                <div class="details-item">
-                    <p>Zipcode</p>
-                    <span>{{distrispot.zip_code}}</span>
-                </div>   
-                <div class="details-item">
-                    <p>Country</p>
-                    <span>{{distrispot.country}}</span>
-                </div>   
-                <div class="details-item">
-                    <p>Last Updated</p>
-                    <span>{{distrispot.asset.updated}}</span>
-                </div> 
-                <div class="details-item">
-                    <p>Created On</p>
-                    <span>{{distrispot.asset.created}}</span>
-                </div>        
+                    <p>Last Maintenance</p>
+                    <span>{{distrispot.maintenance.date}}</span>
+                </div>
+            </div>
         </div>
-        <h2>Component</h2>
-        <div class="component-details">
-            <div class="details-item">
-                <p>DistriSPOT ID</p>
-                <span>{{distrispot.sid}}</span>
-            </div>
-            <div class="details-item">
-                <p>Number of slots</p>
-                <span>{{distrispot.slots_num}}</span>
-            </div>
-            <div class="details-item">
-                <p>Type</p>
-                <span>{{distrispot.type}}</span>
-            </div>
-            <div class="details-item">
-                <p>Last Maintenance</p>
-                <span>{{distrispot.maintenance.date}}</span>
-            </div>
+        <div>
+            <span class="h3 mb-1">Components</span>
+            <ul class="list-group rounded">
+                {% for child in children_list %}
+                    <li class="list-group-item"><a href="{% url child.route child.id%}">{{child.name}}</a></li>
+                {% endfor %}
+            </ul>
         </div>
+        
     </div>
 </div>
 

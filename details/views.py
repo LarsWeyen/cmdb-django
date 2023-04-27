@@ -124,9 +124,20 @@ def switch(request,pk):
 def distrispot(request,pk):
     distrispot = Distrispot.objects.get(id=pk)
     asset = Asset.objects.get(id=distrispot.asset.id)
+    children = Asset.objects.filter(parent=asset.id)
+
+    children_list = []
+    for child in children:
+        children_list.append({
+            "route": f"details:{child.type.slug}",
+            "id": getattr(child, f"{child.type.slug}").first().id,
+            "name": child.name, 
+        })
+    
     context={
         'distrispot':distrispot,
-        'asset':asset
+        'asset':asset,
+        'children_list': children_list,
     }
 
     return render(request, 'details/distrispot-details.html',context)

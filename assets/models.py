@@ -2,6 +2,8 @@ from django.db import models
 from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
 
+from assets.managers import AssetChildManager, AssetManager
+
 class Type(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
@@ -51,6 +53,9 @@ class Asset(models.Model):
     
     def sid(self):
         return "AST-"+str(f'{self.id:04}')
+    
+    # objects = models.Manager()
+    objects = AssetManager()
 
 
 class Resources(models.Model):
@@ -237,6 +242,7 @@ class Distrispot(models.Model):
         return self.asset.name
     def sid(self):
         return 'SPT'+str(f'{self.id:06}')
+    
 
 class PowerSupply(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='psu')

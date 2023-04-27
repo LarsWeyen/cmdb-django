@@ -144,7 +144,7 @@ def createAsset(request):
             #    'locations':locations,
                'customers': customers,
                'parents':parent_assets,
-            
+               'routerForm':routerForm,
                'cameraForm':cameraForm,
                'lcdForm':lcdForm,
                'psuForm': psuForm,
@@ -412,7 +412,7 @@ def sync_distrispots(request):
     spots = response.json()
     for spot in spots:
        id  = ''.join(x for x in spot["id"] if x.isdigit())
-       asset, asset_created =Asset.objects.get_or_create(
+       asset, asset_created =Asset.objects.update_or_create(
            name = spot['name'],
            type= Type.objects.get(slug='distrispot'),
            customer = Customer.objects.get(id=1)
