@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("assets.urls")),
     path('details/',include(('details.urls',"details"),namespace="details")),
-    path('overview/',include(('overview.urls','overview'),namespace='overview'))
+    path('overview/',include(('overview.urls','overview'),namespace='overview')),
+    path("select2/", include("django_select2.urls")),
 ]

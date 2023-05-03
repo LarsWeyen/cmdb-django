@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.cache import cache
 from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot
 
 def cameraTable(request):
@@ -124,20 +125,23 @@ def lcbTable(request):
 
 def assetsTable(request):
     assets= Asset.objects.all()
-    asset_list=[]
-    for asset in assets:
-        asset_list.append({
-            "id":asset.id,
-            "sid":asset.sid,
-            "name":asset.name,
-            "customer":asset.customer,
-            "type":asset.type,
-            "parent":asset.parent,
-            "created":asset.created,
-            "child_id": getattr(asset, f"{asset.type.slug}").first().id,
-            "route": f"details:{asset.type.slug}",
-            })
-    
+    if cache.get('asset-table'):
+        asset_list = cache.get('asset-table')
+    else:
+        asset_list=[]
+        for asset in assets:
+            asset_list.append({
+                "id":asset.id,
+                "sid":asset.sid,
+                "name":asset.name,
+                "customer":asset.customer,
+                "type":asset.type,
+                "parent":asset.parent,
+                "created":asset.created,
+                "child_id": getattr(asset, f"{asset.type.slug}").first().id,
+                "route": f"details:{asset.type.slug}",
+                })
+        cache.set('asset-table',asset_list)
     breadcrumbs = [{
         'name': 'Assets',
         'route': "overview:assets"

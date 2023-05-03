@@ -2,11 +2,21 @@ from django import forms
 from django.forms import TextInput,CheckboxInput
 from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot
 
+from django_select2 import forms as s2forms
+
+class ParentWidget(s2forms.ModelSelect2Widget):
+    search_fields = "asset__icontains"
+    
+
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
         fields = '__all__'
         exclude = ['type']
+
+        widgets = {
+            'asset': ParentWidget
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -157,3 +167,4 @@ class DistrispotForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+

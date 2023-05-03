@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
           <span>Parent</span>
-          <select class="form-control" name="parent">
+          <select class="form-control" id="parent" name="parent">
             <option value="null">-------</option>
             {% for parent in parents %}
                 <option value="{{parent.id}}">{{parent.name}} ({{parent.type}})</option>
@@ -195,4 +195,10 @@
   </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+    $('#parent').select2();
+});
+
+</script>
 {% endblock %}

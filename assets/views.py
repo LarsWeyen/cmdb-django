@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.db.models import Count
+from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
 from django.urls import reverse
@@ -11,7 +12,11 @@ from django.contrib import messages
 
 def dashboard(request):
     type_names = Type.objects.all()
-    counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
+    if cache.get('dashboard-counts'):
+        counts = cache.get('dashboard-counts')
+    else:
+        counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
+        cache.set('dashboard-counts',counts)
     customer_count = numerize.numerize(Customer.objects.all().count()) 
     # location_count = numerize.numerize(Location.objects.all().count()) 
     context = {
