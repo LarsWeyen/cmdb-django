@@ -31,7 +31,9 @@
                         <a class="text-secondary" href="{% url 'assets:update' 'ipc' ipc.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
                         
                     </td>
-                    <td><a class="text-danger" href="{% url 'assets:delete' 'asset' ipc.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
+                    <td>
+                      <a class="text-danger" href="{% url 'assets:delete' 'asset' ipc.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                    </td>
                   </tr>
                 {% endfor %}
             </tbody>

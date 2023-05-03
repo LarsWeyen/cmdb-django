@@ -30,7 +30,9 @@
                     <td>
                         <a class="text-secondary" href="{% url 'assets:update' 'qrscanner' qr_scanner.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a> 
                     </td>
-                    <td><a class="text-danger" href="{% url 'assets:delete' 'asset' qr_scanner.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
+                    <td>
+                      <a class="text-danger" href="{% url 'assets:delete' 'asset' qr_scanner.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                    </td>
                   </tr>
                 {% endfor %}
             </tbody>

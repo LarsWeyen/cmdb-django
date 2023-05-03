@@ -28,10 +28,12 @@
                     <td>{{lcd.asset.parent}}</td>
                     <td>{{lcd.asset.created|date}}</td>
                     <td>
-                        <a class="text-secondary" href="{% url 'assets:update' 'lcd' lcd.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        <a class="text-secondary" href="{% url 'assets:update' 'lcd' lcd.id%}">{% bs_icon 'pencil-square' size='1.7em' %}</a>
                         
                     </td>
-                    <td><a class="text-danger" href="{% url 'assets:delete' 'asset' lcd.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a></td>
+                    <td>
+                      <a class="text-danger" href="{% url 'assets:delete' 'asset' lcd.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.7em' %}</a>
+                    </td>
                   </tr>
                 {% endfor %}
             </tbody>
