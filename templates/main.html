@@ -14,8 +14,9 @@
   <body>
     <div class="main-container">
       {% include 'navbar.html' %}
-      <div>
+      <div class="main-content">
         {% include 'top_navbar.html' %} 
+        {% include 'messages.html' %}
         {% block content %} 
         {% endblock content %}
       </div>

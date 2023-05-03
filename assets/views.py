@@ -7,6 +7,7 @@ from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, Ps
 from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot
 from numerize import numerize
 from .utilities import OAuth2Adapter
+from django.contrib import messages
 
 def dashboard(request):
     type_names = Type.objects.all()
@@ -60,6 +61,7 @@ def createAsset(request):
                 lcd = lcdForm.save(commit=False)
                 lcd.asset = asset
                 lcd.save()
+                messages.success(request,'Created LCD Asset!')
                 return redirect('assets:dashboard')
 
         elif asset_type.slug == 'power_supply':
@@ -68,6 +70,7 @@ def createAsset(request):
                 psu = psuForm.save(commit=False)
                 psu.asset = asset
                 psu.save()
+                messages.success(request,'Created Power Supply Asset!')
                 return redirect('assets:dashboard')
         
         elif asset_type.slug == 'camera':
@@ -76,6 +79,7 @@ def createAsset(request):
                 camera = cameraForm.save(commit=False)
                 camera.asset = asset
                 camera.save()
+                messages.success(request,'Created Camera Asset!')
                 return redirect('assets:dashboard')
         
         elif asset_type.slug == 'switch':
@@ -84,6 +88,7 @@ def createAsset(request):
                 switch = switchForm.save(commit=False)
                 switch.asset = asset
                 switch.save()
+                messages.success(request,'Created Switch Asset!')
                 return redirect('assets:dashboard')
 
         elif asset_type.slug == 'router':
@@ -92,6 +97,7 @@ def createAsset(request):
                 router = routerForm.save(commit=False)
                 router.asset = asset
                 router.save()
+                messages.success(request,'Created Router Asset!')
                 return redirect('assets:dashboard')
         
         elif asset_type.slug == 'rfid':
@@ -100,6 +106,7 @@ def createAsset(request):
                 rfid = rfidForm.save(commit=False)
                 rfid.asset = asset
                 rfid.save()
+                messages.success(request,'Created RFID Asset!')
                 return redirect('assets:dashboard')
         
         elif asset_type.slug == 'dvr':
@@ -108,6 +115,7 @@ def createAsset(request):
                 dvr = dvrForm.save(commit=False)
                 dvr.asset = asset
                 dvr.save()
+                messages.success(request,'Created DVR Asset!')
                 return redirect('assets:dashboard')
 
         elif asset_type.slug == 'qr_scanner':
@@ -116,6 +124,7 @@ def createAsset(request):
                 qrscanner = qrscannerForm.save(commit=False)
                 qrscanner.asset = asset
                 qrscanner.save()
+                messages.success(request,'Created QR Scanner Asset!')
                 return redirect('assets:dashboard')
 
         elif asset_type.slug == 'ipc':
@@ -124,6 +133,7 @@ def createAsset(request):
                 ipc = ipcForm.save(commit=False)
                 ipc.asset = asset
                 ipc.save()
+                messages.success(request,'Created IPC Asset!')
                 return redirect('assets:dashboard')
 
         elif asset_type.slug == 'lcb':
@@ -132,6 +142,7 @@ def createAsset(request):
                 lcb = lcbForm.save(commit=False)
                 lcb.asset = asset
                 lcb.save()
+                messages.success(request,'Created LCB Asset!')
                 return redirect('assets:dashboard')
         
         elif asset_type.slug == 'distrispot':
@@ -140,6 +151,7 @@ def createAsset(request):
                 distrispot = distrispotForm.save(commit=False)
                 distrispot.asset = asset
                 distrispot.save()
+                messages.success(request,'Created Distrispot Asset!')
                 return redirect('assets:dashboard')
         
         
@@ -175,6 +187,7 @@ def createCustomer(request):
         form = CustomerForm(request.POST)
         if form.is_valid():
              form.save()
+             messages.success(request,'Customer Created!')
              return redirect('assets:dashboard')
     
     context = {'form':form,'breadcrumbs':breadcrumbs}
@@ -222,6 +235,7 @@ def updateCustomer(request,pk):
         form = CustomerForm(request.POST,instance=customer)   
         if form.is_valid():           
              form.save()
+             messages.success(request,'Customer Updated!')
              return redirect('overview:customers')
     context={
         'form':form,       
@@ -246,6 +260,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                  form.save()
                  assetForm.save()
+                 messages.success(request,'Camera Updated!')
                  return redirect('overview:cameras')
             
     if type == 'dvr':
@@ -261,9 +276,9 @@ def update(request,pk,type):
             assetForm = AssetForm(request.POST,instance=asset)
             form = DvrForm(request.POST,instance=dvr)
             if form.is_valid() and assetForm.is_valid():
-             
                 form.save()
                 assetForm.save()
+                messages.success(request,'DVR Updated!')
                 return redirect('overview:dvrs')
     
     if type == 'ipc':
@@ -279,9 +294,9 @@ def update(request,pk,type):
             assetForm = AssetForm(request.POST,instance=asset)
             form = IpcForm(request.POST,instance=ipc)   
             if form.is_valid() and assetForm.is_valid():
-                
                 form.save()
                 assetForm.save()
+                messages.success(request,'IPC Updated!')
                 return redirect('overview:ipcs')
     
     if type == 'lcb':
@@ -297,9 +312,9 @@ def update(request,pk,type):
             assetForm = AssetForm(request.POST,instance=asset)
             form = LcbForm(request.POST,instance=lcb)   
             if form.is_valid() and assetForm.is_valid():
-                
                 form.save()
                 assetForm.save()
+                messages.success(request,'LCB Updated!')
                 return redirect('overview:lcbs')
 
     if type == 'lcd':
@@ -315,9 +330,9 @@ def update(request,pk,type):
             assetForm = AssetForm(request.POST,instance=asset)
             form = LcdForm(request.POST,instance=lcd)   
             if form.is_valid() and assetForm.is_valid():
-                
                 form.save()
                 assetForm.save()
+                messages.success(request,'LCD Updated!')
                 return redirect('overview:lcds')
             
     if type == 'psu':
@@ -335,6 +350,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'Power Supply Updated!')
                 return redirect('overview:psus')
 
     if type == 'qrscanner':
@@ -352,6 +368,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'QR Scanner Updated!')
                 return redirect('overview:qrscanners')
 
     if type == 'rfid':
@@ -369,6 +386,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'RFID Updated!')
                 return redirect('overview:rfids')
             
     if type == 'router':
@@ -386,6 +404,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'Router Updated!')
                 return redirect('overview:routers')
 
     if type == 'switch':
@@ -403,6 +422,7 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'Switch Updated!')
                 return redirect('overview:switches')
             
     elif type == 'distrispot':
@@ -420,7 +440,9 @@ def update(request,pk,type):
             if form.is_valid() and assetForm.is_valid():    
                 form.save()
                 assetForm.save()
+                messages.success(request,'Distrispot Updated!')
                 return redirect('overview:distrispots')
+    
     breadcrumbs = [{
         'name': breadcrumb_plural,
         'route': breadcrumb_route
@@ -444,6 +466,7 @@ def delete(request,type,pk):
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
             Asset.objects.filter(id=pk).delete()
+            messages.success(request,'Deleted Asset!')
             return redirect(next)
         
     
@@ -457,6 +480,7 @@ def delete(request,type,pk):
         item = Customer.objects.get(id=pk)
         if request.method == 'POST':
             Customer.objects.filter(id=pk).delete()
+            messages.success(request,'Deleted Customer!')
             return redirect('overview:customers')
    
     context={
@@ -490,6 +514,7 @@ def sync_distrispots(request):
            city = spot['city'],
            zip_code= spot['zip_code']
         )
-       
+
+    messages.success(request,'Distrispots synchronized!') 
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

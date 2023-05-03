@@ -1,0 +1,18 @@
+{% if messages %}
+    {% for message in messages %}
+    <div id="msg" class="toast-body message text-light position-absolute bottom-0 p-3 rounded mb-4" style="z-index: 10; right: 30px;" id="message">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+    setTimeout(function() {
+        var msg = document.getElementById("msg");
+        if (msg !== null) {
+            msg.parentNode.removeChild(msg);
+        }
+    }, 5000);
+});
+
+</script>
