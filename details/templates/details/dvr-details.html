@@ -1,10 +1,16 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+{% load bootstrap_icons %}
 <div class="details-container">
     <div class="details-content">
-        <h1>Asset</h1>
+        <a class="d-flex align-items-center gap-2 w-25" href="{{request.META.HTTP_REFERER}}">{% bs_icon 'arrow-left' size='1.2em' %} <span>Go back</span> </a>
+        <div class="d-flex align-items-center justify-content-between"><h1>Asset</h1>
+            <div class="d-flex gap-3">
+                <a class="text-secondary" href="{% url 'assets:update' 'dvr' dvr.id %}">{% bs_icon 'pencil-square' size='1.7em' %}</a>
+                <a class="text-danger" href="{% url 'assets:delete' 'asset' dvr.asset.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.7em' %}</a>                 
+            </div>
+         </div>
         <div class="details-asset"> 
             
                 <div class="details-item">

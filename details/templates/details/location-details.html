@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+{% load bootstrap_icons %}
 <div class="details-container">
     <div class="details-content">
+        <a class="d-flex align-items-center gap-2 w-25" href="{{request.META.HTTP_REFERER}}">{% bs_icon 'arrow-left' size='1.2em' %} <span>Go back</span> </a>
         <h1>Location</h1>
         <div class="details-asset"> 
             

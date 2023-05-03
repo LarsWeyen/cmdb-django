@@ -1,11 +1,12 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+{% load bootstrap_icons %}
 <div class="details-container">
-    <div class="details-content distrispot-grid">
-        <div>
-            {% comment %} <h1>Asset</h1> {% endcomment %}
+    <div class="details-content distrispot-grid position-relative">
+        <a class="d-flex align-items-center gap-2 w-25 position-absolute m-2" href="{{request.META.HTTP_REFERER}}">{% bs_icon 'arrow-left' size='1.2em' %} <span>Go back</span> </a>
+
+        <div.>
             <span class="h3">Asset</span>
             <div class="details-asset"> 
                     
@@ -65,7 +66,7 @@
                     <span>{{distrispot.maintenance.date}}</span>
                 </div>
             </div>
-        </div>
+        </div.>
         <div>
             <span class="h3 mb-1">Components</span>
             <ul class="list-group rounded">
