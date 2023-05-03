@@ -251,7 +251,6 @@ def distrispot(request,pk):
     distrispot = Distrispot.objects.get(id=pk)
     asset = Asset.objects.get(id=distrispot.asset.id)
     children = Asset.objects.filter(parent=asset.id)
-    print(children)
     children_list = []
     for child in children:
         children_list.append({
