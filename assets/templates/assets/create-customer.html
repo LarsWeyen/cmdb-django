@@ -4,15 +4,17 @@
   <div class="edit-container">
     <div>
         <h2>Add New Customer</h2>
-        <form class="edit-form-container" method="POST">
+        <form class="d-flex flex-column justify-center" method="POST">
             {% csrf_token %}      
-            {% for item in form %}
-        <div class="form-group">
-          <span>{{item.label}}</span>
-          {{item}}
-        </div>
-        {% endfor %}
-        <button type="submit">Save</button>
+            <div class="edit-form-container">
+              {% for item in form %}
+              <div class="form-group">
+                <span>{{item.label}}</span>
+                {{item}}
+              </div>
+              {% endfor %}
+            </div>
+        <button class="btn btn-secondary w-25 m-auto" type="submit">Save</button>
         </form>
     </div>
   </div>

@@ -3,9 +3,10 @@
 <div class="edit-form">
   <div class="edit-container">
     <div>
-        <h2>Update {{item.asset.name}}</h2>
-        <form class="edit-form-container" method="POST">
-            {% csrf_token %}
+        <h2 class="mb-4">Update {{item.asset.name}}</h2>
+        <form class="d-flex flex-column justify-center" method="POST">
+          {% csrf_token %}
+          <div  class="edit-form-container">
             {% for field in assetForm %}
             <div class="form-group">
               <span>{{field.label}}</span>
@@ -18,7 +19,10 @@
           {{item}}
         </div>
         {% endfor %}
-        <input class="btn btn-secondary" type="submit" value="Update"></input>
+          </div>
+            
+            
+        <input class="btn btn-secondary w-25 m-auto" type="submit" value="Update"></input>
         </form>
         
     </div>

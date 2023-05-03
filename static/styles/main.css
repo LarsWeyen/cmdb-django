@@ -17,6 +17,10 @@
     height: 100vh;
 }
 
+.main-content{
+    z-index: 21;
+}
+
 .dashboard{
     padding: 1.5rem;
     background-color: #fbfbfb;
@@ -41,7 +45,7 @@
     height: 25px;
 }
 
-.add-button{
+/* .add-button{
     background-color: #47b7bd;
   border: none;
   color: white;
@@ -52,9 +56,7 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 16px;
-
-  
-}
+} */
 .button-content{
     display: flex;
   align-items: center;
@@ -313,6 +315,7 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 
 .edit-form{
     padding: 1.5rem;
+    z-index: -1;
     background-color: #fbfbfb;
     height: 93vh;
     position: relative;
@@ -370,4 +373,17 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 
 .breadcrumb{
     margin: auto !important;
+}
+
+.message{
+    background-color: #008988;
+}
+
+.add-button{
+    background-color: #12354b !important;
+    color: #F1F1E6;
+}
+
+.add-button:hover{
+    color: #009DF7 !important;
 }

@@ -3,16 +3,19 @@
 <div class="edit-form">
   <div class="edit-container">
     <div>
-        <h2>Update {{customer.name}}</h2>
-        <form class="edit-form-container" method="POST">
+        <h2 class="mb-4">Update {{customer.name}}</h2>
+        <form class="d-flex flex-column justify-center" method="POST">
             {% csrf_token %}      
-            {% for item in form %}
-        <div class="form-group">
-          <span>{{item.label}}</span>
-          {{item}}
-        </div>
-        {% endfor %}
-        <button type="submit">Update</button>
+            <div class="edit-form-container" >
+              {% for item in form %}
+              <div class="form-group">
+                <span>{{item.label}}</span>
+                {{item}}
+              </div>
+              {% endfor %}
+            </div>
+           
+        <input class="btn btn-secondary w-25 m-auto" type="submit" value="Update"></input>
         </form>
     </div>
   </div>
