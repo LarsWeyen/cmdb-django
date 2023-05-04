@@ -12,22 +12,27 @@ from django.contrib import messages
 
 def dashboard(request):
     type_names = Type.objects.all()
+     # Check if dashboard counts are already in cache
     if cache.get('dashboard-counts'):
         counts = cache.get('dashboard-counts')
     else:
+        # If not, get counts for each asset type
         counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
+        # Set counts in cache
         cache.set('dashboard-counts',counts)
     customer_count = numerize.numerize(Customer.objects.all().count()) 
-    # location_count = numerize.numerize(Location.objects.all().count()) 
+    
     context = {
         'types': type_names,
         'counts': counts,
         'customer_count':customer_count,
-        # 'location_count':location_count
     }
+
     return render(request,'assets/dashboard.html',context)
 
 def createAsset(request):
+    # First instantiates a form for each type of asset, 
+    # so that it can be displayed for the appropriate asset type on the frontend.
     cameraForm = CameraForm(prefix="cameraForm")
     lcdForm = LcdForm(prefix="lcdForm")
     psuForm= PsuForm(prefix="psuForm")
@@ -41,28 +46,30 @@ def createAsset(request):
     distrispotForm= DistrispotForm(prefix="distrispotForm")
     form = AssetForm()
     type_names = Type.objects.all()
-    # locations = Location.objects.all()
     customers = Customer.objects.all()
     parent_assets = Asset.objects.all()
 
     breadcrumbs = [{
         'name': 'New Asset',
         'route': "overview:assets"
-    },
-    ]
+    }]
 
+    # If the request method is POST, then a new asset has been submitted
     if request.method == 'POST':
+        # Get the asset type of the submitted asset
         asset_type = Type.objects.get(name=request.POST.get('type'))
         asset = Asset.objects.create(
             type=asset_type,
             name=request.POST.get('name'),
-            # location = Location.objects.get(id=request.POST.get('location')),
             customer = Customer.objects.get(id=request.POST.get('customer')),
             parent = None if request.POST.get('parent') == 'null' else Asset.objects.get(id=request.POST.get('parent'))
         )
+        # Check what the submitted asset type is
         if asset_type.slug == "lcd":        
+            # Populate the form with the submitted data
             lcdForm = LcdForm(request.POST,prefix="lcdForm")
             if lcdForm.is_valid():
+                # Add the newly created asset to the LCB object
                 lcd = lcdForm.save(commit=False)
                 lcd.asset = asset
                 lcd.save()
@@ -158,12 +165,9 @@ def createAsset(request):
                 distrispot.save()
                 messages.success(request,'Created Distrispot Asset!')
                 return redirect('assets:dashboard')
-        
-        
 
     context = {'form':form,
                'types': type_names,
-            #    'locations':locations,
                'customers': customers,
                'parents':parent_assets,
                'routerForm':routerForm,
@@ -186,8 +190,8 @@ def createCustomer(request):
     breadcrumbs = [{
         'name': 'New Customer',
         'route': "overview:customers"
-    },
-    ]
+    }]
+
     if request.method =='POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
@@ -197,32 +201,6 @@ def createCustomer(request):
     
     context = {'form':form,'breadcrumbs':breadcrumbs}
     return render(request,'assets/create-customer.html',context)
-
-# def createLocation(request):
-#     form = LocationForm()
-
-#     if request.method =='POST':
-#         form = LocationForm(request.POST)
-#         if form.is_valid():
-#              form.save()
-#              return redirect('assets:dashboard')
-    
-#     context = {'form':form}
-#     return render(request,'assets/create-location.html',context)
-
-# def updateLocation(request,pk):
-#     location = Location.objects.get(id=pk)
-#     form = LocationForm(instance=location)
-#     if request.method =='POST':
-#         form = LocationForm(request.POST,instance=location)   
-#         if form.is_valid():           
-#              form.save()
-#              return redirect('overview:locations')
-#     context={
-#         'form':form,       
-#         'location':location
-#     }
-#     return render(request,'assets/update-location.html',context)
 
 def updateCustomer(request,pk):
     customer = Customer.objects.get(id=pk)
@@ -234,8 +212,8 @@ def updateCustomer(request,pk):
     {
         'name': customer.name,
         'route': 'details:customer'
-    }
-    ]
+    }]
+
     if request.method =='POST':
         form = CustomerForm(request.POST,instance=customer)   
         if form.is_valid():           
@@ -257,11 +235,13 @@ def update(request,pk,type):
         breadcrumb_plural = 'Cameras'
         breadcrumb_route = 'overview:cameras'
         asset_name = asset.name
+        # Fills the form with the filtered object
         form = CameraForm(instance=camera)
         item = camera
         if request.method =='POST':
             assetForm = AssetForm(request.POST,instance=asset)
             form = CameraForm(request.POST,instance=camera)   
+            # If the Camera and asset forms are valid they will be saved
             if form.is_valid() and assetForm.is_valid():    
                  form.save()
                  assetForm.save()
@@ -455,8 +435,8 @@ def update(request,pk,type):
     {
         'name': asset_name,
         'route': '_'
-    }
-    ]
+    }]
+
     context={
         'form':form,
         'assetForm':assetForm,
@@ -466,21 +446,22 @@ def update(request,pk,type):
     return render(request,'assets/update.html',context)
 
 def delete(request,type,pk):
+    # Gets the page from which the delete button has been pressed
     next = request.POST.get('next', '/')
+    app = str(request.GET['next']).split('/')[1]
+    res = str(request.GET['next']).split('/')[2]
     if type == 'asset':
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
             Asset.objects.filter(id=pk).delete()
             messages.success(request,'Deleted Asset!')
-            return redirect(next)
+            # If the button has been pressed on a details page it goes back to the overview of that asset type
+            if "details" in app:
+                res += 'es' if res == 'switch' else 's'
+                return redirect(f'overview:{res}')
+            else:
+                return redirect(next)
         
-    
-    # elif type == 'location':
-    #     item = Location.objects.get(id=pk)
-    #     if request.method == 'POST':
-    #         Location.objects.filter(id=pk).delete()
-    #         return redirect('overview:locations')
-    
     elif type == 'customer':
         item = Customer.objects.get(id=pk)
         if request.method == 'POST':
@@ -503,8 +484,11 @@ def sync_distrispots(request):
     response.raise_for_status()
     spots = response.json()
     for spot in spots:
+       # Extracts the id out of SPT-0001
        id  = ''.join(x for x in spot["id"] if x.isdigit())
-       asset, asset_created =Asset.objects.update_or_create(
+
+       # Checks if the incomming spots are already in the database else it creates them
+       asset, asset_created =Asset.objects.get_or_create(
            name = spot['name'],
            type= Type.objects.get(slug='distrispot'),
            customer = Customer.objects.get(id=1)

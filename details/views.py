@@ -11,8 +11,8 @@ def customer(request,pk):
     {
         'name': customer.name,
         'route': 'details:customer'
-    }
-    ]
+    }]
+
     context={
         'customer':customer,
         'breadcrumbs':breadcrumbs
@@ -32,8 +32,7 @@ def camera(request,pk):
     {
         'name': asset.name,
         'route': 'details:camera'
-    }
-    ]
+    }]
 
     context={
         'camera':camera,
@@ -64,8 +63,7 @@ def dvr(request,pk):
     {
         'name': asset.name,
         'route': 'details:dvr'
-    }
-    ]
+    }]
 
     context={
         'dvr':dvr,
@@ -86,8 +84,7 @@ def ipc(request,pk):
     {
         'name': asset.name,
         'route': 'details:ipc'
-    }
-    ]
+    }]
 
     context={
         'ipc':ipc,
@@ -108,8 +105,8 @@ def lcb(request,pk):
     {
         'name': asset.name,
         'route': 'details:lcb'
-    }
-    ]
+    }]
+
 
     context={
         'lcb':lcb,
@@ -130,8 +127,7 @@ def lcd(request,pk):
     {
         'name': asset.name,
         'route': 'details:lcd'
-    }
-    ]
+    }]
 
     context={
         'lcd':lcd,
@@ -151,8 +147,8 @@ def psu(request,pk):
     {
         'name': asset.name,
         'route': 'details:psu'
-    }
-    ]
+    }]
+
     context={
         'psu':psu,
         'asset':asset,
@@ -171,8 +167,8 @@ def qrscanner(request,pk):
     {
         'name': asset.name,
         'route': 'details:qrscanners'
-    }
-    ]
+    }]
+
     context={
         'qrscanner':qrscanner,
         'asset':asset,
@@ -192,8 +188,7 @@ def rfid(request,pk):
     {
         'name': asset.name,
         'route': 'details:rfid'
-    }
-    ]
+    }]
 
     context={
         'rfid':rfid,
@@ -214,8 +209,7 @@ def router(request,pk):
     {
         'name': asset.name,
         'route': 'details:router'
-    }
-    ]
+    }]
 
     context={
         'router':router,
@@ -236,8 +230,7 @@ def switch(request,pk):
     {
         'name': asset.name,
         'route': 'details:switch'
-    }
-    ]
+    }]
 
     context={
         'switch':switch,
@@ -266,8 +259,7 @@ def distrispot(request,pk):
     {
         'name': asset.name,
         'route': 'details:distrispot'
-    }
-    ]
+    }]
     
     context={
         'distrispot':distrispot,

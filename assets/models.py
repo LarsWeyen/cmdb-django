@@ -12,17 +12,6 @@ class Type(models.Model):
         return self.name
 
 
-# class Location(models.Model):
-#     name = models.CharField(max_length=150)
-#     address = models.CharField(max_length=150)
-#     country = models.CharField(max_length=150)
-#     city = models.CharField(max_length=150)
-#     zipcode = models.CharField(max_length=10)
-
-#     def __str__(self) -> str:
-#         return self.name
-
-
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     # location = models.ForeignKey(Location, on_delete=models.PROTECT)
@@ -218,13 +207,6 @@ class Maintenance(models.Model):
     
     def sid(self):
         return "MTN-"+str(f'{self.id:04}')
-
-# class DistrispotType(models.Model):
-#     name = models.CharField(max_length=50)
-#     slug = models.SlugField(max_length=50)
-    
-#     def __str__(self) -> str:
-#         return self.name
 
 class Distrispot(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='distrispot')
