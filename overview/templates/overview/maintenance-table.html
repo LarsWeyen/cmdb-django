@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load bootstrap_icons %}
+<div class="table-container">
+    <div class="table-content">
+        <h2>Maintenances</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Technician</th>
+                <th scope="col">Distrispot</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for maintenance in maintenances %}
+                <tr>
+                    <th scope="row"><a href="">{{maintenance.sid}}</a></th>
+                    <td>{{maintenance.technician}}</td>
+                    <td>{{maintenance.distrispot}}</td>
+                    <td>{{maintenance.date}}</td>
+                    <td>
+                        <a class="text-secondary" class="text-secondary" href="">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        
+                    </td>
+                    <td>
+                      <a class="text-danger" class="text-danger" href="{% url 'assets:delete' 'maintenance' maintenance.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+{% endblock %}

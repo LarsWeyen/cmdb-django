@@ -4,8 +4,8 @@ from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
 from django.urls import reverse
-from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm
-from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot
+from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm, MaintenanceForm
+from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,Maintenance
 from numerize import numerize
 from .utilities import OAuth2Adapter
 from django.contrib import messages
@@ -468,7 +468,13 @@ def delete(request,type,pk):
             Customer.objects.filter(id=pk).delete()
             messages.success(request,'Deleted Customer!')
             return redirect('overview:customers')
-   
+    elif type == 'maintenance':
+        item = Maintenance.objects.get(id=pk)
+        if request.method == 'POST':
+            Maintenance.objects.filter(id=pk).delete()
+            messages.success(request,'Deleted Maintenance!')
+            return redirect(next)
+
     context={
         'item':item
     }
@@ -507,3 +513,22 @@ def sync_distrispots(request):
     messages.success(request,'Distrispots synchronized!') 
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def createMaintenance(request):
+    form = MaintenanceForm()
+    breadcrumbs = [{
+        'name': 'New Maintenance',
+        'route': "overview:maintenances"
+    }]
+    if request.method == 'POST':
+        form = MaintenanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Maintenance Created!')
+            return redirect('assets:dashboard')
+        
+    context = {
+        'form':form,
+        'breadcrumbs':breadcrumbs
+    }
+    return render(request,'assets/create-maintenance.html',context)

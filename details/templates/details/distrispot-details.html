@@ -62,8 +62,12 @@
                     <span>{{distrispot.type}}</span>
                 </div>
                 <div class="details-item">
-                    <p>Last Maintenance</p>
-                    <span>{{distrispot.maintenance.date}}</span>
+                    <p>Maintenances</p>
+                    {% if distrispot.maintenances.all %}
+                    <a href="{% url 'overview:spot-maintenance' pk=distrispot.id %}"> <span>All Maintenances </span> {% bs_icon 'chevron-right' size='1em' %}</a>
+                    {% else %}
+                    <span>None</span>
+                    {% endif %}
                 </div>
             </div>
         </div.>

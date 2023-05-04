@@ -16,6 +16,7 @@ urlpatterns = [
     path('psus/',views.powerSupplyTable,name='psus'),
     path('lcbs/',views.lcbTable,name='lcbs'),
     path('assets/',views.assetsTable,name='assets'),
-    # path('locations/',views.locationsTable,name='locations'),
     path('distrispots/',views.distrispotsTable,name='distrispots'),
+    path('maintenances/',views.maintenancesTable,name='maintenances'),
+    path('maintenance/<str:pk>',views.maintenanceSpotTable,name="spot-maintenance")
 ]

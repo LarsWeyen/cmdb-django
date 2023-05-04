@@ -1,6 +1,6 @@
 from django import forms
-from django.forms import TextInput,CheckboxInput
-from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot
+from django.forms import TextInput,CheckboxInput, widgets
+from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot, Maintenance
 
 from django_select2 import forms as s2forms
 
@@ -81,16 +81,6 @@ class LcdForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
-# class LocationForm(forms.ModelForm):
-#     class Meta:
-#         model = Location
-#         fields = '__all__'
-        
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         for field in self.fields.values():
-#             field.widget.attrs['class'] = 'form-field'
-
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
@@ -168,3 +158,16 @@ class DistrispotForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
+class MaintenanceForm(forms.ModelForm):
+    class Meta:
+        model = Maintenance
+        fields = '__all__'
+        widgets = {
+            'date': widgets.DateInput(attrs={'type': 'date'})
+        }
+        
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'

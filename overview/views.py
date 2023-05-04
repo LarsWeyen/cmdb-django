@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.cache import cache
-from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot
+from details.forms import MaintenanceForm
+from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot, Maintenance
 
 def cameraTable(request):
     cameras = Camera.objects.all()
@@ -156,12 +157,6 @@ def assetsTable(request):
 
     return render(request,'overview/assets-table.html',context)
 
-# def locationsTable(request):
-#     locations= Location.objects.all()
-#     context = {'locations':locations}
-
-#     return render(request,'overview/locations-table.html',context)
-
 def distrispotsTable(request):
     distrispots= Distrispot.objects.all()
     breadcrumbs = [{
@@ -172,3 +167,34 @@ def distrispotsTable(request):
     context = {'distrispots':distrispots,'breadcrumbs':breadcrumbs}
 
     return render(request,'overview/distrispot-table.html',context)
+
+def maintenancesTable(request):
+    maintenances = Maintenance.objects.all()
+    breadcrumbs = [{
+        'name': 'Maintenances',
+        'route': "overview:maintenanaces"
+    }]
+    context = {
+        'maintenances':maintenances,
+        'breadcrumbs':breadcrumbs
+    }
+    return render(request,'overview/maintenance-table.html',context)
+
+def maintenanceSpotTable(request,pk):
+    maintenances = Maintenance.objects.filter(distrispot_id=pk)
+    distrispot_name = Distrispot.objects.get(id=pk).asset.name
+
+    breadcrumbs = [{
+        'name': 'Maintenances',
+        'route': "overview:maintenances"
+    },
+    {
+        'name': distrispot_name,
+        'route':'maintenance'
+    }]
+
+    context = {
+        'maintenances':maintenances,
+        'breadcrumbs':breadcrumbs
+               }
+    return render(request,'overview/maintenance-table.html',context)

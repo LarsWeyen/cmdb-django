@@ -1,0 +1,29 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="edit-form">
+  <div class="edit-container">
+    <div>
+        <h2>New Maintenance</h2>
+        <form class="w-50 text-align-end d-flex flex-column align-items-end gap-3" method="POST">
+            {% csrf_token %}      
+            <div class="d-flex flex-column gap-3">
+              {% for item in form %}
+              <div class="form-group">
+                <span>{{item.label}}</span>
+                {{item}}
+              </div>
+              {% endfor %}
+            </div>
+  
+        <button class="btn btn-secondary w-25" type="submit">Save</button>
+        </form>
+        {% if form.errors %}
+        <div class="alert alert-danger d-flex">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
