@@ -197,24 +197,12 @@ class IPC(Resources):
     def sid(self):
         return "IPC-"+str(f'{self.id:04}')
     
-class Maintenance(models.Model):
-    description = models.TextField()
-    date=models.DateField()
-    technician = models.ForeignKey(User,on_delete=models.CASCADE)
-
-    def __str__(self) -> str:
-        return self.description
-    
-    def sid(self):
-        return "MTN-"+str(f'{self.id:04}')
-
 class Distrispot(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='distrispot')
     status_choices = (('ONLINE','Online'),('OFFLINE','Offline'))
     status=models.CharField(choices=status_choices,default="ONLINE",max_length=20)
     slots_num = models.IntegerField()
     type = models.CharField(max_length=150)
-    maintenance = models.ForeignKey(Maintenance,on_delete=models.SET_NULL,blank=True,null=True)
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
     zip_code = models.CharField(max_length=10)
@@ -225,6 +213,17 @@ class Distrispot(models.Model):
     def sid(self):
         return 'SPT'+str(f'{self.id:06}')
     
+class Maintenance(models.Model):
+    distrispot = models.ForeignKey(Distrispot,on_delete=models.SET_NULL,blank=True,null=True, related_name='maintenances')
+    description = models.TextField()
+    date=models.DateField()
+    technician = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.description
+    
+    def sid(self):
+        return "MTN-"+str(f'{self.id:04}')
 
 class PowerSupply(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='psu')
