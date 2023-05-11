@@ -354,7 +354,17 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 .details-asset{
     margin-bottom: 1.2rem;
 }
-
+.details-maintenance{
+    padding: 15px;
+    border: solid 1px rgb(168, 168, 168,0.4);
+    border-radius: 8px;
+}
+.maintenance-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    row-gap: 5px;
+}
 .details-item{
     display: flex;
     justify-content: space-between;

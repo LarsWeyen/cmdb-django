@@ -1,0 +1,25 @@
+{% extends 'main.html' %} {% load static %} {% block content %}{% load bootstrap_icons %}
+
+<div class="edit-form">
+  <div class="edit-container">
+    <div>
+      <a class="d-flex align-items-center gap-2 w-25" href="{{request.META.HTTP_REFERER}}">{% bs_icon 'arrow-left' size='1.2em' %} <span>Go back</span> </a>
+        <h2 class="mb-4">Update {{maintenance.sid}}</h2>
+        <form class="d-flex flex-column justify-center" method="POST">
+            {% csrf_token %}      
+            <div class="d-flex flex-column gap-2 w-75" >
+              {% for item in form %}
+              <div class="form-group">
+                <span>{{item.label}}</span>
+                {{item}}
+              </div>
+              {% endfor %}
+            </div>
+           
+        <input class="btn btn-secondary w-25 m-auto mt-2" type="submit" value="Update"></input>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

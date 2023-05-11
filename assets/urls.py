@@ -11,7 +11,8 @@ urlpatterns = [
     path('update-customer/<str:pk>/',views.updateCustomer,name='update-customer'),
     path('delete/<str:type>/<str:pk>/',views.delete,name="delete"),
     path('distrispots/sync',views.sync_distrispots,name="sync-distrispots"),
-    path('create-maintenance/',views.createMaintenance,name='create-maintenance')
+    path('create-maintenance/',views.createMaintenance,name='create-maintenance'),
+    path('update-maintenance/<str:pk>/',views.updateMaintenance,name='update-maintenance')
 ]
 
 

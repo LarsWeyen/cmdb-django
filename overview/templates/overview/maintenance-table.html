@@ -18,12 +18,12 @@
             <tbody>
                 {% for maintenance in maintenances %}
                 <tr>
-                    <th scope="row"><a href="">{{maintenance.sid}}</a></th>
+                    <th scope="row"><a href="{% url 'details:maintenance' pk=maintenance.id %}">{{maintenance.sid}}</a></th>
                     <td>{{maintenance.technician}}</td>
                     <td>{{maintenance.distrispot}}</td>
                     <td>{{maintenance.date}}</td>
                     <td>
-                        <a class="text-secondary" class="text-secondary" href="">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+                        <a class="text-secondary" class="text-secondary" href="{% url 'assets:update-maintenance' pk=maintenance.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
                         
                     </td>
                     <td>

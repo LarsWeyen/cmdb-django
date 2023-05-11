@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load bootstrap_icons %}
+<div class="details-container">
+    <div class="details-content">
+        <a class="d-flex align-items-center gap-2 w-25" href="{{request.META.HTTP_REFERER}}">{% bs_icon 'arrow-left' size='1.2em' %} <span>Go back</span> </a>
+        <div class="d-flex align-items-center justify-content-between"><h1>Maintenance</h1>
+           <div class="d-flex gap-3">
+            <a class="text-secondary" href="{% url 'assets:update-maintenance' pk=maintenance.id%}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
+            <a class="text-danger" href="{% url 'assets:delete' 'maintenance' maintenance.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                
+           </div>
+        </div>
+        <div class="details-maintenance"> 
+            <div class="maintenance-grid">
+                <div class="details-item">
+                    <p>Maintenance ID</p>
+                    <span>{{maintenance.sid}}</span>
+                </div>
+                <div class="details-item">
+                    <p>Distrispot Name</p>
+                   <span>{{maintenance.distrispot}}</span> 
+                </div>
+                <div class="details-item">
+                    <p>Tenchnician</p>
+                    <span>{{maintenance.technician}}</span>
+                </div>       
+                <div class="details-item">
+                    <p>Date</p>
+                    <span>{{maintenance.date}}</span>
+                </div>    
+            </div>
+            <div class="d-flex flex-column">
+                <p>Description</p>
+                <p>{{maintenance.description}}</p>
+            </div>    
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot
+from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot, Maintenance
 
 def customer(request,pk):
     customer = Customer.objects.get(id=pk)
@@ -269,3 +269,22 @@ def distrispot(request,pk):
     }
 
     return render(request, 'details/distrispot-details.html',context)
+
+def maintenance(request,pk):
+    maintenance = Maintenance.objects.get(id=pk)
+
+    breadcrumbs = [{
+        'name': 'Maintenances',
+        'route': "overview:maintenances"
+    },
+    {
+        'name': maintenance.sid,
+        'route': 'details:switch'
+    }]
+
+    context={
+        'maintenance':maintenance,
+        'breadcrumbs':breadcrumbs
+    }
+
+    return render(request, 'details/maintenance-details.html',context)

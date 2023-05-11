@@ -219,10 +219,9 @@ class Maintenance(models.Model):
     date=models.DateField()
     technician = models.ForeignKey(User,on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
-        return self.description
-    
     def sid(self):
+        return "MTN-"+str(f'{self.id:04}')
+    def __str__(self) -> str:
         return "MTN-"+str(f'{self.id:04}')
 
 class PowerSupply(Resources):

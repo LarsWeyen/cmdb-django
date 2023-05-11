@@ -15,4 +15,5 @@ urlpatterns = [
     path('router/<str:pk>/',views.router,name='router'),
     path('switch/<str:pk>/',views.switch,name='switch'),
     path('distrispot/<str:pk>/',views.distrispot,name='distrispot'),
+    path('maintenance/<str:pk>/',views.maintenance,name='maintenance'),
 ]

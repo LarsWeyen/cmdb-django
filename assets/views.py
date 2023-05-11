@@ -227,6 +227,31 @@ def updateCustomer(request,pk):
     }
     return render(request,'assets/update-customer.html',context)
 
+def updateMaintenance(request,pk):
+    maintenance = Maintenance.objects.get(id=pk)
+    form = MaintenanceForm(instance=maintenance)
+    breadcrumbs = [{
+        'name': 'Maintenances',
+        'route': "overview:maintenances"
+    },
+    {
+        'name': maintenance.sid,
+        'route': 'details:maintenance'
+    }]
+
+    if request.method =='POST':
+        form = MaintenanceForm(request.POST,instance=maintenance)   
+        if form.is_valid():           
+             form.save()
+             messages.success(request,'Maintenance Updated!')
+             return redirect('overview:maintenances')
+    context={
+        'form':form,       
+        'maintenance':maintenance,
+        'breadcrumbs':breadcrumbs
+    }
+    return render(request,'assets/update-maintenance.html',context)
+
 def update(request,pk,type):
     if type == 'camera':
         camera = Camera.objects.get(id=pk)
@@ -266,7 +291,7 @@ def update(request,pk,type):
                 messages.success(request,'DVR Updated!')
                 return redirect('overview:dvrs')
     
-    if type == 'ipc':
+    elif type == 'ipc':
         ipc = IPC.objects.get(id=pk)
         asset = Asset.objects.get(id=ipc.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -284,7 +309,7 @@ def update(request,pk,type):
                 messages.success(request,'IPC Updated!')
                 return redirect('overview:ipcs')
     
-    if type == 'lcb':
+    elif type == 'lcb':
         lcb = LCB.objects.get(id=pk)
         asset = Asset.objects.get(id=lcb.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -302,7 +327,7 @@ def update(request,pk,type):
                 messages.success(request,'LCB Updated!')
                 return redirect('overview:lcbs')
 
-    if type == 'lcd':
+    elif type == 'lcd':
         lcd = LCD.objects.get(id=pk)
         asset = Asset.objects.get(id=lcd.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -320,7 +345,7 @@ def update(request,pk,type):
                 messages.success(request,'LCD Updated!')
                 return redirect('overview:lcds')
             
-    if type == 'psu':
+    elif type == 'psu':
         psu = PowerSupply.objects.get(id=pk)
         asset = Asset.objects.get(id=psu.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -338,7 +363,7 @@ def update(request,pk,type):
                 messages.success(request,'Power Supply Updated!')
                 return redirect('overview:psus')
 
-    if type == 'qrscanner':
+    elif type == 'qrscanner':
         qrscanner = QRScanner.objects.get(id=pk)
         asset = Asset.objects.get(id=qrscanner.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -356,7 +381,7 @@ def update(request,pk,type):
                 messages.success(request,'QR Scanner Updated!')
                 return redirect('overview:qrscanners')
 
-    if type == 'rfid':
+    elif type == 'rfid':
         rfid = RFID.objects.get(id=pk)
         asset = Asset.objects.get(id=rfid.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -374,7 +399,7 @@ def update(request,pk,type):
                 messages.success(request,'RFID Updated!')
                 return redirect('overview:rfids')
             
-    if type == 'router':
+    elif type == 'router':
         router = Router.objects.get(id=pk)
         asset = Asset.objects.get(id=router.asset.id)
         assetForm = AssetForm(instance=asset)
@@ -392,7 +417,7 @@ def update(request,pk,type):
                 messages.success(request,'Router Updated!')
                 return redirect('overview:routers')
 
-    if type == 'switch':
+    elif type == 'switch':
         switch = Switch.objects.get(id=pk)
         asset = Asset.objects.get(id=switch.asset.id)
         assetForm = AssetForm(instance=asset)
