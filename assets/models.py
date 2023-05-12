@@ -1,7 +1,7 @@
 from django.db import models
 from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
-
+import os
 from assets.managers import AssetChildManager, AssetManager
 
 class Type(models.Model):
@@ -152,8 +152,8 @@ class QRScanner(Resources):
 
 class RFID(Resources):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE,blank=True,null=True,related_name='rfid')
-    frequency = models.CharField(max_length=10)
-    voltage = models.CharField(max_length=10)
+    frequency = models.CharField(max_length=25)
+    voltage = models.CharField(max_length=25)
 
     def __str__(self) -> str:
         return self.asset.name
@@ -235,3 +235,13 @@ class PowerSupply(Resources):
     
     def sid(self):
         return "PSU-"+str(f'{self.id:04}')
+    
+class Document(models.Model):
+    document = models.FileField(upload_to='media/')
+    parent = models.ForeignKey(Asset, on_delete=models.SET_NULL, blank=True, null=True)
+
+    def type(self):
+        return str(self.document).split('.',1)[1]
+    
+    def filename(self):
+        return os.path.basename(self.document.name).split('.',1)[0]

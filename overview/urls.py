@@ -18,5 +18,7 @@ urlpatterns = [
     path('assets/',views.assetsTable,name='assets'),
     path('distrispots/',views.distrispotsTable,name='distrispots'),
     path('maintenances/',views.maintenancesTable,name='maintenances'),
-    path('maintenance/<str:pk>',views.maintenanceSpotTable,name="spot-maintenance")
+    path('maintenance/<str:pk>',views.maintenanceSpotTable,name="spot-maintenance"),
+    path('documents/',views.documentsTable,name="documents"),
+    path('download/<int:id>/', views.download, name='download'),
 ]

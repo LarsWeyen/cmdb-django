@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.core.cache import cache
-from details.forms import MaintenanceForm
-from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot, Maintenance
+from assets.models import Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC,Distrispot, Maintenance, Document
+
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 def cameraTable(request):
     cameras = Camera.objects.all()
@@ -198,3 +200,15 @@ def maintenanceSpotTable(request,pk):
         'breadcrumbs':breadcrumbs
                }
     return render(request,'overview/maintenance-table.html',context)
+
+def documentsTable(request):
+    document = Document.objects.all()
+
+    context={'documents':document}
+    return render(request,'overview/document-table.html',context)
+
+def download(request, id):
+    document = get_object_or_404(Document, pk=id)
+    response = HttpResponse(document.document, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{document.document.name}"'
+    return response

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import TextInput,CheckboxInput, widgets
-from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot, Maintenance
+from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, RFID, Router, Switch, Customer, Distrispot, Maintenance, Document
 
 from django_select2 import forms as s2forms
 
@@ -167,6 +167,19 @@ class MaintenanceForm(forms.ModelForm):
         }
         
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = '__all__'
+        widgets = {
+            'asset': ParentWidget
+        }
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():

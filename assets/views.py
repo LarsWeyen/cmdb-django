@@ -3,9 +3,11 @@ from django.db.models import Count
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
+import os
+from django.core.files.storage import FileSystemStorage,default_storage
 from django.urls import reverse
-from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm, MaintenanceForm
-from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,Maintenance
+from .forms import AssetForm, CameraForm, DvrForm, IpcForm, LcbForm, LcdForm, PsuForm, QRScannerForm, RfidForm, RouterForm, SwitchForm, CustomerForm, DistrispotForm, MaintenanceForm, DocumentForm
+from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, PowerSupply, RFID, DVR, QRScanner,IPC, Distrispot,Maintenance,Document
 from numerize import numerize
 from .utilities import OAuth2Adapter
 from django.contrib import messages
@@ -498,6 +500,13 @@ def delete(request,type,pk):
         if request.method == 'POST':
             Maintenance.objects.filter(id=pk).delete()
             messages.success(request,'Deleted Maintenance!')
+            return redirect('overview:maintenances')
+    elif type=='document':
+        item = Document.objects.get(id=pk)
+        if request.method == 'POST':
+            Document.objects.filter(id=pk).delete()
+            os.remove('media/'+os.path.basename(item.document.name))
+            messages.success(request,'Deleted Document!')
             return redirect(next)
 
     context={
@@ -557,3 +566,15 @@ def createMaintenance(request):
         'breadcrumbs':breadcrumbs
     }
     return render(request,'assets/create-maintenance.html',context)
+
+def uploadDocument(request):
+    form = DocumentForm()
+    if request.method == "POST":
+        form = DocumentForm(request.POST, request.FILES)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'File Uploaded!')
+            return redirect("overview:documents")
+    context = {'form':form}
+    return render(request,'assets/upload-document.html',context)

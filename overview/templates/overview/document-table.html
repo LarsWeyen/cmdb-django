@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load bootstrap_icons %}
+<div class="table-container">
+    <div class="table-content">
+        <h2>Documents</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Part of</th>
+                <th></th>
+                <th></th>
+              </tr>
+            <thead>
+            <tbody>
+                {% for document in documents %}
+                <tr>
+                  <td><a href="{% url 'overview:download' id=document.id%}">{% bs_icon 'download' size='1.5em' %}</a></td>
+                    <th>{{document.id}}</th>
+                    <td>{{document.filename}} {% if document.type == 'docx' %}<span class="word">{% bs_icon 'filetype-docx' size='1.5em' %}</span>
+                      {% elif document.type == 'pdf' %}<span class="pdf">{% bs_icon 'filetype-pdf' size='1.5em' %}</span>
+                      {% endif %}</td>
+                    <td>{{document.parent}} 
+                      </td>
+                    
+                    <td>
+                        <a class="text-danger" href="{% url 'assets:delete' type='document' pk=document.id %}?next={{ request.path|urlencode }}">{% bs_icon 'trash3' size='1.5em' %}</a>
+                    </td>
+                    <td>
+                      
+                    </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          <table/>
+    </div>
+</div>
+
+
+{% endblock %}

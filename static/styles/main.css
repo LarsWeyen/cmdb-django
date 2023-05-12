@@ -397,3 +397,11 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 .add-button:hover{
     color: #009DF7 !important;
 }
+
+.word{
+    color:#255499
+}
+
+.pdf{
+    color: #b30b00;
+}
