@@ -14,6 +14,7 @@ urlpatterns = [
     path('create-maintenance/',views.createMaintenance,name='create-maintenance'),
     path('update-maintenance/<str:pk>/',views.updateMaintenance,name='update-maintenance'),
     path('upload-document/',views.uploadDocument,name='upload-document'),
+    path('open-document/<str:pk>/',views.openDoc,name='open-document'),
 ]
 
 

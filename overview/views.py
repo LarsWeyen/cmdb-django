@@ -209,6 +209,11 @@ def documentsTable(request):
 
 def download(request, id):
     document = get_object_or_404(Document, pk=id)
-    response = HttpResponse(document.document, content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="{document.document.name}"'
-    return response
+    if document.extension() == 'pdf':
+        response = HttpResponse(document.document, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="{document.document.name}"'
+        return response
+    else:
+        response = HttpResponse(document.document, content_type='application/ms-word')
+        response['Content-Disposition'] = f'attachment; filename="{document.document.name}"'
+        return response

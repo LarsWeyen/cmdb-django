@@ -239,8 +239,8 @@ class PowerSupply(Resources):
 class Document(models.Model):
     document = models.FileField(upload_to='media/')
     parent = models.ForeignKey(Asset, on_delete=models.SET_NULL, blank=True, null=True)
-
-    def type(self):
+    
+    def extension(self):
         return str(self.document).split('.',1)[1]
     
     def filename(self):

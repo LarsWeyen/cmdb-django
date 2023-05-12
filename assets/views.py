@@ -3,6 +3,7 @@ from django.db.models import Count
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
+from overview.views import download
 import os
 from django.core.files.storage import FileSystemStorage,default_storage
 from django.urls import reverse
@@ -578,3 +579,14 @@ def uploadDocument(request):
             return redirect("overview:documents")
     context = {'form':form}
     return render(request,'assets/upload-document.html',context)
+
+def openDoc(request,pk):
+    document = Document.objects.get(id=pk)
+    if document.extension() == "pdf":
+        with open(document.document.path, 'rb') as pdf:
+            response = HttpResponse(pdf.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+            return response
+    else:
+        return download(request,pk)
+    
