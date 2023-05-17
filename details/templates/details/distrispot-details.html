@@ -74,9 +74,13 @@
         <div>
             <span class="h3 mb-1">Components</span>
             <ul class="list-group rounded w-75">
+                {% if children_list %}
                 {% for child in children_list %}
                     <li class="list-group-item"><a href="{% url child.route child.id%}">{{child.name}}</a></li>
                 {% endfor %}
+                {% else %}
+                <li class="list-group-item">No components assigned</li>
+                {% endif %}
             </ul>
         </div>
     </div>
