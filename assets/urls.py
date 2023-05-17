@@ -15,6 +15,7 @@ urlpatterns = [
     path('update-maintenance/<str:pk>/',views.updateMaintenance,name='update-maintenance'),
     path('upload-document/',views.uploadDocument,name='upload-document'),
     path('open-document/<str:pk>/',views.openDoc,name='open-document'),
+    path('search/',views.get_searchItems,name="search")
 ]
 
 

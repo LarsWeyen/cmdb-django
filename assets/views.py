@@ -12,6 +12,8 @@ from .models import Type, Asset, Customer, LCD, LCB, Camera, Switch, Router, Pow
 from numerize import numerize
 from .utilities import OAuth2Adapter
 from django.contrib import messages
+from itertools import chain
+from django.http import JsonResponse
 
 def dashboard(request):
     type_names = Type.objects.all()
@@ -589,4 +591,44 @@ def openDoc(request,pk):
             return response
     else:
         return download(request,pk)
+
+class SearchedAsset:
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+ 
+def get_searchItems(request):
+    search = request.GET.get('search')
+    data = []
+    if search:
+        assets = Asset.objects.filter(name__contains=search)
+        asset_list=[]
+        for asset in assets:
+             # Append a dictionary containing the asset's information and details of the component to the asset list
+            asset_list.append(SearchedAsset(
+                name=asset.name,
+                type=asset.type,
+                id = getattr(asset, f"{asset.type.slug}").first().id,
+            ))
+        customers = Customer.objects.filter(name__contains=search)
+        results = chain(asset_list,customers)
+        
+        for result in results:
+            if hasattr(result,'type'):
+                    data.append({
+                        'name': result.name,
+                        'type': result.type.slug,
+                        'id':result.id
+                    })
+            else:
+                data.append({
+                    'type':'customer',
+                    'name': result.name,
+                    'id' : result.id,
+                })
+        
+    return JsonResponse({
+            'status': True,
+            'data' : data
+        })    
     
