@@ -572,6 +572,10 @@ def createMaintenance(request):
 
 def uploadDocument(request):
     form = DocumentForm()
+    breadcrumbs = [{
+        'name': 'New Document',
+        'route': "overview:documents"
+    }]
     if request.method == "POST":
         form = DocumentForm(request.POST, request.FILES)
         print(request.POST)
@@ -579,7 +583,7 @@ def uploadDocument(request):
             form.save()
             messages.success(request,'File Uploaded!')
             return redirect("overview:documents")
-    context = {'form':form}
+    context = {'form':form,'breadcrumbs':breadcrumbs}
     return render(request,'assets/upload-document.html',context)
 
 def openDoc(request,pk):
