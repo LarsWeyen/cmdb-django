@@ -25,12 +25,14 @@ def dashboard(request):
         counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
         # Set counts in cache
         cache.set('dashboard-counts',counts)
+    maintenace_count = numerize.numerize(Maintenance.objects.all().count())
     customer_count = numerize.numerize(Customer.objects.all().count()) 
     
     context = {
         'types': type_names,
         'counts': counts,
         'customer_count':customer_count,
+        'maintenance_count':maintenace_count
     }
 
     return render(request,'assets/dashboard.html',context)

@@ -116,15 +116,15 @@
                     <span class="asset-title">Customers</span>
                 </div>
             </div>
-            {% comment %} <div class="location rounded">
+            <div onclick="location.href='{% url 'overview:maintenances'%}';" class="maintenance rounded dashboard-block">
                 <div class="content position-relative m-2">
                     <div class="ms-auto position-absolute top-0 end-0">
-                        {% bs_icon 'geo-alt' size='2em' %}
+                        {% bs_icon 'wrench-adjustable-circle' size='2em' %}
                     </div>
-                    <span class="asset-count">{{location_count}}</span>
-                    <span class="asset-title">Locations</span>
+                    <span class="asset-count">{{maintenance_count}}</span>
+                    <span class="asset-title">Maintenances</span>
                 </div>
-            </div> {% endcomment %}
+            </div>
         </div>
     </div>
 </div>

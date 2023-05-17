@@ -102,7 +102,7 @@
     color: #153B52;
 }
 
-.location{
+.maintenance{
     background-color: #3d7aa0;
     color: #1f4055;
 }
@@ -157,6 +157,10 @@ navbar{
 }
 navbar .h1{
     margin-bottom: 0;
+}
+
+.navbar{
+    z-index: 10;
 }
 
 ul{

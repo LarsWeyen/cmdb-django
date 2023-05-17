@@ -1,45 +1,5 @@
 {% load static %}
 {% load django_bootstrap_breadcrumbs %}
-{% comment %} <div class="navbar navbar-expand navbar-light bg-white topbar static-top shadow gap-5 w-100 px-5">
-  <div class="d-flex align-items-center">
-    {% block breadcrumbs %}
-    {% clear_breadcrumbs %}
-
-    {% breadcrumb "Dashboard" "/" %}
-    {% for breadcrumb in breadcrumbs %}
-    {% breadcrumb breadcrumb.name breadcrumb.route %}
-    {% endfor %}
-  {% endblock %}
-  
-  {% block content %}
-      {% render_breadcrumbs %}
-  {% endblock %}
-  </div>
-
-  <div class="d-flex justify-content-between w-75 align-items-center">
-    <div id="autocomplete" class="autocomplete w-50">
-      <input class="autocomplete-input" />
-      <ul class="autocomplete-result-list"></ul>
-    </div>
-  
-    <div class="dropdown">
-      <button class="btn add-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" onClick="dropdownCollapse()" aria-haspopup="true" aria-expanded="false">
-        Add New Item
-      </button>
-      <div class="button-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="{% url 'assets:create-asset'%}">Create new Asset</a>
-        <a class="dropdown-item" href="{% url 'assets:create-customer'%}">Add Customer</a>
-        <a class="dropdown-item" href="{% url 'assets:create-maintenance' %}">Add Maintenance</a>
-        <a class="dropdown-item" href="{% url 'assets:upload-document' %}">Upload Document</a>
-      </div>
-    </div>
-  
-    <div>
-      <a class="text-muted" href="#">{{request.user}}</a>
-    </div>
-  </div>
-</div> {% endcomment %}
-
 <div class="navbar navbar-expand navbar-light bg-white topbar justify-content-between static-top shadow gap-5 w-100 px-5">
  
   <div class="d-flex align-items-center w-60">
@@ -87,13 +47,11 @@
         fetch(url)
         .then(response=>response.json())
         .then(data =>{
-          console.log(data.data)
           resolve(data.data)
         })
       })
     } ,
     renderResult : (result,props)=>{
-      console.log(props)
       let group = ''
       if (result.index % 3 == 0){
         group = `<li class="group">Group</li>`
