@@ -70,6 +70,17 @@
                 <span>{{switch.mac_address}}</span>
             </div>
         </div>
+        {% if documents %}
+        <h2 class="mt-3">Documents</h2>
+       <ul class="list-group rounded w-50">
+            {% for document in documents %}
+                <li class="list-group-item d-flex justify-content-between"><a href="{% url 'assets:open-document' pk=document.id %}"> {% if document.extension == 'docx' %}<span class="word">{% bs_icon 'filetype-docx' size='1.5em' %}</span>
+                    {% elif document.extension == 'pdf' %}<span class="pdf">{% bs_icon 'filetype-pdf' size='1.5em' %}</span>
+                    {% elif document.extension == 'xlsx' %}<span class="excel">{% bs_icon 'file-earmark-spreadsheet' size='1.5em' %}</span>
+                    {% endif %}{{document.filename}}</a><a href="{% url 'overview:download' id=document.id%}">{% bs_icon 'download' size='1.5em' %}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     </div>
 </div>
 

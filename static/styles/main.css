@@ -377,7 +377,7 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 
 .distrispot-grid{
     display: grid;
-    grid-template-columns: 1fr 370px;
+    grid-template-columns: 1fr 320px;
     gap: 1rem;
 }
 
@@ -404,4 +404,8 @@ table th,td:not(:first-child) { padding-left: 12px; } */
 
 .pdf{
     color: #b30b00;
+}
+
+.excel{
+    color: #016c37;
 }

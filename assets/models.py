@@ -245,3 +245,6 @@ class Document(models.Model):
     
     def filename(self):
         return os.path.basename(self.document.name).split('.',1)[0]
+    
+    def __str__(self) -> str:
+        return self.filename()

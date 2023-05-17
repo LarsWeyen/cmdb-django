@@ -37,7 +37,8 @@ def camera(request,pk):
     context={
         'camera':camera,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/camera-details.html',context)
@@ -68,7 +69,8 @@ def dvr(request,pk):
     context={
         'dvr':dvr,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/dvr-details.html',context)
@@ -89,7 +91,8 @@ def ipc(request,pk):
     context={
         'ipc':ipc,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/ipc-details.html',context)
@@ -111,7 +114,8 @@ def lcb(request,pk):
     context={
         'lcb':lcb,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/lcb-details.html',context)
@@ -132,7 +136,8 @@ def lcd(request,pk):
     context={
         'lcd':lcd,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/lcd-details.html',context)
@@ -152,7 +157,8 @@ def psu(request,pk):
     context={
         'psu':psu,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/psu-details.html',context)
@@ -172,7 +178,8 @@ def qrscanner(request,pk):
     context={
         'qrscanner':qrscanner,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/qrscanner-details.html',context)
@@ -180,7 +187,7 @@ def qrscanner(request,pk):
 def rfid(request,pk):
     rfid = RFID.objects.get(id=pk)
     asset = Asset.objects.get(id=rfid.asset.id)
-
+    
     breadcrumbs = [{
         'name': 'RFIDS',
         'route': "overview:rfids"
@@ -193,7 +200,8 @@ def rfid(request,pk):
     context={
         'rfid':rfid,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/rfid-details.html',context)
@@ -214,7 +222,8 @@ def router(request,pk):
     context={
         'router':router,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/router-details.html',context)
@@ -235,7 +244,8 @@ def switch(request,pk):
     context={
         'switch':switch,
         'asset':asset,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/switch-details.html',context)
@@ -265,7 +275,8 @@ def distrispot(request,pk):
         'distrispot':distrispot,
         'asset':asset,
         'children_list': children_list,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'documents':getAssetDocuments(asset)
     }
 
     return render(request, 'details/distrispot-details.html',context)
@@ -288,3 +299,6 @@ def maintenance(request,pk):
     }
 
     return render(request, 'details/maintenance-details.html',context)
+
+def getAssetDocuments(asset):
+    return asset.document_set.all()

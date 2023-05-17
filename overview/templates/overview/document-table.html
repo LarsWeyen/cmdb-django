@@ -21,9 +21,10 @@
                 <tr>
                   <td><a href="{% url 'overview:download' id=document.id%}">{% bs_icon 'download' size='1.5em' %}</a></td>
                     <th>{{document.id}}</th>
-                    <td><a href="{% url 'assets:open-document' pk=document.id %}">{{document.filename}} {% if document.extension == 'docx' %}<span class="word">{% bs_icon 'filetype-docx' size='1.5em' %}</span>
+                    <td><a href="{% url 'assets:open-document' pk=document.id %}">{% if document.extension == 'docx' %}<span class="word">{% bs_icon 'filetype-docx' size='1.5em' %}</span>
                       {% elif document.extension == 'pdf' %}<span class="pdf">{% bs_icon 'filetype-pdf' size='1.5em' %}</span>
-                      {% endif %}</a></td>
+                      {% elif document.extension == 'xlsx' %}<span class="excel">{% bs_icon 'file-earmark-spreadsheet' size='1.5em' %}</span>
+                      {% endif %}{{document.filename}} </a></td>
                     <td>{{document.parent}} 
                       </td>
                     
