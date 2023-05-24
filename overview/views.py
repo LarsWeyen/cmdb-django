@@ -170,6 +170,7 @@ def distrispotsTable(request):
 
     return render(request,'overview/distrispot-table.html',context)
 
+# Displays all the maintances
 def maintenancesTable(request):
     maintenances = Maintenance.objects.all()
     breadcrumbs = [{
@@ -182,6 +183,7 @@ def maintenancesTable(request):
     }
     return render(request,'overview/maintenance-table.html',context)
 
+# Displays all the maintenances that happened to a distrispot
 def maintenanceSpotTable(request,pk):
     maintenances = Maintenance.objects.filter(distrispot_id=pk)
     distrispot_name = Distrispot.objects.get(id=pk).asset.name

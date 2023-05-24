@@ -4,7 +4,6 @@ from . import views
 urlpatterns = [
     path('customer/<str:pk>/',views.customer,name='customer'),
     path('camera/<str:pk>/',views.camera,name='camera'),
-    # path('location/<str:pk>/',views.location,name='location'),
     path('dvr/<str:pk>/',views.dvr,name='dvr'),
     path('ipc/<str:pk>/',views.ipc,name='ipc'),
     path('lcb/<str:pk>/',views.lcb,name='lcb'),

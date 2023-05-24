@@ -43,16 +43,6 @@ def camera(request,pk):
 
     return render(request, 'details/camera-details.html',context)
 
-# def location(request,pk):
-#     location = Location.objects.get(id=pk)
-#     context={
-#         'location':location
-#     }
-
-#     return render(request, 'details/location-details.html',context)
-
-
-
 def dvr(request,pk):
     dvr = DVR.objects.get(id=pk)
     asset = Asset.objects.get(id=dvr.asset.id)
@@ -255,6 +245,7 @@ def distrispot(request,pk):
     asset = Asset.objects.get(id=distrispot.asset.id)
     children = Asset.objects.filter(parent=asset.id)
     children_list = []
+    # Gets the route, id and name of all the assets that are linked to the distrispot
     for child in children:
         children_list.append({
             "route": f"details:{child.type.slug}",
@@ -299,6 +290,6 @@ def maintenance(request,pk):
     }
 
     return render(request, 'details/maintenance-details.html',context)
-
+# Gets the documents that are linked to an asset
 def getAssetDocuments(asset):
     return asset.document_set.all()

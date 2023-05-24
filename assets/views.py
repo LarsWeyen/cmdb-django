@@ -481,7 +481,7 @@ def delete(request,type,pk):
     # Gets the page from which the delete button has been pressed
     next = request.POST.get('next', '/')
     app = str(request.GET['next']).split('/')[1]
-    res = str(request.GET['next']).split('/')[2]
+    type = str(request.GET['next']).split('/')[2]
     if type == 'asset':
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
@@ -490,7 +490,7 @@ def delete(request,type,pk):
             # If the button has been pressed on a details page it goes back to the overview of that asset type
             if "details" in app:
                 res += 'es' if res == 'switch' else 's'
-                return redirect(f'overview:{res}')
+                return redirect(f'overview:{type}')
             else:
                 return redirect(next)
         
@@ -580,7 +580,6 @@ def uploadDocument(request):
     }]
     if request.method == "POST":
         form = DocumentForm(request.POST, request.FILES)
-        print(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'File Uploaded!')
@@ -590,6 +589,7 @@ def uploadDocument(request):
 
 def openDoc(request,pk):
     document = Document.objects.get(id=pk)
+    # If the document is a pdf it will open in the browser otherwise it will download
     if document.extension() == "pdf":
         with open(document.document.path, 'rb') as pdf:
             response = HttpResponse(pdf.read(), content_type='application/pdf')
@@ -620,6 +620,7 @@ def get_searchItems(request):
         results = chain(asset_list,customers)
         
         for result in results:
+            # If the searched result is a asset
             if hasattr(result,'type'):
                     data.append({
                         'name': result.name,

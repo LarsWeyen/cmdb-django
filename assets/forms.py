@@ -4,10 +4,10 @@ from .models import Asset, Camera, DVR, IPC, LCB, LCD, PowerSupply, QRScanner, R
 
 from django_select2 import forms as s2forms
 
+# searchable selectbox
 class ParentWidget(s2forms.ModelSelect2Widget):
     search_fields = "asset__icontains"
     
-
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
