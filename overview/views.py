@@ -129,26 +129,26 @@ def lcbTable(request):
 def assetsTable(request):
     assets= Asset.objects.all()
      # Check if there is a cached asset list
-    if cache.get('asset-table'):
-        # If there is, use the cached asset list
-        asset_list = cache.get('asset-table')
-    else:
-        asset_list=[]
-        for asset in assets:
-             # Append a dictionary containing the asset's information and details of the component to the asset list
-            asset_list.append({
-                "id":asset.id,
-                "sid":asset.sid,
-                "name":asset.name,
-                "customer":asset.customer,
-                "type":asset.type,
-                "parent":asset.parent,
-                "created":asset.created,
-                "child_id": getattr(asset, f"{asset.type.slug}").first().id,
-                "route": f"details:{asset.type.slug}",
-                })
+    # if cache.get('asset-table'):
+    #     # If there is, use the cached asset list
+    #     asset_list = cache.get('asset-table')
+    
+    asset_list=[]
+    for asset in assets:
+         # Append a dictionary containing the asset's information and details of the component to the asset list
+        asset_list.append({
+            "id":asset.id,
+            "sid":asset.sid,
+            "name":asset.name,
+            "customer":asset.customer,
+            "type":asset.type,
+            "parent":asset.parent,
+            "created":asset.created,
+            "child_id": getattr(asset, f"{asset.type.slug}").first().id,
+            "route": f"details:{asset.type.slug}",
+            })
         # Cache the asset list for future use
-        cache.set('asset-table',asset_list)
+        # cache.set('asset-table',asset_list)
     # Breadcrumbs for the template
     breadcrumbs = [{
         'name': 'Assets',
@@ -199,7 +199,8 @@ def maintenanceSpotTable(request,pk):
 
     context = {
         'maintenances':maintenances,
-        'breadcrumbs':breadcrumbs
+        'breadcrumbs':breadcrumbs,
+        'distrispot_name': distrispot_name
                }
     return render(request,'overview/maintenance-table.html',context)
 
