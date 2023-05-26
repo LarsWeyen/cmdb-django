@@ -1,5 +1,4 @@
 from django.db import models
-from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
 import os
 from assets.managers import AssetChildManager, AssetManager
@@ -14,7 +13,6 @@ class Type(models.Model):
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)
-    # location = models.ForeignKey(Location, on_delete=models.PROTECT)
     email = models.CharField(max_length=256)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=150)
@@ -70,35 +68,6 @@ class NetworkDevice(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50,null=True,blank=True)
 
-    # def set_password(self,password,master_key):
-    #     f = Fernet(master_key)
-    #     password_bytes = password.encode('utf-8')
-    #     encrypted_bytes = f.encrypt(password_bytes)
-    #     self.encrypted_password = encrypted_bytes
-
-    # key = Fernet.generate_key()
-    #     f = Fernet(key)
-    #     decrypted_password = f.decrypt(self.password).decode('utf-8')
-    #     if master_password == self.master_password:
-    #         return decrypted_password
-    #     else:
-    #         return None
-
-    # def get_password(self,master_key):
-    #     f = Fernet(master_key)
-    #     decrypted_bytes = f.decrypt(self.encrypted_password)
-    #     return decrypted_bytes.decode('utf-8')
-    
-    #   def set_password(self, master_password, new_password):
-    #     if master_password == self.master_password:
-    #         key = Fernet.generate_key()
-    #         f = Fernet(key)
-    #         self.password = f.encrypt(new_password.encode('utf-8'))
-    #         self.save()
-    #         return True
-    #     else:
-    #         return False
-    
     class Meta:
         abstract = True
 
