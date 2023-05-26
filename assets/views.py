@@ -18,13 +18,13 @@ from django.http import JsonResponse
 def dashboard(request):
     type_names = Type.objects.all()
      # Check if dashboard counts are already in cache
-    if cache.get('dashboard-counts'):
-        counts = cache.get('dashboard-counts')
-    else:
-        # If not, get counts for each asset type
-        counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
-        # Set counts in cache
-        cache.set('dashboard-counts',counts)
+    # if cache.get('dashboard-counts'):
+    #     counts = cache.get('dashboard-counts')
+
+    # If not, get counts for each asset type
+    counts = {type_name.slug: numerize.numerize(Asset.objects.filter(type=type_name).count()) for type_name in type_names}
+    # Set counts in cache
+    # cache.set('dashboard-counts',counts)
     maintenace_count = numerize.numerize(Maintenance.objects.all().count())
     customer_count = numerize.numerize(Customer.objects.all().count()) 
     
@@ -481,7 +481,7 @@ def delete(request,type,pk):
     # Gets the page from which the delete button has been pressed
     next = request.POST.get('next', '/')
     app = str(request.GET['next']).split('/')[1]
-    type = str(request.GET['next']).split('/')[2]
+    routeType = str(request.GET['next']).split('/')[2]
     if type == 'asset':
         item = Asset.objects.get(id=pk)
         if request.method == 'POST':
@@ -489,8 +489,8 @@ def delete(request,type,pk):
             messages.success(request,'Deleted Asset!')
             # If the button has been pressed on a details page it goes back to the overview of that asset type
             if "details" in app:
-                res += 'es' if res == 'switch' else 's'
-                return redirect(f'overview:{type}')
+                routeType += 'es' if routeType == 'switch' else 's'
+                return redirect(f'overview:{routeType}')
             else:
                 return redirect(next)
         

@@ -158,12 +158,16 @@ class DistrispotForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
+class DistrispotWidget(s2forms.ModelSelect2Widget):
+    search_fields = "distrispot__icontains"
+
 class MaintenanceForm(forms.ModelForm):
     class Meta:
         model = Maintenance
         fields = '__all__'
         widgets = {
-            'date': widgets.DateInput(attrs={'type': 'date'})
+            'date': widgets.DateInput(attrs={'type': 'date'}),
+            'maintenance': DistrispotWidget
         }
         
 
